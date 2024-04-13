@@ -28,14 +28,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider >
           <Verify>
-            {/* <SmoothScroll> */}
+            <SmoothScroll>
               <LayoutProvider>
                 <Snipping>
                   <Toast />
                   {children}
                 </Snipping>
               </LayoutProvider>
-            {/* </SmoothScroll> */}
+            </SmoothScroll>
           </Verify>
         </Provider>
       </body>
