@@ -21,6 +21,11 @@
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "clear": "^0.1.0",
+    "codemirror": "^5.65.16",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "gasp": "^0.0.2",
     "gsap": "^3.12.5",
     "gsap-trial": "^3.12.5",
@@ -29,8 +34,10 @@
     "next-auth": "^4.24.7",
     "prisma": "^5.12.1",
     "react": "^18",
+    "react-codemirror2": "^8.0.0",
     "react-dom": "^18",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "speech-synthesis": "^0.3.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -39,7 +46,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.1.4",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",

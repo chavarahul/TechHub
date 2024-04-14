@@ -44,7 +44,7 @@ const Page = () => {
     console.log(res)
     console.log(res?.data)
     let resp = res.data.text.replace(/\*/g, '');
-    const formattedData = resp
+    const formattedData:any = resp
       .split(/\d+\.\s+/)
       .filter(Boolean)
       .map((item: string) => item.trim().replace(/\./g, '.\n'));
@@ -186,6 +186,7 @@ const Page = () => {
            <Chats/>
            <TextImage/>
       </section> */}
+      <button onClick={()=>{signOut()}}> Out</button>
     </>
   )
 }
