@@ -13,7 +13,7 @@ export const POST = async (request: NextRequest) => {
 
     const prompt = `Debug the code ${title} written in ${lang} line by line. 
     Make sure your response doesnot exceed 6 lines.Avoid Special characters such as * , # , $ in the explanation.
-    Do provide the expected output of the given code`
+    Do provide the expected output of the given code`
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

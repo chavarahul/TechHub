@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
 import gsap from 'gsap'
 import { Power4 } from 'gsap'
+
 const Navbar = () => {
     const router = useRouter()
     const [users, setUsers] = useState<boolean>(false)
@@ -23,7 +24,12 @@ const Navbar = () => {
     }
     useEffect(() => {
         const t1 = gsap.timeline();
-        t1.to(".Siders", {
+        t1.to(".Toppr", {
+            y: 0,
+            ease: Power4.easeOut,
+            duration: 1.5,
+            delay:0.04
+        }).to(".Siders", {
             x: 0,
             ease: Power4.easeOut,
             duration: 1,
@@ -63,28 +69,34 @@ const Navbar = () => {
             </div>
             {
                 box &&
-                <section className='bg-[#090909] w-screen h-screen z-[999999] fixed top-0 left-0'>
+                <section className='bg-[#090909] w-screen h-screen z-[999999] fixed top-0 left-0 Toppr' style={{transform:"translateY(-140vh)"}}>
                     <div className=" w-full h-[10%] flex-bet relative">
                         <div className=" w-[10%] h-full absolute right-0 top-0 flex-center" onClick={() => { setBox(false) }}>
-                            <CloseIcon />
+                            <CloseIcon className='cursor-pointer' />
                         </div>
                     </div>
-                    <div className="h-[90%] w-full relative ">
+                    <div className="h-[90%] w-full relative flex">
                         <div className="w-[40%] h-full  flex items-end justify-end">
-                            <div className="w-[80%] h-full relative overflow-hidden  flex-colm">
-                                <div className="w-full h-[50%]  relative overflow-hidden">
+                            <div className="w-[70%] h-full relative overflow-hidden  flex-colm">
+                                <div className="w-full h-[50%]  relative overflow-hidden flex items-start flex-col justify-evenly">
                                     {
                                         data?.map((t: any, ind: number) => (
-                                            <Link className="w-full h-[20%] mt-4 Siders hover:translate-x-7 letter transition-all duration-[1s] flex items-center text-4xl font-medium" key={ind} href={t.hrefs} style={{ transform: "translateX(-160px)" }} onClick={handleMenu}>
-                                                {t.title}
+                                            <Link className="button Siders" data-text="Awesome" key={ind} href={t.hrefs}  style={{ transform: "translateX(-200px)" }} onClick={handleMenu}>
+                                                <span className="actual-text">&nbsp;{t.title}&nbsp;</span>
+                                                <span aria-hidden="true" className="hover-text">&nbsp;{t.title}&nbsp;</span>
                                             </Link>
                                         ))
                                     }
                                 </div>
                                 <div className="w-full h-[10%]  relative overflow-hidden cursor-pointer" onClick={() => { signOut() }}>
-                                    <p className={`${poppin.className} text-3xl Siders`} style={{ transform: "translateX(-160px)" }} >SignOut</p>
+                                    <p className={`${poppin.className} text-4xl Siders letters font-medium`} style={{ transform: "translateX(-160px)" }} >SignOut</p>
                                 </div>
                             </div>
+                        </div>
+                        <div className=" w-[40%] h-full relative">
+                           <div className=" w-full h-[90%] relative -mt-10">
+                           {/* <Image src={tech2} alt='Logo' className='w-full h-full'/> */}
+                           </div>
                         </div>
                     </div>
                 </section>
