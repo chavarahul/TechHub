@@ -11,8 +11,9 @@ export const POST = async (request: NextRequest) => {
     console.log(title, lang)
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    const prompt = `Performing a code review of the code is ${title} written in ${lang}.
-    Identify basic errors without focusing on complex issues and list them in 5-8 lines. If the code "${title}" is not written in ${lang}, indicate that the programming language is incorrect.`
+    const prompt = `Debug the code ${title} written in ${lang} line by line. 
+    Make sure your response doesnot exceed 6 lines.Avoid Special characters such as * , # , $ in the explanation.
+    Do provide the expected output of the given code`
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

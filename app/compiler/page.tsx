@@ -1,10 +1,14 @@
+'use client'
 import React from 'react'
 import { poppin } from '../constants'
 import AICompiler from '../components/AICompiler'
-
+import gsap from 'gsap'
+import Transition from '../components/effects/Transition'
 const page = () => {
+  const home = gsap.timeline()
   return (
     <>
+     <Transition timeline={home} />
       <section className=' h-screen relative w-full'>
         <div className=" h-[20%] flex-colm">
           <h3 className={`${poppin.className} text-2xl font-medium`}>
