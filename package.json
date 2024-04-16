@@ -29,7 +29,9 @@
     "gasp": "^0.0.2",
     "gsap": "^3.12.5",
     "gsap-trial": "^3.12.5",
+    "html2canvas": "^1.4.1",
     "imaginesdk": "^1.1.0",
+    "jspdf": "^2.5.1",
     "next": "14.1.4",
     "next-auth": "^4.24.7",
     "prisma": "^5.12.1",
@@ -41,6 +43,8 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/html2canvas": "^1.0.0",
+    "@types/jspdf": "^2.0.0",
     "@types/node": "^20",
     "@types/node-fetch": "^2.6.11",
     "@types/react": "^18",

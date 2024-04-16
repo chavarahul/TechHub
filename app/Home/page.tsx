@@ -142,6 +142,7 @@ const Page = () => {
           }
         </div>
       </section>
+      <div className="w-full h-[25vh] borders"></div>
       <section className=' w-full h-[125vh] mb-5'>
         <div className=" w-full relative h-[28%] flex-colm ">
           <h3 className={`${poppin.className} text-[1.32rem] font-medium`}>Empowering <span className=' textColorBg shadow'>AI Fusion</span> with  Harnessing the Collective Power of AI Integration</h3>
@@ -182,11 +183,7 @@ const Page = () => {
           </div>
         </div>
       </section>
-      {/* <section className='w-screen h-screen overflow-x-scroll flex'> 
-           <Chats/>
-           <TextImage/>
-      </section> */}
-      <button onClick={()=>{signOut()}}> Out</button>
+
     </>
   )
 }

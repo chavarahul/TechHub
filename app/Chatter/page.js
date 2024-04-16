@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   GoogleGenerativeAI,
   HarmCategory,
@@ -12,7 +12,7 @@ export const Chats = () => {
   const [userInput, setUserInput] = useState("");
   const [chat, setChat] = useState(null);
   const [error, setError] = useState(null);
-  const API = "AIzaSyA7AZZaiyMlv_JsLI3XUdAQ7Hfp1o7YTgU"; // Replace with your actual API key
+  const API = "AIzaSyA7AZZaiyMlv_JsLI3XUdAQ7Hfp1o7YTgU"; // Add your API key
   const MODEL_NAME = "gemini-pro";
   const genAI = new GoogleGenerativeAI(API);
   const generationConfig = {
@@ -34,6 +34,15 @@ export const Chats = () => {
   ];
 
   useEffect(() => {
+    const loadMessagesFromLocalStorage = () => {
+      const storedMessages = localStorage.getItem("chatMessages");
+      if (storedMessages) {
+        setMessages(JSON.parse(storedMessages));
+      }
+    };
+
+    loadMessagesFromLocalStorage();
+
     const initChat = async () => {
       try {
         const newChat = await genAI
@@ -51,8 +60,13 @@ export const Chats = () => {
         setError(err);
       }
     };
+
     initChat();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+  }, [messages]);
 
   const handleSendMessages = async () => {
     try {

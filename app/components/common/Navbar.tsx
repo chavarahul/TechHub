@@ -39,7 +39,7 @@ const Navbar = () => {
     const data: any = [
         { title: "Home", hrefs: "/Home" },
         { title: "Compiler", hrefs: "/compiler" },
-        { title: "Profile", hrefs: "/Home" },
+        { title: "Profile", hrefs: "/profile" },
     ]
     return (
         <>
