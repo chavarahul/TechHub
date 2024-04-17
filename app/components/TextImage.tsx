@@ -1,41 +1,33 @@
 'use client'
-import React, { useState ,useEffect} from 'react';
+import React, { useState } from 'react';
 import { poppin } from '../constants';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import axios from 'axios';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
+import PreLoader from './common/PreLoader';
 
 const TextImage = () => {
   const [prompt, setPrompt] = useState<string>('');
   const [box, setBox] = useState<boolean>(true);
-  const [images, setImages] = useState<any[]>([]);
-  const [datas, setDatas] = useState<string[]>([]);
-
-  // Load stored images from local storage when component mounts
-  useEffect(() => {
-    const storedData = localStorage.getItem('datas');
-    if (storedData) {
-      setDatas(JSON.parse(storedData));
-    }
-  }, []);
-
+  const [images, setImages] = useState<any[]>([]); // Initialize images as an empty array
+  const[load,setLoad] =useState(false)
   const handlePage = async (e: any) => {
     e.preventDefault();
     console.log(prompt);
     setBox(false);
+    setLoad(true)
     try {
       const res = await axios.post('/api/text', { prompts: prompt });
-      console.log(res.data.data);
-      const urls = res.data.data.map((item: any) => item.asset_url);
-      console.log("Data", urls);
-      setDatas(urls);
-      localStorage.setItem('datas', JSON.stringify(urls));
+      console.log(res.data.data); // Access asset_url directly from the object
       setImages(res.data.data);
+      setLoad(false)
     } catch (error) {
       console.error('Error fetching images:', error);
-      setImages([]);
+      setImages([]); // Reset images to empty array if there's an error
     }
   };
+  
 
   const data = [
     { title: "A peaceful sunset over a calm lake" },
@@ -55,7 +47,7 @@ const TextImage = () => {
   };
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-screen relative mt-5">
       <div className=" w-full h-[6%] flex-center">
         <p className={`${poppin.className} font-normal text-xl`}>Transform your text into visually appealing and captivating images!</p>
       </div>
@@ -77,7 +69,7 @@ const TextImage = () => {
         </div>
       </form>
       {
-        (box && datas.length ===0) &&
+        box &&
         <div className=" h-[34%] flex justify-center items-center ">
           <div className="grid grid-cols-2 gap-4 w-[70%]  h-full">
             {
@@ -90,19 +82,21 @@ const TextImage = () => {
           </div>
         </div>
       }
+       {load && <PreLoader/>}
       {
-        (!box || datas.length>=1) &&
-        <div className="borders h-[70%] overflow-y-scroll Scroller py-10">
+        !box &&
+        <div className=" h-[70%] overflow-y-scroll Scroller py-10">
           <div className="grid grid-cols-3 gap-4 full  h-full ml-10">
-            {datas.length > 0 &&
-              datas.map((url: string, ind: number) => (
-                <div className="h-[20em] w-[90%]  flex-center border rounded-xl pt-2 pl-2 text-center cursor-pointer relative" key={ind}>
-                  <img src={url} alt='Image' className='w-full h-full' />
-                  <button onClick={() => copyImageUrl(url)} className='absolute right-3 bottom-3 z-[99999]'>Copy</button>
+            {images.length > 0 &&
+              images.map((t: any, ind: number) => (
+                <div className="h-[20em] w-[70%] relative flex-center  rounded-xl pt-2 pl-2 text-center cursor-pointer " key={ind}>
+                  <img src={`${t.asset_url}`} alt='Image' className='w-full h-full flex-center' />
+                  <button onClick={() => copyImageUrl(t.asset_url)} className={`absolute right-3 bottom-3 z-[99999] font-medium bg-white rounded-xl text-black p-[0.43rem] ${poppin.className}`}>Copy</button>
                 </div>
               ))
             }
           </div>
+
         </div>
       }
     </div>

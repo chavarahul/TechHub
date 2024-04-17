@@ -10,10 +10,11 @@ import gsap from 'gsap'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { poppin } from '../constants'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import toast from 'react-hot-toast'
 import Loader from '../components/common/Loader'
 import SideBar from '../components/common/SideBar'
-import Chats from '../Chatter/page'
+import Chats from '../components/pages/Chats'
 import TextImage from '../components/TextImage'
 import ImageText from '../components/ImageText'
 import Image from 'next/image'
@@ -26,14 +27,15 @@ const Page = () => {
   const [prompt, setPrompt] = useState<string>('')
   const [data, setData] = useState<string[]>([])
   const [pass, setPass] = useState(true)
-  const [embeddedContent, setEmbeddedContent] = useState('');
   const [box, setBox] = useState<boolean>(true)
-  const [selectSection, setSelectSection] = useState('')
-
+  const [selectSection, setSelectSection] = useState<string>('')
+  const [textAi, setTextAi] = useState<string>('')
+  const [selectedAi, setSelectedAi] = useState<string[]>([])
+  const [checker, setChecker] = useState<boolean>(false)
+  const [submit,setSubmit]=useState<boolean>(false)
   const handleSection = (section: string) => {
     setSelectSection(section)
   }
-
   const handlePage = async (e: any) => {
     console.log('Prompt:', prompt);
     setPass(false)
@@ -44,7 +46,7 @@ const Page = () => {
     console.log(res)
     console.log(res?.data)
     let resp = res.data.text.replace(/\*/g, '');
-    const formattedData:any = resp
+    const formattedData: any = resp
       .split(/\d+\.\s+/)
       .filter(Boolean)
       .map((item: string) => item.trim().replace(/\./g, '.\n'));
@@ -80,9 +82,28 @@ const Page = () => {
   const handleDummyData = (prompts: string, e: any) => {
     setPrompt(prompts);
     setBox(false)
-    // console.log(prompts)
-    // handlePage(e)
   }
+  const getText = async () => {
+    const text = await navigator.clipboard.readText()
+    setTextAi(text)
+
+  }
+  const select = [
+    { name: "AI Chat" }, { name: "Text to Image" }, { name: "Image to text" }
+  ]
+
+
+  const handleAiSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const aiName = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      setSelectedAi([...selectedAi, aiName]);
+    } else {
+      setSelectedAi(prevSelectedAi => prevSelectedAi.filter(ai => ai !== aiName));
+    }
+  };
+
 
   return (
     <>
@@ -136,54 +157,104 @@ const Page = () => {
                   </div>
                 ))
               }
-
             </div>
-
           }
         </div>
       </section>
-      <div className="w-full h-[25vh] borders"></div>
       <section className=' w-full h-[125vh] mb-5'>
         <div className=" w-full relative h-[28%] flex-colm ">
           <h3 className={`${poppin.className} text-[1.32rem] font-medium`}>Empowering <span className=' textColorBg shadow'>AI Fusion</span> with  Harnessing the Collective Power of AI Integration</h3>
           <p className={`${poppin.className} text-lg text-center leading-[40px]`}> Empowering AI fusion combines diverse AI technologies to enhance performance, enabling smarter solutions. This integration fosters innovation,<br /> driving growth in the digital era.</p>
-          <div className=" w-full flex-center h-[13%]">
-            <div className="w-[30px] h-[30px]  ml-4 rounded-full Add"></div>
-          </div>
         </div>
-        <div className="flex w-full h-[75%]">
-          <SideBar onSelectSection={handleSection} />
-          <div className=' border-red-400 h-[95%] w-full rounded-lg borders ml-2 p-4'>
-            {selectSection === 'AI Chat & Assistant' && <Chats />}
-            {selectSection === 'Text to Image' && <TextImage />}
-            {selectSection === 'Image to text' && <ImageText />}
-            {selectSection === '' &&
-              <>
-                <p className={`${poppin.className} font-bold w-full h-[10%]  flex-center mt-10 -ml-10`}>Unlocking AI Diversity: Multiple Technologies, One Line.</p>
-                <div className={` h-[70%] leading-8 ${poppin.className} grid grid-cols-2  items-center justify-around  text-center text-md mt-10 ml-36`}>
+        <div className="flex w-full h-[75%] relative">
+          {/* <SideBar onSelectSection={handleSection} /> */}
+          <div className='h-[95%] w-full rounded-lg  ml-2 p-4'>
+            <p className={`${poppin.className} font-bold w-full h-[10%]  flex-center mt-5 text-center`}>Unlocking AI Diversity: Multiple Technologies, One Line.</p>
+            <div className=" h-[80%] w-full relative flex-center ">
+              <div className={` h-full w-[60%]  leading-8 ${poppin.className} grid grid-cols-2  items-center justify-around  text-center text-md `}>
 
-                  {
-                    Features?.map((t: any, index: number) => (
-                      <div className="flex-colm w-[60%] rounded-lg h-[11em]  py-1 " key={index}>
-                        <div className=" w-full h-[50%] flex-center">
-                          <div className="w-[20%] rounded-[5px]  h-full glass shadow p-1 flex-center border border-violet-400">
-                            <Image src={t.img} alt="Image" className={`${index >= 2 ? 'w-[75%] h-[80%]' : 'w-full h-full'} ${index == 3 && 'w-[65%] h-[70%]'}`} />
-                          </div>
-                        </div>
-                        <div className=" cursor-pointer w-full h-full  p-3 leading-7 justify-evenly" onClick={(e: any) => { handleDummyData(t.title, e) }}>
-                          <p>{t.title}</p>
+                {
+                  Features?.map((t: any, index: number) => (
+                    <div className="flex-colm w-[90%] rounded-lg h-[11em]  py-1  " key={index}>
+                      <div className=" w-full h-[50%] flex-center">
+                        <div className="w-[20%] rounded-[5px]  h-full glass shadow p-1 flex-center border border-violet-400">
+                          <Image src={t.img} alt="Image" className={`${index >= 2 ? 'w-[75%] h-[80%]' : 'w-full h-full'} ${index == 3 && 'w-[65%] h-[70%]'}`} />
                         </div>
                       </div>
-
-                    ))
-                  }
-                </div>
-              </>
-            }
+                      <div className=" cursor-pointer w-full h-full  p-3 leading-7 justify-evenly" onClick={(e: any) => { handleDummyData(t.title, e) }}>
+                        <p className={`${poppin.className} mt-3`}>{t.title}</p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
+      <div className="w-full h-[50vh] mb-10 ">
+        <div className=" w-full relative h-[45%] flex-colm">
+          <h3 className={`${poppin.className} text-[1.32rem] font-medium`}>Enabling Seamless Interaction, Integrating User Input with <span className='textColorBg shadow'>AI Selection</span></h3>
+          <p className={`${poppin.className} text-lg text-center leading-[40px]`}>Effortlessly direct prompts to selected AI for tailored responses.
+            Fosters efficiency, precision, and user-centric engagement,<br /> amplifying AI utility across domains.</p>
+        </div>
+        <div className="w-full h-[55%] flex items-center justify-evenly">
+          <div className="item-hints mt-5 ">
+            <div className="hint " data-position={4} onClick={getText}>
+              <span className="hint-radius" />
+              <span className="hint-dot">Click</span>
+              <div className="hint-content do--split-children">
+                <p>Use Navbar to navigate the website quickly and easily.</p>
+              </div>
+            </div>
+          </div>
+          <form className="w-[30%] h-[20%] flex-center  mt-5" method="post" onSubmit={handlePage}>
+            <div className="relative rounded-lg w-[80%] overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg after:absolute after:-z-10 after:w-20 after:h-20 after:content[''] after:bg-rose-300 after:right-12 after:top-3 after:rounded-full after:blur-lg">
+              <input
+                placeholder="Enter your prompt or copy"
+                className={`relative pr-20 bg-transparent ring-0 outline-none border border-neutral-500 text-white placeholder-white text-sm rounded-lg focus:ring-violet-500 placeholder-opacity-60 focus:border-violet-500 block w-full p-2.5 checked:bg-emerald-500 ${poppin.className}`}
+                type="text"
+                value={textAi}
+                onChange={(e) => { setTextAi(e.target.value) }}
+              />
+            </div>
+          </form>
+          <form className="w-[20%] borders h-[20%] cursor-pointer mt-5 Checker relative flex-bet rounded-md px-4" >
+            <div className={`${poppin.className} text-lg`} onClick={() => { setChecker(!checker) }}>Select the  Ai{`\u0027`}s</div>
+            <KeyboardArrowDownIcon className='cursor-pointer' onClick={() => { setChecker(!checker) }} />
+            {
+              checker && <div className='absolute w-full h-[200px] top-20 left-0'>
+                {
+                  select?.map((t: any, ind: number) => (
+                    <div className="w-full px-4 h-[20%] relative flex items-center" key={ind}>
+                      <label className="container">
+                        <input type="checkbox"
+                          value={t.name}
+                          onChange={handleAiSelection}
+                          checked={selectedAi.includes(t.name)}
+                        />
+                        <svg viewBox="0 0 64 64" height="1.3em" width="1.3em">
+                          <path
+                            d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
+                            pathLength="575.0541381835938"
+                            className="path"
+                          />
+                        </svg>
+                      </label>
+                      <p>{t.name}</p>
+                    </div>
+                  ))
+                }
+              </div>
+            }
+          </form>
+          <button className="confirm mt-5" onClick={()=>{setSubmit(true)}}>Submit
+          </button>
+        </div>
+      </div>
+      <Chats />
+      <TextImage   />
+      <ImageText />
     </>
   )
 }

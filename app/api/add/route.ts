@@ -5,7 +5,7 @@ export const GET = async (request: NextApiRequest,res:NextApiResponse) => {
     
     try {
         const url: string = request.query.url as string;
-        const response = await axios.get(url); // Fetch website content
+        const response = await axios.get(url); 
         res.send(response.data);
        
     } catch (err) {
