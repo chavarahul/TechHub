@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
@@ -14,7 +14,13 @@ const AICompiler = () => {
     const [explain, setExplain] = useState('');
     const [final, setFinal] = useState('');
     const [speech, setSpeech] = useState<any>(null);
-
+    const [langs, setLangs] = useState('en')
+    useEffect(() => {
+        const item = localStorage.getItem('lang');
+        if (item) {
+            setLangs(item)
+        }
+    }, [])
     const handleChange = (editor: any, data: any, value: any) => {
         console.log(code)
         setCode(value);
@@ -23,13 +29,15 @@ const AICompiler = () => {
 
     const handleDeBug = async () => {
         const res = await axios.post('/api/debug', { check: code, langs: lang });
+
         console.log(res.data);
         let resp = res.data.text.replace(/\*/g, '');
         const formattedData: any = resp
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-        setDebug(formattedData);
+        const kaa = await axios.post('http://127.0.0.1:5000/translate', { trans: formattedData, lang: langs })
+        setDebug(kaa.data.translated_text);
     };
 
     const handleTest = async (e: any) => {
@@ -37,7 +45,8 @@ const AICompiler = () => {
         console.log('yutgbyvbgyh' + lang);
         const res = await axios.post('/api/test', { check: code, langs: lang });
         console.log(res.data);
-        setRun(res.data.text);
+        const output = await axios.post('/api/translate', { trans: res, lang: langs })
+        setRun(output.data.text);
     };
 
     const handleExplain = async () => {
@@ -48,7 +57,8 @@ const AICompiler = () => {
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-        setExplain(formattedData);
+        const explanation = await axios.post('/api/translate', { trans: res, lang: langs })
+        setExplain(explanation.data.result);
     };
 
     const handleFinal = async () => {
@@ -58,8 +68,10 @@ const AICompiler = () => {
         if ('speechSynthesis' in window) {
             const speechSynthesis = window.speechSynthesis;
             const utterance = new SpeechSynthesisUtterance(final);
+            utterance.lang = langs
             speechSynthesis.speak(utterance);
-        } else {
+        }
+        else {
             console.error('Speech synthesis is not supported');
         }
     };
@@ -75,7 +87,7 @@ const AICompiler = () => {
                             mode: `${lang}`, // Set the language mode
                             theme: "material", // Set the CodeMirror theme
                             lineNumbers: true,
-                             // Show line numbers
+                            // Show line numbers
                         }}
                     />
                 </div>
@@ -129,6 +141,7 @@ const AICompiler = () => {
                     </button>
                     <button className="confirm " onClick={handleFinal}> Speech
                     </button>
+                    {langs}
                 </div>
             </div>
             <div className="h-[25%]  flex-all mt-10">

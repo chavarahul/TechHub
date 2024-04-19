@@ -12,6 +12,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { poppin } from '../constants'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import toast from 'react-hot-toast'
+import annyang from 'annyang';
 import Loader from '../components/common/Loader'
 import SideBar from '../components/common/SideBar'
 import Chats from '../components/pages/Chats'
@@ -32,7 +33,8 @@ const Page = () => {
   const [textAi, setTextAi] = useState<string>('')
   const [selectedAi, setSelectedAi] = useState<string[]>([])
   const [checker, setChecker] = useState<boolean>(false)
-  const [submit,setSubmit]=useState<boolean>(false)
+  const [submit, setSubmit] = useState<boolean>(false)
+  const [langs, setLangs] = useState('')
   const handleSection = (section: string) => {
     setSelectSection(section)
   }
@@ -42,7 +44,7 @@ const Page = () => {
     setBox(false)
     e.preventDefault()
     console.log(prompt)
-    const res = await axios.post('/api/prompt', { prompts: prompt })
+    const res = await axios.post('/api/prompt', { prompts: prompt,lang:langs })
     console.log(res)
     console.log(res?.data)
     let resp = res.data.text.replace(/\*/g, '');
@@ -61,6 +63,12 @@ const Page = () => {
       toast.error("Not Copied")
     ))
   }
+  useEffect(() => {
+    const item = localStorage.getItem('lang');
+    if (item) {
+      setLangs(item)
+    }
+  }, [])
   const home = gsap.timeline()
   const { data: session } = useSession()
   const name = session?.user?.email
@@ -128,7 +136,7 @@ const Page = () => {
               }}
             />
             <button type="submit" className="absolute right-4 top-1 text-2xl text-white cursor-pointer">
-              <ArrowForwardIcon style={{fontSize:'1.7rem !important'}}/>
+              <ArrowForwardIcon style={{ fontSize: '1.7rem !important' }} />
             </button>
           </div>
         </form>
@@ -248,12 +256,12 @@ const Page = () => {
               </div>
             }
           </form>
-          <button className="confirm mt-5" onClick={() => { setSubmit(true); setTimeout(() => setSubmit(false), 0);  }}>Submit
+          <button className="confirm mt-5" onClick={() => { setSubmit(true); setTimeout(() => setSubmit(false), 0); }}>Submit
           </button>
         </div>
       </div>
-      <Chats texter={submit && selectedAi.includes('AI Chat') ? textAi : ''}  />
-      <TextImage texter={submit && selectedAi.includes('Text to Image') ? textAi : ''}  />
+      <Chats texter={submit && selectedAi.includes('AI Chat') ? textAi : ''} />
+      <TextImage texter={submit && selectedAi.includes('Text to Image') ? textAi : ''} />
       <ImageText />
     </>
   )

@@ -58,7 +58,7 @@ img {
   }
 
   .glasser {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.034);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -1018,4 +1018,16 @@ img {
   font-size: 16px !important;
   width: 100%;
   height: 100%;
+}
+.spin{
+  animation: spinner infinite ease-in-out 3s;
+}
+
+@keyframes spinner {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
 }
