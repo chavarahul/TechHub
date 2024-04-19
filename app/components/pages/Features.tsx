@@ -46,10 +46,10 @@ const Features = () => {
         })
     }, [])
     const data: { title: string }[] = [
-        { title: "is simply dummy text of the printing and typesetting industry. " },
-        { title: "is simply dummy text of the printing and typesetting industry. " },
-        { title: "is simply dummy text of the printing and typesetting industry. " },
-        { title: "is simply dummy text of the printing and typesetting industry. " },
+        { title: "AI Compiler " },
+        { title: "Language Independency" },
+        { title: "Use Multiple ai's with one Click " },
+        { title: "Convert to pdf/word document " },
     ]
     return (
         <div className="h-[100vh] w-full  flex items-end justify-center">
@@ -84,7 +84,7 @@ const Features = () => {
                                         data?.map((t: any, index: number) => (
                                             <div className="w-full h-[10%]  flex SideDiv items-center my-5" key={index} style={{ transform: 'translateX(-350px)', opacity: 0 }}>
                                                 {/* <div className="w-[12px] h-[12px] rounded-full" style={{ backgroundImage: 'linear-gradient(74deg, var(--bard-color-brand-text-gradient-stop-1) 0, var(--bard-color-brand-text-gradient-stop-2) 9%, var(--bard-color-brand-text-gradient-stop-3) 20%, var(--bard-color-brand-text-gradient-stop-3) 24%, var(--bard-color-brand-text-gradient-stop-2) 35%, var(--bard-color-brand-text-gradient-stop-1) 44%, var(--bard-color-brand-text-gradient-stop-2) 50%, var(--bard-color-brand-text-gradient-stop-3) 56%, #ffffffda 75%, #ffffffce 100%)' }}></div> */}
-                                                <p className={`${della.className} ml-5 text-lg`}>{index+1+". "}{t.title}</p>
+                                                <p className={`${poppin.className} ml-5 text-lg`}>{index+1+". "}{t.title}</p>
                                             </div>
                                         ))
                                     }

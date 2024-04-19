@@ -24,5 +24,6 @@ export const POST = async (request: NextRequest) => {
 }
 
 export const GET = async() =>{
-    
+    const daat  = await prisma.posts.findMany()
+    return NextResponse.json({daat})
 }

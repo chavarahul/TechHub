@@ -8,7 +8,7 @@ import axios from 'axios';
 const Page = () => {
   const documenterRef = useRef<HTMLDivElement>(null)
   const [content, setContent] = useState<string>('')
-  const [edit,setEdit]=useState<string[]>([])
+  const [edit, setEdit] = useState<string[]>([])
 
   useEffect(() => {
     if (documenterRef.current) {
@@ -19,23 +19,25 @@ const Page = () => {
   useEffect(() => {
     const paste = async () => {
       const res = await navigator.clipboard.readText();
-      const request  = await axios.post('/api/copy',{rest:res})
-      console.log(request.data.newUser)
-      setEdit(request.data.newUser.data)
+      if (res.trim() !== '') {
+        // await axios.post('/api/copy', { rest: res });
+      }
     };
+
     paste();
   }, []);
 
   useEffect(() => {
-    const paste = async () => {
-      const request  = await axios.get('/api/copy')
-      console.log(request.data.newUser)
-      setEdit(request.data.newUser.data)
+    const fetchData = async () => {
+      // const response = await axios.get('/api/copy');
+      // setEdit(response.data.daat.map((item: any) => item.data.join('')));
     };
-    paste();
+
+    fetchData();
   }, []);
 
- 
+
+
   const convertPdf = () => {
     const documenter = documenterRef.current;
     if (documenter) {
@@ -75,10 +77,10 @@ const Page = () => {
         </div>
       </div>
       <div className="w-[40%] relative h-full flex-center">
-        <div className="documenter w-full h-full borders" ref={documenterRef}  contentEditable={true} >
-        {edit?.map((edits:any, index:number) => (
-        <div key={index}>{edits}</div>
-      ))}
+        <div className="documenter w-full h-full borders" ref={documenterRef} contentEditable={true} >
+        {edit.map((text, index) => (
+            <div key={index} className='borders'>{text}</div>
+          ))}
         </div>
       </div>
     </section>

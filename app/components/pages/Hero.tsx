@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 import { useRouter } from 'next/navigation';
 const Hero = () => {
     const router = useRouter();
-    const words: string = "TechHub"; const words2: String = "Synergy";
+    const words: string = "AIFlEXI"; const words2: String = "Genius";
     const wordsArray: string[] = ["Empower users with code-free application", "development using AI-driven tools, enhancing", "productivity and efficiency in leveraging", "technology"]
     useEffect(() => {
         const t1 = gsap.timeline();
@@ -59,7 +59,10 @@ const Hero = () => {
         <section className='relative w-full h-[88vh] ml-10 flex flex-col '>
             <div className=" w-full h-1/2 relative flex">
                 <div className=" w-[69%] h-full relative overflow-hidden">
-                    <p className={`${poppin.className} font-extrabold text-[13rem] textColorBg flex-center Split`} id="side">
+                    <p className={`${poppin.className} font-extrabold text-[13rem] textColorBg flex Split`} id="side">
+                        {/* <span className="borders absolute top-10 left-40 borders w-[50px] h-[50px] rounded-full  flex-center">
+                            <p className={`${poppin.className} flex-center bg-white rounded-full text-sm AI text-black`}>AI</p>
+                        </span> */}
                         {letters.map((letter:string, index:number) => (
                             <span key={index} className={`${poppin.className} font-extrabold text-[13rem] textColorBg`}>{letter}</span>
                         ))
