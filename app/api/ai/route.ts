@@ -6,11 +6,13 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 export const POST = async (request: NextRequest) => {
     const body = await request.json()
     console.log(body)
+    const tell = body.lang
     const title: string = body.prompts
     console.log(title)
+    console.log(tell)
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    const prompt = `explain about ${title}`
+    const prompt = `explain about ${title} in ${tell} language`
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

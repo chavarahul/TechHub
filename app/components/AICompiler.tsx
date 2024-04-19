@@ -135,11 +135,26 @@ const AICompiler = () => {
             </div>
             <div className=" h-[10%] flex-center w-full relative">
                 <div className=" w-1/2 h-full  flex-all">
-                    <button className="confirm" onClick={handleTest}> RUN CODE
+                    <button className="confirm" onClick={handleTest}>
+                        {langs === 'en' && "Run Code"}
+                        {langs === 'ja' && "コードの実行"}
+                        {langs === 'es' && "Ejecución de código"}
+                        {langs === 'tr' && "Kod Çalıştırma"}
+                        {langs === 'fr' && "Exécution de code"}
                     </button>
-                    <button className="confirm " onClick={handleExplain}> EXPLAIN
+                    <button className="confirm " onClick={handleExplain}>
+                        {langs === 'en' && "Explain"}
+                        {langs === 'ja' && "説明する"}
+                        {langs === 'es' && "Explicar"}
+                        {langs === 'tr' && "Açıklamak"}
+                        {langs === 'fr' && "Expliquer"}
                     </button>
-                    <button className="confirm " onClick={handleFinal}> Speech
+                    <button className="confirm " onClick={handleFinal}>
+                        {langs === 'en' && "Speech"}
+                        {langs === 'ja' && "スピーチ"}
+                        {langs === 'es' && "Discours"}
+                        {langs === 'tr' && "Konuşma"}
+                        {langs === 'fr' && "Discours"}
                     </button>
                     {langs}
                 </div>

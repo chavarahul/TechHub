@@ -9,7 +9,7 @@ const Page = () => {
   const documenterRef = useRef<HTMLDivElement>(null)
   const [content, setContent] = useState<string>('')
   const [edit, setEdit] = useState<string[]>([])
-
+ const [langs,setLangs] = useState('')
   useEffect(() => {
     if (documenterRef.current) {
       documenterRef.current.innerHTML = content;
@@ -26,7 +26,12 @@ const Page = () => {
 
     paste();
   }, []);
-
+  useEffect(() => {
+    const item = localStorage.getItem('lang');
+    if (item) {
+      setLangs(item)
+    }
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       // const response = await axios.get('/api/copy');
@@ -61,16 +66,30 @@ const Page = () => {
         <div className="w-[97%] h-full flex-center">
           <div className="h-[50%] w-full relative flex-center flex-col -mt-40">
             <div className="h-[20%] w-full flex items-center">
-              <p className={`${poppin.className} text-2xl font-bold textColorBg`}>Copy Text and Images for PDF</p>
+              <p className={`${poppin.className} text-2xl font-bold textColorBg`}>
+                {langs === 'en' && "Copy Text and Images for PDF"}
+                {langs === 'ja' && "PDFのテキストと画像をコピーする"}
+                {langs === 'es' && "Copiar texto e imágenes para PDF"}
+                {langs === 'tr' && "PDF için Metin ve Görüntüleri Kopyalayın"}
+                {langs === 'fr' && "Copier du texte et des images pour PDF"}
+              </p>
             </div>
             <div className="h-[30%] w-full flex items-center leading-[40px]">
               <p className={`${poppin.className} text-lg leading-[40px]`}>
-                This section contains text and images suitable for inclusion in a single document, facilitating seamless conversion into PDF format.
+                {langs === 'en' && "This section contains text and images suitable for inclusion in a single document, facilitating seamless conversion into PDF format."}
+                {langs === 'ja' && "このセクションには、1 つのドキュメントに含めるのに適したテキストと画像が含まれているため、PDF 形式へのシームレスな変換が容易になります。"}
+                {langs === 'es' && "Esta sección contiene texto e imágenes adecuados para su inclusión en un solo documento, lo que facilita la conversión sin problemas al formato PDF."}
+                {langs === 'tr' && "Bu bölüm, tek bir belgeye dahil edilmeye uygun metin ve resimler içerir ve sorunsuz bir şekilde PDF formatına dönüştürmeyi kolaylaştırır."}
+                {langs === 'fr' && "Cette section contient du texte et des images pouvant être inclus dans un seul document, ce qui facilite la conversion au format PDF."}
               </p>
             </div>
             <div className="w-full h-[20%] flex items-end">
               <button className="confirm" onClick={convertPdf}>
-                Convert to pdf
+                {langs === 'en' && "Convert to pdf"}
+                {langs === 'ja' && "PDFに変換"}
+                {langs === 'es' && "Convertir a pdf"}
+                {langs === 'tr' && "PDF'ye dönüştür"}
+                {langs === 'fr' && "Convertir en pdf"}
               </button>
             </div>
           </div>
@@ -78,7 +97,7 @@ const Page = () => {
       </div>
       <div className="w-[40%] relative h-full flex-center">
         <div className="documenter w-full h-full borders" ref={documenterRef} contentEditable={true} >
-        {edit.map((text, index) => (
+          {edit.map((text, index) => (
             <div key={index} className='borders'>{text}</div>
           ))}
         </div>

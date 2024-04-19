@@ -11,17 +11,25 @@ import gsap from 'gsap';
 import { Power4 } from 'gsap';
 import LanguageIcon from '@mui/icons-material/Language';
 
+
 const Navbar = () => {
     const router = useRouter();
     const [users, setUsers] = useState<boolean>(false);
     const { data: session } = useSession();
     const [box, setBox] = useState<boolean>(false);
     const [lang, setLang] = useState('');
+    const [langs, setLangs] = useState('');
+    const [gloabls, setGlobals] = useState(false)
 
     useEffect(() => {
         session ? setUsers(true) : setUsers(false);
     }, [session]);
-
+    useEffect(() => {
+        const item = localStorage.getItem('lang');
+        if (item) {
+            setLangs(item)
+        }
+    }, [])
     const handleMenu = () => {
         setBox(false);
         console.log(box);
@@ -42,10 +50,10 @@ const Navbar = () => {
         });
     });
 
-    const data: any = [
-        { title: 'Home', hrefs: '/Home' },
-        { title: 'Compiler', hrefs: '/compiler' },
-        { title: 'Converter', hrefs: '/profile' },
+    const data = [
+        { title: langs === 'en' ? 'Home' : langs === 'ja' ? '家' : langs === 'es' ? 'Hogar' : langs === 'tr' ? 'Ev' : langs === 'fr' ? 'Domicile' : '' },
+        { title: langs === 'en' ? 'Compiler' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '' },
+        { title: langs === 'en' ? 'Converter' : langs === 'ja' ? 'コンバータ' : langs === 'es' ? 'Convertidora' : langs === 'tr' ? 'Dönüştürücü' : langs === 'fr' ? 'Convertisseur' : '' },
     ];
 
     const select = [
@@ -71,6 +79,7 @@ const Navbar = () => {
         if (selectedAbbr) {
             localStorage.setItem('lang', selectedAbbr);
         }
+        router.refresh()
     };
 
     return (
@@ -80,7 +89,7 @@ const Navbar = () => {
                     <div className=" w-[7%]  h-full flex-center">
                         <Image src={tech2} alt="Logo" />
                     </div>
-                    <div className="w-1/6 h-full flex-all borders relative">
+                    <div className="w-1/6 h-full flex-all  relative">
                         {users ? (
                             <>
                                 <p className={` capitalize font-medium -mr-4 ${poppin.className}`}>menu</p>
@@ -93,30 +102,32 @@ const Navbar = () => {
                         ) : (
                             <button className="confirm" onClick={() => { router.push('/Login') }}> LOGIN </button>
                         )}
-                        <div className="border w-[80px] h-[50px] flex-center">
+                        <div className=" w-[80px] h-[50px] flex-center cursor-pointer" onClick={()=>{setGlobals(!gloabls)}}>
                             <LanguageIcon style={{ fontSize: '30px' }} className="spin" />
                         </div >
-                        <div className="absolute top-20 left-10 borders w-[180px]  h-[10rem]  rounded-lg z-[999999]">
-                            {select?.map((t: any, ind: number) => (
-                                <div className="w-full px-4 h-[23%] relative flex items-center " key={ind}>
-                                    <label className="container">
-                                        <input type="checkbox"
-                                            value={t.title}
-                                            onChange={handleLanguageSelects}
-                                            checked={lang === t.title}
-                                        />
-                                        <svg viewBox="0 0 64 64" height="1.3em" width="1.3em">
-                                            <path
-                                                d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
-                                                pathLength="575.0541381835938"
-                                                className="path"
+                        {
+                            gloabls && <div className="absolute top-20 left-10  w-[220px] bg-[#2a2f3f]  h-[13rem]  rounded-lg z-[999999]">
+                                {select?.map((t: any, ind: number) => (
+                                    <div className="w-full px-4 h-[23%] relative flex items-center " key={ind}>
+                                        <label className="container">
+                                            <input type="checkbox"
+                                                value={t.title}
+                                                onChange={handleLanguageSelects}
+                                                checked={lang === t.title}
                                             />
-                                        </svg>
-                                    </label>
-                                    <p className={`${poppin.className} font-medium`} onClick={() => handleLanguageSelect(t.title)}>{t.title}</p>
-                                </div>
-                            ))}
-                        </div>
+                                            <svg viewBox="0 0 64 64" height="1.3em" width="1.3em">
+                                                <path
+                                                    d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
+                                                    pathLength="575.0541381835938"
+                                                    className="path"
+                                                />
+                                            </svg>
+                                        </label>
+                                        <p className={`${poppin.className} font-medium`} onClick={() => handleLanguageSelect(t.title)}>{t.title}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        }
                     </div>
 
                 </div>
