@@ -248,12 +248,12 @@ const Page = () => {
               </div>
             }
           </form>
-          <button className="confirm mt-5" onClick={()=>{setSubmit(true)}}>Submit
+          <button className="confirm mt-5" onClick={() => { setSubmit(true); setTimeout(() => setSubmit(false), 0);  }}>Submit
           </button>
         </div>
       </div>
-      <Chats />
-      <TextImage   />
+      <Chats texter={submit && selectedAi.includes('AI Chat') ? textAi : ''}  />
+      <TextImage texter={submit && selectedAi.includes('Text to Image') ? textAi : ''}  />
       <ImageText />
     </>
   )

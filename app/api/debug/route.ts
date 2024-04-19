@@ -11,9 +11,12 @@ export const POST = async (request: NextRequest) => {
     console.log(title, lang)
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    const prompt = `Debug the code ${title} written in ${lang} line by line. 
-    Make sure your response doesnot exceed 6 lines.Avoid Special characters such as * , # , $ in the explanation.
-    Do provide the expected output of the given code`
+    const prompt = `Debug the given code ${title} in the language ${lang} line by line
+    If the ${title} is spotted to be in some other langauge then , specify the language.
+    Give the expected output for the given code , if it is an error - explain why it is an error!
+    If the code has syntax errors , give how to fix those errors 
+    Crisp your response to only 7 to 8 lines!
+    Format the response neatly and provide it point-wise!`
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

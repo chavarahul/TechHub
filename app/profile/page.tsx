@@ -67,6 +67,7 @@ const Page = () => {
       </div>
       <div className="w-[40%] relative h-full flex-center">
         <div className="documenter w-full h-full borders" ref={documenterRef} />
+        
       </div>
     </section>
   )

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { poppin } from '../constants';
 const AICompiler = () => {
     const [code, setCode] = useState<string>("");
-    const [lang, setLang] = useState<string>('');
+    const [lang, setLang] = useState<string>('C');
     const [debug,setDebug]= useState([])
     const [run,setRun]= useState([])
     const [explain,setExplain]= useState('')
@@ -28,7 +28,9 @@ const AICompiler = () => {
         .map((item: string) => item.trim().replace(/\./g, '.\n'));
       setDebug(formattedData)
    } 
-   const handleTest =async() =>{
+   const handleTest =async(e:any) =>{
+    e.preventDefault();
+    console.log('yutgbyvbgyh' +lang)
     const res = await axios.post('/api/test',{check:code,langs:lang})
     console.log(res.data)
     setRun(res.data.text)
@@ -93,7 +95,7 @@ const AICompiler = () => {
                                 />
                             </svg>
                             <select className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-pink-400 bg-transparent ring-0 outline-none border border-neutral-500  placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5"
-                             onChange={(e)=>{setLang(e.target.value)}}
+                             onChange={(e)=>{setLang(e.target.value);console.log(lang)}}
                             >
                                 <option>C</option>
                                 <option>Java</option>

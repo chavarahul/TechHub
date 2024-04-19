@@ -1,10 +1,11 @@
 'use client'
 import { poppin } from '@/app/constants'
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PreLoader from '../common/PreLoader'
 
-const Chats = () => {
+const Chats = (props:any) => {
+    const {texter} = props
     const [prompt, setPrompt] = useState<string>('')
     const [box, setBox] = useState<boolean>(true)
     const[datas,setDatas]=useState([])
@@ -14,19 +15,30 @@ const Chats = () => {
         setBox(false);
     };
 
+    useEffect(()=>{
+        if(texter!== '' && texter){
+            setPrompt(texter)
+            // const syntheticEvent = { preventDefault: () => {} };
+           handleSubmit(texter)
+        } 
+    },[texter])
+
     const data = [
         { title: "A peaceful sunset over a calm lake" },
         { title: "A cozy cabin nestled in a snowy forest" },
         { title: "A bustling city skyline at night" },
         { title: "A serene beach with palm trees swaying in the breeze" }
     ];
-    const handlePage = async (e: any) => {
-        e.preventDefault();
+    const handlePage = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+        handleSubmit(prompt);
+    };
+    const handleSubmit = async (texts:string) => {
         console.log(prompt);
         setBox(false);
         setLoad(true)
         try {
-          const res = await axios.post('/api/ai', { prompts: prompt });
+          const res = await axios.post('/api/ai', { prompts: texts});
           console.log(res.data.text);
           let resp = res.data.text.replace(/\*/g, '');
           const formattedData:any = resp
@@ -76,7 +88,7 @@ const Chats = () => {
             }
             {load && <PreLoader/>}
             {
-               ( datas.length>=1 && !box ) &&
+               ( datas.length>=1 && !box && !load ) &&
                <div className={` mt-10 min-h-[50%] flex-center`}>
                         <div className=" w-[80%]  h-full overflow-y-scroll Scroller bg-white rounded-xl p-3">
                             <p className={`${poppin.className} leading-8 text-black `}>{datas}</p>

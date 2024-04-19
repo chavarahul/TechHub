@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { poppin } from '../constants';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import axios from 'axios';
@@ -7,18 +7,18 @@ import Image from 'next/image';
 import toast from 'react-hot-toast';
 import PreLoader from './common/PreLoader';
 
-const TextImage = () => {
+const TextImage = (props:any) => {
+  const {texter} = props
   const [prompt, setPrompt] = useState<string>('');
   const [box, setBox] = useState<boolean>(true);
-  const [images, setImages] = useState<any[]>([]); // Initialize images as an empty array
+  const[images,setImages] =useState<any[]>([])
   const[load,setLoad] =useState(false)
-  const handlePage = async (e: any) => {
-    e.preventDefault();
+  const handlePage = async (texts:string) => {
     console.log(prompt);
     setBox(false);
     setLoad(true)
     try {
-      const res = await axios.post('/api/text', { prompts: prompt });
+      const res = await axios.post('/api/text', { prompts: texts });
       console.log(res.data.data); // Access asset_url directly from the object
       setImages(res.data.data);
       setLoad(false)
@@ -27,8 +27,17 @@ const TextImage = () => {
       setImages([]); // Reset images to empty array if there's an error
     }
   };
-  
+  useEffect(()=>{
+    if(texter!=='' && texter){
+       setPrompt(texter)
+       handlePage(texter)
+    }
+  },[texter])
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); 
+    handlePage(prompt);
+};
   const data = [
     { title: "A peaceful sunset over a calm lake" },
     { title: "A cozy cabin nestled in a snowy forest" },
@@ -51,7 +60,7 @@ const TextImage = () => {
       <div className=" w-full h-[6%] flex-center">
         <p className={`${poppin.className} font-normal text-xl`}>Transform your text into visually appealing and captivating images!</p>
       </div>
-      <form className="w-full h-[20%] flex-center" method="post" onSubmit={handlePage}>
+      <form className="w-full h-[20%] flex-center" method="post" onSubmit={handleSubmit}>
         <div className="relative rounded-lg w-[30%] overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg after:absolute after:-z-10 after:w-20 after:h-20 after:content[''] after:bg-rose-300 after:right-12 after:top-3 after:rounded-full after:blur-lg">
           <input
             placeholder="Enter your prompt"

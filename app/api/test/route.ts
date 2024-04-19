@@ -11,7 +11,10 @@ export const POST = async (request: NextRequest) => {
     console.log(title, lang)
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    const prompt = `give me only  the output of code ${title} in ${lang} language,if given code is not ${lang} programming then give output as incorrect programming language`
+    const prompt = `give me the errors in the code ${title} if executed in programming language ${lang}
+    and generate a response as the output of the code ${title} if executed in the selected language - not the expected language!
+    provide the line in which the error is the spotted(if any)!
+    Crisp your entire response to only 3 - 4 lines!`
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
