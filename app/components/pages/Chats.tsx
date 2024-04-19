@@ -53,8 +53,8 @@ const Chats = (props:any) => {
         }
       };
     return (
-        <section className=' w-full h-screen mb-10 '>
-            <div className=" w-full relative h-[20%] flex-colm ">
+        <section className=' w-full min-h-screen mb-10 '>
+            <div className=" w-full relative min-h-[7rem] flex-colm">
                 <h3 className={`${poppin.className} text-[1.32rem] textColorBg font-extrabold`}>AI Assistant</h3>
                 <p className={`${poppin.className} text-lg text-center leading-[10px]`}>Please specify the nature of your query to facilitate AI-generated responses</p>
             </div>
@@ -74,7 +74,7 @@ const Chats = (props:any) => {
             </div>
             {
                 (box && datas.length <=0) &&
-                <div className=" h-[34%] flex justify-center items-center mt-20 ">
+                <div className="min-h-[34%] flex justify-center items-center mt-20 ">
                     <div className="grid grid-cols-2 gap-4 w-[70%]  h-full">
                         {
                             data?.map((t, ind: number) => (
@@ -90,8 +90,8 @@ const Chats = (props:any) => {
             {
                ( datas.length>=1 && !box && !load ) &&
                <div className={` mt-10 min-h-[50%] flex-center`}>
-                        <div className=" w-[80%]  h-full overflow-y-scroll Scroller bg-white rounded-xl p-3">
-                            <p className={`${poppin.className} leading-8 text-black `}>{datas}</p>
+                        <div className=" w-[80%]  h-full overflow-y-scroll Scroller  rounded-xl p-3">
+                            <p className={`${poppin.className} leading-10 `}>{datas}</p>
                         </div>
                     </div>
             }

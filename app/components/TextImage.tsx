@@ -95,11 +95,11 @@ const TextImage = (props:any) => {
       {
         !box &&
         <div className=" h-[70%] overflow-y-scroll Scroller py-10">
-          <div className="grid grid-cols-3 gap-4 full  h-full ml-10">
+          <div className="grid grid-cols-3 gap-4 full  h-full ml-10 px-20">
             {images.length > 0 &&
               images.map((t: any, ind: number) => (
-                <div className="h-[20em] w-[70%] relative flex-center  rounded-xl pt-2 pl-2 text-center cursor-pointer " key={ind}>
-                  <img src={`${t.asset_url}`} alt='Image' className='w-full h-full flex-center' />
+                <div className="h-[20em] w-[75%] relative flex-center rounded-xl pt-2 pl-2 text-center cursor-pointer " key={ind}>
+                  <img src={`${t.asset_url}`} alt='Image' className='w-full h-full flex-center rounded-md' />
                   <button onClick={() => copyImageUrl(t.asset_url)} className={`absolute right-3 bottom-3 z-[99999] font-medium bg-white rounded-xl text-black p-[0.43rem] ${poppin.className}`}>Copy</button>
                 </div>
               ))

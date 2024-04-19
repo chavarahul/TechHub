@@ -128,7 +128,7 @@ const Page = () => {
               }}
             />
             <button type="submit" className="absolute right-4 top-1 text-2xl text-white cursor-pointer">
-              <ArrowForwardIcon />
+              <ArrowForwardIcon style={{fontSize:'1.7rem !important'}}/>
             </button>
           </div>
         </form>
@@ -208,7 +208,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <form className="w-[30%] h-[20%] flex-center  mt-5" method="post" onSubmit={handlePage}>
+          <form className="w-[30%] h-[20%] flex-center  z-[999999] mt-5" method="post" onSubmit={handlePage}>
             <div className="relative rounded-lg w-[80%] overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg after:absolute after:-z-10 after:w-20 after:h-20 after:content[''] after:bg-rose-300 after:right-12 after:top-3 after:rounded-full after:blur-lg">
               <input
                 placeholder="Enter your prompt or copy"
@@ -219,7 +219,7 @@ const Page = () => {
               />
             </div>
           </form>
-          <form className="w-[20%] borders h-[20%] cursor-pointer mt-5 Checker relative flex-bet rounded-md px-4" >
+          <form className="w-[20%] borders h-[20%] z-[999999] cursor-pointer mt-5 Checker relative flex-bet rounded-md px-4" >
             <div className={`${poppin.className} text-lg`} onClick={() => { setChecker(!checker) }}>Select the  Ai{`\u0027`}s</div>
             <KeyboardArrowDownIcon className='cursor-pointer' onClick={() => { setChecker(!checker) }} />
             {
@@ -241,7 +241,7 @@ const Page = () => {
                           />
                         </svg>
                       </label>
-                      <p>{t.name}</p>
+                      <p className={`${poppin.className}`}>{t.name}</p>
                     </div>
                   ))
                 }

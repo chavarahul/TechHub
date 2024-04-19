@@ -17,3 +17,7 @@ model User {
   // reservation Reservation[]
   // reviews     Reviews[]
 }
+model Posts{
+    id          String        @id @default(auto()) @map("_id") @db.ObjectId
+    data         String[]
+}

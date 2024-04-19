@@ -3,10 +3,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { poppin } from '../constants'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import axios from 'axios';
 
 const Page = () => {
   const documenterRef = useRef<HTMLDivElement>(null)
-  const [content, setContent] = useState<string>('Initial text')
+  const [content, setContent] = useState<string>('')
+  const [edit,setEdit]=useState<string[]>([])
 
   useEffect(() => {
     if (documenterRef.current) {
@@ -14,19 +16,29 @@ const Page = () => {
     }
   }, [content])
 
-  const pasteContent = async () => {
-    const clipBoardData = await navigator.clipboard.readText();
-    setContent((prevContent) => prevContent + clipBoardData);
-    navigator.clipboard.writeText(''); // Clear the clipboard after pasting
-  }
+  useEffect(() => {
+    const paste = async () => {
+      const res = await navigator.clipboard.readText();
+      const request  = await axios.post('/api/copy',{rest:res})
+      console.log(request.data.newUser)
+      setEdit(request.data.newUser.data)
+    };
+    paste();
+  }, []);
+
+  useEffect(() => {
+    const paste = async () => {
+      const request  = await axios.get('/api/copy')
+      console.log(request.data.newUser)
+      setEdit(request.data.newUser.data)
+    };
+    paste();
+  }, []);
 
  
   const convertPdf = () => {
     const documenter = documenterRef.current;
     if (documenter) {
-      // Ensure content is rendered before capturing
-      documenter.innerHTML = content;
-
       // Add a brief delay to allow content rendering
       setTimeout(() => {
         html2canvas(documenter).then((canvas: any) => {
@@ -58,16 +70,16 @@ const Page = () => {
               <button className="confirm" onClick={convertPdf}>
                 Convert to pdf
               </button>
-              <button className="confirm ml-4" onClick={pasteContent}>
-                Paste Content
-              </button>
             </div>
           </div>
         </div>
       </div>
       <div className="w-[40%] relative h-full flex-center">
-        <div className="documenter w-full h-full borders" ref={documenterRef} />
-        
+        <div className="documenter w-full h-full borders" ref={documenterRef}  contentEditable={true} >
+        {edit?.map((edits:any, index:number) => (
+        <div key={index}>{edits}</div>
+      ))}
+        </div>
       </div>
     </section>
   )
