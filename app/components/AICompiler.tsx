@@ -20,7 +20,7 @@ const AICompiler = () => {
         if (item) {
             setLangs(item)
         }
-    }, [])
+    },[])
     const handleChange = (editor: any, data: any, value: any) => {
         console.log(code)
         setCode(value);
@@ -156,7 +156,7 @@ const AICompiler = () => {
                         {langs === 'tr' && "Konuşma"}
                         {langs === 'fr' && "Discours"}
                     </button>
-                    {langs}
+                   
                 </div>
             </div>
             <div className="h-[25%]  flex-all mt-10">

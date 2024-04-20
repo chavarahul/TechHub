@@ -13,7 +13,7 @@ export const POST = async (request: NextRequest) => {
         console.log("dfd")
         const newUser = await prisma.posts.create({
             data: {
-                data: [rester]
+                data: rester
             }
         })
         console.log("fff")

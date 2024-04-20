@@ -9,23 +9,12 @@ const Page = () => {
   const documenterRef = useRef<HTMLDivElement>(null)
   const [content, setContent] = useState<string>('')
   const [edit, setEdit] = useState<string[]>([])
- const [langs,setLangs] = useState('')
+  const [langs, setLangs] = useState('')
   useEffect(() => {
     if (documenterRef.current) {
       documenterRef.current.innerHTML = content;
     }
   }, [content])
-
-  useEffect(() => {
-    const paste = async () => {
-      const res = await navigator.clipboard.readText();
-      if (res.trim() !== '') {
-        // await axios.post('/api/copy', { rest: res });
-      }
-    };
-
-    paste();
-  }, []);
   useEffect(() => {
     const item = localStorage.getItem('lang');
     if (item) {
@@ -60,6 +49,12 @@ const Page = () => {
     }
   }
 
+  const handlePaste = async() =>{
+    const res  = await navigator.clipboard.readText()
+     const response = await axios.post('/api/copy', { rest: res });
+    setEdit(response.data.daat.map((item: any) => item.data.join('')));
+
+  }
   return (
     <section className='h-screen w-full relative flex-all'>
       <div className="w-1/2 h-full flex items-end justify-end">
@@ -86,6 +81,13 @@ const Page = () => {
             <div className="w-full h-[20%] flex items-end">
               <button className="confirm" onClick={convertPdf}>
                 {langs === 'en' && "Convert to pdf"}
+                {langs === 'ja' && "PDFに変換"}
+                {langs === 'es' && "Convertir a pdf"}
+                {langs === 'tr' && "PDF'ye dönüştür"}
+                {langs === 'fr' && "Convertir en pdf"}
+              </button>
+              <button className='confirm' onClick={handlePaste}>
+                {langs === 'en' && "Paste"}
                 {langs === 'ja' && "PDFに変換"}
                 {langs === 'es' && "Convertir a pdf"}
                 {langs === 'tr' && "PDF'ye dönüştür"}
