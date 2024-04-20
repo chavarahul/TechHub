@@ -58,7 +58,7 @@ const End = () => {
                 </div>
             </div>
             <div className=" h-[30%] flex-center">
-                <button className="confirm mr-40" onClick={() => { router.push('/') }}> DEMO
+                <button className="confirm mr-40" onClick={() => { router.push('/register') }}> REGISTER
                 </button>
                 <button className="confirm" onClick={() => { router.push('/Login') }}> LOGIN
                 </button>

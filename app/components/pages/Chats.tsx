@@ -104,7 +104,7 @@ const Chats = (props: any) => {
                     <div className="grid grid-cols-2 gap-4 w-[70%]  h-full">
                         {
                             data?.map((t, ind: number) => (
-                                <div className="h-[5em] w-[90%] border rounded-xl pt-2 pl-2 text-center cursor-pointer" key={ind} onClick={() => { handleData(t.title) }}>
+                                <div className="h-[5em] w-[90%] rounded-xl pt-2 pl-2 text-center cursor-pointer borders" key={ind} onClick={() => { handleData(t.title) }}>
                                     <p className={`${poppin.className}`}>{t.title}</p>
                                 </div>
                             ))
@@ -115,8 +115,8 @@ const Chats = (props: any) => {
             {load && <PreLoader />}
             {
                 (datas.length >= 1 && !box && !load) &&
-                <div className={` mt-10 min-h-[50%] flex-center border`}>
-                    <div className=" w-[80%]  h-full overflow-y-scroll Scroller  rounded-xl p-3">
+                <div className={` mt-10 min-h-[50%] flex-center`}>
+                    <div className=" w-[80%]  h-full overflow-y-scroll Scroller  rounded-xl p-3 ">
                         <p className={`${poppin.className} leading-10 `}>{datas}</p>
                     </div>
                 </div>

@@ -51,9 +51,9 @@ const Navbar = () => {
     });
 
     const data = [
-        { title: langs === 'en' ? 'Home' : langs === 'ja' ? '家' : langs === 'es' ? 'Hogar' : langs === 'tr' ? 'Ev' : langs === 'fr' ? 'Domicile' : '' },
-        { title: langs === 'en' ? 'Compiler' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '' },
-        { title: langs === 'en' ? 'Converter' : langs === 'ja' ? 'コンバータ' : langs === 'es' ? 'Convertidora' : langs === 'tr' ? 'Dönüştürücü' : langs === 'fr' ? 'Convertisseur' : '' },
+        { title: langs === 'en' ? 'Home' : langs === 'ja' ? '家' : langs === 'es' ? 'Hogar' : langs === 'tr' ? 'Ev' : langs === 'fr' ? 'Domicile' : '' ,hrefs:"/Home"},
+        { title: langs === 'en' ? 'Compiler' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '',hrefs:"/compiler" },
+        { title: langs === 'en' ? 'Converter' : langs === 'ja' ? 'コンバータ' : langs === 'es' ? 'Convertidora' : langs === 'tr' ? 'Dönüştürücü' : langs === 'fr' ? 'Convertisseur' : '' ,hrefs:"/profile"},
     ];
 
     const select = [
@@ -106,9 +106,9 @@ const Navbar = () => {
                             <LanguageIcon style={{ fontSize: '30px' }} className="spin" />
                         </div >
                         {
-                            gloabls && <div className="absolute top-20 left-10  w-[220px] bg-[#2a2f3f]  h-[13rem]  rounded-lg z-[999999]">
+                            gloabls && <div className="absolute top-20 mr-20  w-[220px] bg-[#2a2f3f]  h-[15rem]  rounded-lg z-[999999]">
                                 {select?.map((t: any, ind: number) => (
-                                    <div className="w-full px-4 h-[23%] relative flex items-center " key={ind}>
+                                    <div className="w-full px-4 h-[20%] relative flex items-center " key={ind}>
                                         <label className="container">
                                             <input type="checkbox"
                                                 value={t.title}
@@ -123,7 +123,7 @@ const Navbar = () => {
                                                 />
                                             </svg>
                                         </label>
-                                        <p className={`${poppin.className} font-medium`} onClick={() => handleLanguageSelect(t.title)}>{t.title}</p>
+                                        <p className={`${poppin.className} font-medium cursor-pointer`} onClick={() => handleLanguageSelect(t.title)}>{t.title}</p>
                                     </div>
                                 ))}
                             </div>
@@ -144,7 +144,7 @@ const Navbar = () => {
                             <div className="w-[70%] h-full relative overflow-hidden  flex-colm">
                                 <div className="w-full h-[50%]  relative overflow-hidden flex items-start flex-col justify-evenly">
                                     {data?.map((t: any, ind: number) => (
-                                        <Link className="button Siders" data-text="Awesome" key={ind} href={t.hrefs} style={{ transform: "translateX(-200px)" }} onClick={handleMenu}>
+                                        <Link className="button Siders" data-text="Awesome" key={ind} href={t.hrefs} style={{ transform: "translateX(-300px)" }} onClick={handleMenu}>
                                             <span className="actual-text">&nbsp;{t.title}&nbsp;</span>
                                             <span aria-hidden="true" className="hover-text">&nbsp;{t.title}&nbsp;</span>
                                         </Link>

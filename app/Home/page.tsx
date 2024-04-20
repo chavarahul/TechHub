@@ -351,7 +351,7 @@ const Page = () => {
       </div>
       <Chats texter={submit && selectedAi.includes('AI Chat') ? textAi : ''} />
       <TextImage texter={submit && selectedAi.includes('Text to Image') ? textAi : ''} />
-      <ImageText />
+      {/* <ImageText /> */}
     </>
   )
 }
