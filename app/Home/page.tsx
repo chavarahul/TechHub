@@ -96,7 +96,7 @@ const Page = () => {
 
   }
   const select = [
-    { name: "AI Chat" }, { name: "Text to Image" }, { name: "Image to text" }
+    { name: "AI Chat" }, { name: "Text to Image" }
   ]
 
 

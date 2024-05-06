@@ -4,7 +4,7 @@ import Image from 'next/image';
 import tech2 from '@/public/tech2.png';
 import { poppin } from '@/app/constants';
 import { signOut, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -14,6 +14,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 
 const Navbar = () => {
     const router = useRouter();
+    const path = usePathname()
     const [users, setUsers] = useState<boolean>(false);
     const { data: session } = useSession();
     const [box, setBox] = useState<boolean>(false);
@@ -51,17 +52,17 @@ const Navbar = () => {
     });
 
     const data = [
-        { title: langs === 'en' ? 'Home' : langs === 'ja' ? '家' : langs === 'es' ? 'Hogar' : langs === 'tr' ? 'Ev' : langs === 'fr' ? 'Domicile' : '' ,hrefs:"/Home"},
-        { title: langs === 'en' ? 'Compiler' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '',hrefs:"/compiler" },
-        { title: langs === 'en' ? 'Converter' : langs === 'ja' ? 'コンバータ' : langs === 'es' ? 'Convertidora' : langs === 'tr' ? 'Dönüştürücü' : langs === 'fr' ? 'Convertisseur' : '' ,hrefs:"/profile"},
+        { title: langs === 'en' ? 'Home' : langs === 'ja' ? '家' : langs === 'es' ? 'Hogar' : langs === 'tr' ? 'Ev' : langs === 'fr' ? 'Domicile' : '', hrefs: "/Home" },
+        { title: langs === 'en' ? 'Compiler' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '', hrefs: "/compiler" },
+        { title: langs === 'en' ? 'Converter' : langs === 'ja' ? 'コンバータ' : langs === 'es' ? 'Convertidora' : langs === 'tr' ? 'Dönüştürücü' : langs === 'fr' ? 'Convertisseur' : '', hrefs: "/profile" },
     ];
 
     const select = [
-        { title: "english", abbr: 'en' },
-        { title: 'France', abbr: 'fr' },
-        { title: 'Spain', abbr: 'es' },
+        { title: "English", abbr: 'en' },
+        { title: 'French', abbr: 'fr' },
+        { title: 'Spanish', abbr: 'es' },
         { title: 'Japanese', abbr: 'ja' },
-        { title: 'Turkey', abbr: 'tr' },
+        { title: 'Turkish', abbr: 'tr' },
     ];
 
     const handleLanguageSelect = (selectedLang: string) => {
@@ -70,6 +71,8 @@ const Navbar = () => {
         if (selectedAbbr) {
             localStorage.setItem('lang', selectedAbbr);
         }
+        // router.push(`${path}`)
+        // console.log(path)
     };
 
     const handleLanguageSelects = (event: ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +82,8 @@ const Navbar = () => {
         if (selectedAbbr) {
             localStorage.setItem('lang', selectedAbbr);
         }
-        router.refresh()
+        // console.log(path)
+        // router.push(`${path}`)
     };
 
     return (
@@ -92,7 +96,15 @@ const Navbar = () => {
                     <div className="w-1/6 h-full flex-all  relative">
                         {users ? (
                             <>
-                                <p className={` capitalize font-medium -mr-4 ${poppin.className}`}>menu</p>
+                                <p className={` capitalize font-medium -mr-4 ${poppin.className}`}>
+                                    {langs==="en" &&"Home"},
+                                    {langs === "ja" && "家"},
+                                    {langs === "es" && "Hogar"},
+                                    {langs === "tr" && "Ev"},
+                                    {langs === "fr" && "Domicile"}
+
+
+                                </p>
                                 <div className=" w-[20%] h-[40%] z-10 cursor-pointer flex flex-col justify-evenly items-end" onClick={() => { setBox(true) }}>
                                     <div className="w-full h-[1.5px] bg-white rounded-lg"></div>
                                     <div className="w-[70%] h-[1.5px] bg-white rounded-lg"></div>
@@ -102,7 +114,7 @@ const Navbar = () => {
                         ) : (
                             <button className="confirm" onClick={() => { router.push('/Login') }}> LOGIN </button>
                         )}
-                        <div className=" w-[80px] h-[50px] flex-center cursor-pointer" onClick={()=>{setGlobals(!gloabls)}}>
+                        <div className=" w-[80px] h-[50px] flex-center cursor-pointer" onClick={() => { setGlobals(!gloabls) }}>
                             <LanguageIcon style={{ fontSize: '30px' }} className="spin" />
                         </div >
                         {

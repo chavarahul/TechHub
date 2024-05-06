@@ -49,7 +49,7 @@ const Features = () => {
         { title: "AI Compiler - Real-time syntax checking and proactive error detection for flawless coding. " },
         { title: "Language Independency - Seamless multilingual platform with comprehensive language integration." },
         { title: "Use Multiple ai's with one Click - Customize, merge, and export solutions effortlessly" },
-        { title: "Convert to pdf/word document" },
+        // { title: "Convert to pdf/word document" },
     ]
     return (
         <div className="h-[100vh] w-full  flex items-end justify-center">

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 import { useRouter } from 'next/navigation';
 const Hero = () => {
     const router = useRouter();
-    const words: string = "AIFlEXI"; const words2: String = "Genius";
+    const words: string = "AIFlEXI"; const words2: String = "GENIUS";
     const wordsArray: string[] = ["Empower users with code-free application", "development using AI-driven tools, enhancing", "productivity and efficiency in leveraging", "technology"]
     useEffect(() => {
         const t1 = gsap.timeline();
@@ -77,7 +77,7 @@ const Hero = () => {
             </div>
             <div className=" w-full h-[40%] relative flex">
                 <div className="w-[35%] h-full relative flex items-center mt-8">
-                    <div className="w-full h-full flex items-start justify-center flex-col">
+                    <div className="w-full h-full flex items-start justify-center flex-col ">
                         {
                             wordsArray?.map((t:string,index:number) => (
                                 <div key={index} className='overflow-hidden LineBox mb-2'>

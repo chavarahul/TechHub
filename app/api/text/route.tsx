@@ -16,12 +16,12 @@ export const POST =async(req:NextRequest) =>{
           'Content-Type': 'application/json',
           'X-Api-Version': 'v1',
           Accept: 'application/json',
-          Authorization: `Bearer ${process.env.LMW_SK}`
+          Authorization: `Bearer lmwr_sk_U0gvrvKyi1_YLf7PTAHFxoycSCqSK7gUPD5GR9O5Fz6bkh8V`
         },
         body: JSON.stringify({
           prompt: `${title}`,
           negative_prompt: 'darkness, fog',
-          samples: 3,
+          samples: 2 ,
           quality: 'LOW',
           guidance_scale: 50,
           aspect_ratio: '1:1',

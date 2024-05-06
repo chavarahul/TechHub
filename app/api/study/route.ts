@@ -7,13 +7,10 @@ export const POST = async (request: NextRequest) => {
     const body = await request.json()
     console.log(body)
     const title: string = body.check
-    const lang: string = body.langser
-    const given_texter : string = body.name
-    console.log(title, lang)
+    console.log(title)
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    const prompt = `Generate the response in the language ${given_texter} ,
-    explain the given code : ${title}`
+    const prompt = `study plans for ${title}`
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

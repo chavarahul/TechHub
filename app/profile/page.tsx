@@ -8,13 +8,20 @@ import axios from 'axios';
 const Page = () => {
   const documenterRef = useRef<HTMLDivElement>(null)
   const [content, setContent] = useState<string>('')
-  const [edit, setEdit] = useState<string[]>([])
+  const [edit, setEdit] = useState<string>('')
   const [langs, setLangs] = useState('')
   useEffect(() => {
     if (documenterRef.current) {
       documenterRef.current.innerHTML = content;
     }
   }, [content])
+
+  const handlePaste = async () => {
+    const res = await navigator.clipboard.readText();
+    const resp = await axios.post('/api/copy', { rest: res });
+    setEdit(resp.data.newUser.data)
+  };
+
   useEffect(() => {
     const item = localStorage.getItem('lang');
     if (item) {
@@ -47,13 +54,6 @@ const Page = () => {
         });
       }, 500); // Adjust the delay time as needed
     }
-  }
-
-  const handlePaste = async() =>{
-    const res  = await navigator.clipboard.readText()
-     const response = await axios.post('/api/copy', { rest: res });
-    setEdit(response.data.daat.map((item: any) => item.data.join('')));
-
   }
   return (
     <section className='h-screen w-full relative flex-all'>
@@ -99,9 +99,7 @@ const Page = () => {
       </div>
       <div className="w-[40%] relative h-full flex-center">
         <div className="documenter w-full h-full borders" ref={documenterRef} contentEditable={true} >
-          {edit.map((text, index) => (
-            <div key={index} className='borders'>{text}</div>
-          ))}
+        {edit}
         </div>
       </div>
     </section>

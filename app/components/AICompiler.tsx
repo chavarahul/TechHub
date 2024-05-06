@@ -28,7 +28,7 @@ const AICompiler = () => {
     };
 
     const handleDeBug = async () => {
-        const res = await axios.post('/api/debug', { check: code, langs: lang });
+        const res = await axios.post('/api/debug', { check: code, langser: lang,name:langs });
 
         console.log(res.data);
         let resp = res.data.text.replace(/\*/g, '');
@@ -36,32 +36,37 @@ const AICompiler = () => {
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-        const kaa = await axios.post('http://127.0.0.1:5000/translate', { trans: formattedData, lang: langs })
-        setDebug(kaa.data.translated_text);
+    setDebug(formattedData)
     };
 
     const handleTest = async (e: any) => {
         e.preventDefault();
         console.log('yutgbyvbgyh' + lang);
-        const res = await axios.post('/api/test', { check: code, langs: lang });
-        console.log(res.data);
-        const output = await axios.post('/api/translate', { trans: res, lang: langs })
-        setRun(output.data.text);
-    };
-
-    const handleExplain = async () => {
-        const res = await axios.post('/api/explain', { check: code, langs: lang });
+        const res = await axios.post('/api/test', { check: code, langser: lang , name : langs });
         console.log(res.data);
         let resp = res.data.text.replace(/\*/g, '');
         const formattedData: any = resp
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-        const explanation = await axios.post('/api/translate', { trans: res, lang: langs })
-        setExplain(explanation.data.result);
+            setRun(formattedData)
     };
 
-    const handleFinal = async () => {
+    const handleExplain = async (e:any) => {
+        e.preventDefault()
+        const res = await axios.post('/api/explain', { check: code, langser: lang ,name:langs});
+        console.log(res.data);
+        let resp = res.data.text.replace(/\*/g, '');
+        const formattedData: any = resp
+            .split(/\d+\.\s+/)
+            .filter(Boolean)
+            .map((item: string) => item.trim().replace(/\./g, '.\n'));
+            // setRun(formattedData)
+        setExplain(formattedData)
+    };
+
+    const handleFinal = async (e:any) => {
+        e.preventDefault()
         const res = await axios.post('/api/final', { check: explain });
         console.log(res.data);
         setFinal(res.data.text);

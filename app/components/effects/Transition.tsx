@@ -5,7 +5,7 @@ import { Power4 } from 'gsap'
 import { poppin } from '@/app/constants'
 const Transition = ({ timeline }: any) => {
     const trans = useRef(null)
-    const words: string = "TechHub Synergy";
+    const words: string = "AIFLEXI GENIUS";
     const letters = words.split("");
     useEffect(() => {
         const t1 = gsap.timeline();
