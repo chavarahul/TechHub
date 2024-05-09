@@ -4,8 +4,12 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import React, { FormEvent, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import EastIcon from '@mui/icons-material/East';
 import { poppin } from '../constants';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import Prompt from '../components/profilePages/Prompt';
+import Chat from '../components/profilePages/Chat';
+import Imagers from '../components/profilePages/Imagers';
 const Page = () => {
   const { data } = useSession();
   const [profile, setProfile] = useState<string>('')
@@ -13,7 +17,8 @@ const Page = () => {
   const name: any = data?.user?.email;
   const id: string | undefined = data?.user?.id;
   const [updateProfile, setUpdateProfile] = useState<boolean>(false)
-  const [userMail,setUserMail]=useState<any>(name)
+  const [userMail, setUserMail] = useState<any>(name)
+  const[section,setSection] =useState<string>('')
 
   const handleImage = async (e: FormEvent) => {
     e.preventDefault();
@@ -56,16 +61,25 @@ const Page = () => {
     str()
   }, [id])
 
+  const allData = [
+    { title: "Prompts" },
+    { title: "AI Assistant" },
+    { title: "Images" }
+  ]
+  const handleSection = (name:string) =>{
+    setSection(name)
+  }
+
   return (
-    <div className=" w-full p-5 min-h-[85vh] h-[85vh]">
+    <div className=" w-full p-5 min-h-[85vh] h-[85vh] flex">
       <div className=" w-1/2 h-full">
         <div className="w-full  h-[22%] flex-all">
           <div className={`h-full   flex-all w-1/2`}>
             {
               !updateProfile ? (
                 <>
-                  <div className=" rounded-full h-[70px] w-[70px] flex-center">
-                    <img src={profile} className='w-full h-full rounded-full' alt='UserImage' />
+                  <div className=" rounded-full h-[80px] w-[80px] flex-center">
+                    <img src={profile} className='w-full h-full rounded-full ' alt='UserImage' />
 
                   </div>
                   <p className={`${poppin.className} `}>{name || ""}</p>
@@ -73,9 +87,9 @@ const Page = () => {
               ) : (
                 <>
                   <form method='post' className='flex w-[150%]  h-full'>
-                    
+
                     <div className="input-div flex-center z-[9999] mt-3">
-                      <input className="input" name="file" type="file" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setImg(e.target.files ? e.target.files[0] : null) }}  />
+                      <input className="input" name="file" type="file" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setImg(e.target.files ? e.target.files[0] : null) }} />
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="1em"
@@ -124,6 +138,29 @@ const Page = () => {
             }
           </div>
         </div>
+        <div className=" h-[80%] relative w-full flex-center flex-col">
+          {
+            allData?.map((t: any, index: number) => (
+              <div className={`TextEffect h-[23%] flex w-full cursor-pointer ${index >= 1 ? " border-b border-white" : "border-y border-white"}`} key={index} onClick={()=>{handleSection(t.title)}}>
+                <div className="er1 w-[10%]  h-full flex justify-center">
+                  <p className={`${poppin.className} mt-2`}>0{index + 1}</p>
+                </div>
+                <div className="er1 flex-center h-full w-[78%]">
+                  <p className={`${poppin.className} mt-2 uppercase text-5xl font-light cursor-pointer`}>{t.title}</p>
+                </div>
+                <div className="w-[10%]  h-full flex-center overflow-hidden">
+                  <EastIcon className='text-5xl -translate-x-20 IconMove' />
+                </div>
+              </div>
+            ))
+          }
+
+        </div>
+      </div>
+      <div className='w-1/2 relative h-full px-5'>
+        {section === "Prompts" && <Prompt/>}
+        {section === "AI Assistant" && <Chat/>}
+        {section === "Images" && <Imagers/>}
       </div>
     </div>
   );
