@@ -97,13 +97,12 @@ const Navbar = () => {
                         {users ? (
                             <>
                                 <p className={` capitalize font-medium -mr-4 ${poppin.className}`}>
-                                    {langs==="en" &&"Home"},
+                                    {/* {langs==="en" &&"Home"},
                                     {langs === "ja" && "家"},
                                     {langs === "es" && "Hogar"},
                                     {langs === "tr" && "Ev"},
-                                    {langs === "fr" && "Domicile"}
-
-
+                                    {langs === "fr" && "Domicile"} */}
+                                    Home
                                 </p>
                                 <div className=" w-[20%] h-[40%] z-10 cursor-pointer flex flex-col justify-evenly items-end" onClick={() => { setBox(true) }}>
                                     <div className="w-full h-[1.5px] bg-white rounded-lg"></div>
