@@ -111,6 +111,22 @@ const Page = () => {
     }
   };
 
+  const startPrompt = () =>{
+    
+  }
+  const endPrompt = () =>{
+    
+  }
+  // useEffect(()=>{
+  //   annyang.addCommands({
+  //     'start prompt' : () => startPrompt(),
+  //     'end prompt' :() => endPrompt(),
+  //   })
+  //   annyang.start()
+  //   return  () => {
+  //     annyang.abort()
+  //   }
+  // },[])
 
   return (
     <>

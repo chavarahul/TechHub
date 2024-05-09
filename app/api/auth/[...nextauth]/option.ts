@@ -1,10 +1,10 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
-import { NextResponse } from "next/server";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import bcrypt from 'bcrypt'
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
+
 export const options: NextAuthOptions = {
     session: {
         strategy: 'jwt'
@@ -46,30 +46,33 @@ export const options: NextAuthOptions = {
                 }
                 console.log("jj");
                 return {
-                    email: user.email
+                    email: user.email,
+                    id: user.id
                 }
             },
         })
     ],
     callbacks: {
-        async jwt({ token,user }) {
-            if(user){
-            return {
-                ...token,email:user.email
+        async jwt({ token, user }) {
+            if (user) {
+                return {
+                    ...token,
+                    email: user.email,
+                    id: user.id
+                };
             }
-        }
-        console.log(token)
-        return token
+            return token;
         },
-        async session({ session,user, token }) {
+        async session({ session, token }) {
             return {
-                ...session , user:{
-                    ...session.user,email:token.email
+                ...session,
+                user: {
+                    ...session.user,
+                    email: token.email,
+                    id: token.id
                 }
-            
             }
         }
-    
     },
     pages: {
         signIn: '/Login',

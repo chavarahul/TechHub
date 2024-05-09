@@ -7,17 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  password    String        @unique
-  email       String        @unique
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  password  String   @unique
+  email     String   @unique
+  Image  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   // reservation Reservation[]
   // reviews     Reviews[]
+  // profile   Profile?
 }
-model Posts{
-    id          String        @id @default(auto()) @map("_id") @db.ObjectId
-    data         String
+
+model Posts {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  data String
 }
+
+// model Profile {
+//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+//   email     String
+//   Image     String?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   userId    String   @unique
+//   user      User?     @relation(fields: [userId], references: [id])
+// }

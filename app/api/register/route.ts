@@ -26,7 +26,13 @@ export const POST = async (request: NextRequest) => {
                 password: hashedPassword,
             }
         })
-        return NextResponse.json({ newUser }, { status: 201 })
+        const profileUser = await prisma.profile.create({
+            data: {
+                email,
+                Image:null
+            }
+        })
+        return NextResponse.json({ newUser,profileUser }, { status: 201 })
     } catch (err) {
         return NextResponse.json({ status: 500 })
     }
