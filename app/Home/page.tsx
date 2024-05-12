@@ -17,6 +17,8 @@ import Imager from '@/public/ai.png'
 import Imager1 from '@/public/mul.png'
 import Imager2 from '@/public/text.png'
 import Imager3 from '@/public/ier.webp'
+import { useUser } from '../components/user/UserData'
+import { userType } from '../constants/type'
 const Page = () => {
   const [prompt, setPrompt] = useState<string>('')
   const [data, setData] = useState<string[]>([])
@@ -28,9 +30,8 @@ const Page = () => {
   const [checker, setChecker] = useState<boolean>(false)
   const [submit, setSubmit] = useState<boolean>(false)
   const [langs, setLangs] = useState('')
-  const handleSection = (section: string) => {
-    setSelectSection(section)
-  }
+  const UserData : userType| null = useUser()
+  const id = UserData?.id || '';
   const handlePage = async (e: any) => {
     console.log('Prompt:', prompt);
     setPass(false)
@@ -47,10 +48,17 @@ const Page = () => {
       .map((item: string) => item.trim().replace(/\./g, '.\n'));
     setPass(true)
     setData(formattedData)
-    dbPrompt();
+   
   }
+  useEffect(() => {
+    console.log('Data changed:', data);
+    if(prompt!== ''){
+      dbPrompt();
+    }
+  }, [data]);
   const dbPrompt = async() =>{
-    const res = await axios.post('/api/dbprompt',{prompt,data})
+    console.log(data)
+    const res = await axios.post('/api/dbprompt',{prompt,data,id})
     console.log(res.data)
   }
   const copyContent = (prompt: string) => {
