@@ -1,10 +1,6 @@
 'use client'
-import { signOut } from 'next-auth/react'
 import React, { useEffect, useRef, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import Navbar from '../components/common/Navbar'
 import axios from 'axios'
-import AddIcon from '@mui/icons-material/Add';
 import Transition from '../components/effects/Transition'
 import gsap from 'gsap'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -14,16 +10,13 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import toast from 'react-hot-toast'
 import annyang from 'annyang';
 import Loader from '../components/common/Loader'
-import SideBar from '../components/common/SideBar'
 import Chats from '../components/pages/Chats'
 import TextImage from '../components/TextImage'
-import ImageText from '../components/ImageText'
 import Image from 'next/image'
 import Imager from '@/public/ai.png'
 import Imager1 from '@/public/mul.png'
 import Imager2 from '@/public/text.png'
 import Imager3 from '@/public/ier.webp'
-import te from '@/public/img.jpg'
 const Page = () => {
   const [prompt, setPrompt] = useState<string>('')
   const [data, setData] = useState<string[]>([])
@@ -70,8 +63,6 @@ const Page = () => {
     }
   }, [])
   const home = gsap.timeline()
-  const { data: session } = useSession()
-  const name = session?.user?.email
   const Dummy = [
     { title: langs === 'en' ? 'Make a night picture sticking a moon picture that looks like it\'s glowing in the sky.' : langs === 'ja' ? '空に光っているように見える月の絵を貼り付けて、夜の絵を作ります。' : langs === 'es' ? 'Haz una foto nocturna pegando una imagen de la luna que parezca que brilla en el cielo.' : langs === 'tr' ? 'Gökyüzünde parlıyormuş gibi görünen bir ay resmi yapıştırarak bir gece resmi yapın.' : langs === 'fr' ? 'Faites une photo de nuit en collant une image de la lune qui semble briller dans le ciel.' : '' },
     { title: langs === 'en' ? 'Enhance your cooking blog with mouth-watering food photography and engaging recipe tutorials' : langs === 'ja' ? '食欲をそそる料理の写真と魅力的なレシピチュートリアルで料理ブログを強化しましょう' : langs === 'es' ? 'Mejora tu blog de cocina con deliciosas fotografías de comida y atractivos tutoriales de recetas' : langs === 'tr' ? 'Yemek blogunuzu ağız sulandıran yemek fotoğrafçılığı ve ilgi çekici tarif eğitimleriyle geliştirin' : langs === 'fr' ? 'Améliorez votre blog de cuisine avec des photographies culinaires alléchantes et des tutoriels de recettes attrayants' : '' },

@@ -10,16 +10,18 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import Prompt from '../components/profilePages/Prompt';
 import Chat from '../components/profilePages/Chat';
 import Imagers from '../components/profilePages/Imagers';
+import { useUser } from '../components/user/UserData';
+import { userType } from '../constants/type';
+import { useRouter } from 'next/navigation';
 const Page = () => {
-  const { data } = useSession();
-  const [profile, setProfile] = useState<string>('')
   const [img, setImg] = useState<File | null>(null);
-  const name: any = data?.user?.email;
-  const id: string | undefined = data?.user?.id;
   const [updateProfile, setUpdateProfile] = useState<boolean>(false)
-  const [userMail, setUserMail] = useState<any>(name)
-  const[section,setSection] =useState<string>('')
-
+  const [section, setSection] = useState<string>('')
+  const router = useRouter()
+  const userData: userType | null = useUser();
+  const email = userData?.email || '';
+  const id = userData?.id || ''
+  const Image = userData?.Image || ''
   const handleImage = async (e: FormEvent) => {
     e.preventDefault();
     if (!img || !id) {
@@ -32,8 +34,8 @@ const Page = () => {
 
       console.log(id);
       const formData = new FormData();
-      formData.append('image', imageData); // Pass image data string
-      formData.append('name', name || "");
+      formData.append('image', imageData);
+      formData.append('name', email || "");
       formData.append('id', id);
 
       try {
@@ -42,10 +44,9 @@ const Page = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
-        console.log(res.data.profile);
-        setProfile(res.data.profile.Image)
         setUpdateProfile(false)
         toast.success("Profile updated successfully");
+        router.refresh();
       } catch (error) {
         console.error("Error updating profile:", error);
         toast.error("Failed to update profile");
@@ -53,20 +54,21 @@ const Page = () => {
     };
     reader.readAsDataURL(img);
   };
-  useEffect(() => {
-    const str = async () => {
-      const newProfile = await axios.get(`/api/profiler/${id}`);
-      setProfile(newProfile.data.Image)
-    }
-    str()
-  }, [id])
+  // useEffect(() => {
+  //   const str = async () => {
+  //     const newProfile = await axios.get(`/api/profiler/${id}`);
+  //     console.log(newProfile)
+  //     setProfile(newProfile.data.Image)
+  //   }
+  //   str()
+  // }, [id])
 
   const allData = [
     { title: "Prompts" },
     { title: "AI Assistant" },
     { title: "Images" }
   ]
-  const handleSection = (name:string) =>{
+  const handleSection = (name: string) => {
     setSection(name)
   }
 
@@ -79,10 +81,10 @@ const Page = () => {
               !updateProfile ? (
                 <>
                   <div className=" rounded-full h-[80px] w-[80px] flex-center">
-                    <img src={profile} className='w-full h-full rounded-full ' alt='UserImage' />
+                    <img src={Image} className='w-full h-full rounded-full ' alt='UserImage' />
 
                   </div>
-                  <p className={`${poppin.className} `}>{name || ""}</p>
+                  <p className={`${poppin.className} `}>{email || ""}</p>
                 </>
               ) : (
                 <>
@@ -108,7 +110,7 @@ const Page = () => {
                         <polyline points="16 16 12 12 8 16" />
                       </svg>
                     </div>
-                    <input type="text" value={name} className={`${poppin.className} pl-4 bg-transparent flex-center ml-5 outline-none`} />
+                    <input type="text" value={email} className={`${poppin.className} pl-4 bg-transparent flex-center ml-5 outline-none`} />
                     {/* <input type="file" className='' /> */}
                   </form>
                 </>
@@ -141,7 +143,7 @@ const Page = () => {
         <div className=" h-[80%] relative w-full flex-center flex-col">
           {
             allData?.map((t: any, index: number) => (
-              <div className={`TextEffect h-[23%] flex w-full cursor-pointer ${index >= 1 ? " border-b border-white" : "border-y border-white"}`} key={index} onClick={()=>{handleSection(t.title)}}>
+              <div className={`TextEffect h-[23%] flex w-full cursor-pointer ${index >= 1 ? " border-b border-white" : "border-y border-white"}`} key={index} onClick={() => { handleSection(t.title) }}>
                 <div className="er1 w-[10%]  h-full flex justify-center">
                   <p className={`${poppin.className} mt-2`}>0{index + 1}</p>
                 </div>
@@ -158,9 +160,9 @@ const Page = () => {
         </div>
       </div>
       <div className='w-1/2 relative h-full px-5'>
-        {section === "Prompts" && <Prompt/>}
-        {section === "AI Assistant" && <Chat/>}
-        {section === "Images" && <Imagers/>}
+        {section === "Prompts" && <Prompt />}
+        {section === "AI Assistant" && <Chat />}
+        {section === "Images" && <Imagers />}
       </div>
     </div>
   );
