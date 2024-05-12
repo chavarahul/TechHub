@@ -8,12 +8,12 @@ export const POST = async (req:NextRequest,res:NextResponse)=>{
  const prompt = cData.prompt;
  const data = cData.data;
  const userId = cData.id
- console.log(prompt,data)
+ console.log(prompt,data,userId)
  try{
-    const createPrompt = await prisma.prompts.create({
+    const createPrompt = await prisma.chat.create({
         data:{
-            prompt,
-            output:data,
+           prompt,
+            data,
             user:{
                 connect:{id:userId}
             }

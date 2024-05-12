@@ -3,6 +3,8 @@ import { poppin } from '@/app/constants'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import PreLoader from '../common/PreLoader'
+import { useUser } from '../user/UserData'
+import { userType } from '@/app/constants/type'
 
 const Chats = (props: any) => {
     const { texter } = props
@@ -11,10 +13,14 @@ const Chats = (props: any) => {
     const [box, setBox] = useState<boolean>(true)
     const [datas, setDatas] = useState([])
     const [load, setLoad] = useState(false)
+
+    const userData: userType | null = useUser();
+    const id = userData?.id || ''
     const handleData = (pro: string) => {
         setPrompt(pro);
         setBox(false);
     };
+
 
     useEffect(() => {
         if (texter !== '' && texter) {
@@ -41,6 +47,19 @@ const Chats = (props: any) => {
             setLangs(item)
         }
     }, [])
+
+    useEffect(() => {
+        console.log('Data changed:', data);
+        if(prompt!== '' || texter !== ''){
+          dbPrompt();
+        }
+      }, [datas]);
+      const dbPrompt = async() =>{
+        console.log(data)
+        const res = await axios.post('/api/dbChat',{prompt,data:datas,id})
+        console.log(res.data)
+      }
+
     const handleSubmit = async (texts: string) => {
         console.log(prompt);
         setBox(false);

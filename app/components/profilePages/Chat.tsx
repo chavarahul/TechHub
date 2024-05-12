@@ -1,3 +1,6 @@
+
+
+
 'use client'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
@@ -9,7 +12,7 @@ const Chat = () => {
 const [data,setData] = useState([])
   useEffect(()=>{
     const res = async() => {
-      const newData = await axios.get(`/api/dbprompt/${id}`);
+      const newData = await axios.get(`/api/dbChat/${id}`);
       console.log(newData.data.createPrompt)
       setData(newData.data.createPrompt)
     }
@@ -22,11 +25,7 @@ const [data,setData] = useState([])
         <div key={index}>
          <p>{t.prompt}</p>
          <div>
-          {
-            t.output?.map((n:any,i:number)=>(
-              <p key={i}>{n}</p>  
-            ))
-          }
+          {t.data}
          </div>
         </div>
        ))
