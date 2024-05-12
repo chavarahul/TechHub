@@ -47,7 +47,11 @@ const Page = () => {
       .map((item: string) => item.trim().replace(/\./g, '.\n'));
     setPass(true)
     setData(formattedData)
-
+    dbPrompt();
+  }
+  const dbPrompt = async() =>{
+    const res = await axios.post('/api/dbprompt',{prompt,data})
+    console.log(res.data)
   }
   const copyContent = (prompt: string) => {
     navigator.clipboard.writeText(prompt).then(() =>

@@ -8,20 +8,21 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  password  String   @unique
-  email     String   @unique
-  Image  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  // reservation Reservation[]
-  // reviews     Reviews[]
-  // profile   Profile?
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  password  String    @unique
+  email     String    @unique
+  Image     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Prompts   Prompts[]
 }
 
-model Posts {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  data String
+model Prompts {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  user   User?    @relation(fields: [userId], references: [id])
+  userId String
+  prompt String
+  output String[]
 }
 
 // model Profile {
