@@ -25,7 +25,11 @@ const [data,setData] = useState([])
         <div key={index}>
          <p>{t.prompt}</p>
          <div>
-          {t.data}
+         {
+            t.data?.map((n:any,i:number)=>(
+              <p key={i}>{n}</p>  
+            ))
+          }
          </div>
         </div>
        ))

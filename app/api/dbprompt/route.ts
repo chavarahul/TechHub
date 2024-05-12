@@ -14,6 +14,7 @@ export const POST = async (req:NextRequest,res:NextResponse)=>{
         data:{
             prompt,
             output:data,
+            // userId,
             user:{
                 connect:{id:userId}
             }
