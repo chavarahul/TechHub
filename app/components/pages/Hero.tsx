@@ -56,42 +56,42 @@ const Hero = () => {
     const letters = words.split("");
     const letters2 = words2.split("");
     return (
-        <section className='relative w-full h-[88vh] ml-10 flex flex-col '>
-            <div className=" w-full h-1/2 relative flex">
-                <div className=" w-[69%] h-full relative overflow-hidden">
-                    <p className={`${poppin.className} font-extrabold text-[13rem] textColorBg flex Split`} id="side">
+        <section className='relative w-full h-[88vh] ml-10 flex flex-col Sizer'>
+            <div className=" w-full  min-h-[25%] max-h-[60%] flex">
+                <div className=" w-[69%] Charitha  h-full relative overflow-hidden">
+                    <p className={`${poppin.className} font-extrabold fonter textColorBg flex Split`} id="side">
                         {/* <span className="borders absolute top-10 left-40 borders w-[50px] h-[50px] rounded-full  flex-center">
                             <p className={`${poppin.className} flex-center bg-white rounded-full text-sm AI text-black`}>AI</p>
                         </span> */}
                         {letters.map((letter:string, index:number) => (
-                            <span key={index} className={`${poppin.className} font-extrabold text-[13rem] textColorBg`}>{letter}</span>
+                            <span key={index} className={`${poppin.className} font-extrabold textColorBg`}>{letter}</span>
                         ))
                         }
                     </p>
                 </div>
-                <div className=" h-full w-[35%] relative flex-center" onClick={()=>{router.push('/#about')}}>
+                <div className=" h-full w-[35%] ball relative flex-center" onClick={()=>{router.push('/#about')}}>
                     <div className="rounded-full w-1/2 h-[70%] borders CircleFull SideCircle relative overflow-hidden borders flex-center">
                         <CallMadeIcon className="text-white z-10 text-[6.5rem] icon" />
                     </div>
                 </div>
             </div>
-            <div className=" w-full h-[40%] relative flex">
-                <div className="w-[35%] h-full relative flex items-center mt-8">
+            <div className=" w-full min-h-[25%] max-h-[60%] flex SidersBall">
+                <div className="w-[35%] h-full relative flex items-center mt-8 balltexter">
                     <div className="w-full h-full flex items-start justify-center flex-col ">
                         {
                             wordsArray?.map((t:string,index:number) => (
-                                <div key={index} className='overflow-hidden LineBox mb-2'>
+                                <div key={index} className='overflow-hidden LineBox mb-2 fontball'>
                                     <p className={`${poppin.className} text-xl leading-9`}>{t}</p>
                                 </div>
                             ))
                         }
                     </div>
                 </div>
-                <div className=" w-[65%] h-full relative flex-center overflow-hidden ">
-                    <p className={`${poppin.className} font-extrabold text-[12rem] textColorBg Split Spliter flex-center`}>
+                <div className=" w-[65%] Charitha h-full relative flex-center overflow-hidden ">
+                    <p className={`${poppin.className} font-extrabold  textColorBg Split fonter Spliter flex-center`}>
                         {
                             letters2.map((letter:string, index:number) => (
-                                <span key={index} className={`${poppin.className}  font-extrabold text-[13rem] textColorBg`}>{letter}</span>
+                                <span key={index} className={`${poppin.className}  font-extrabold  textColorBg`}>{letter}</span>
                             ))
                         }
                     </p>

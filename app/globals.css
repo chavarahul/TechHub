@@ -121,6 +121,20 @@ img {
     border-radius: 10px;
     /* border: 1px solid rgba(255, 255, 255, 0.18); */
   }
+  .ScrollerColor::-webkit-scrollbar{
+    width: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  .ScrollerColor::-webkit-scrollbar-track{
+    width: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  .Scroller::-webkit-scrollbar-thumb{
+    background-color: #000;
+    width: 10px;
+  }
 
 }
 
@@ -145,6 +159,10 @@ img {
 .CircleFull {
   animation: bounced 2s infinite ease-in-out forwards;
 
+}
+
+.fonter{
+  font-size: clamp(70px,14vw,17vw);
 }
 
 .Split span,
@@ -1128,4 +1146,49 @@ img {
  .TextEffect:hover .IconMove{
   transition: 1s ease-in-out;
   transform: translateX(0);
+ }
+
+ @media (max-width:1250px) {
+  .Sizer{
+    margin-left: 0.3rem !important;
+  }
+ }
+
+ @media (max-width:685px) {
+  .ball{
+    position: absolute;
+    bottom: 0;
+    right:0;
+    height: 35%;
+    width: 30%;
+    display: none;
+  }
+  .balltexter{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height:300px;
+  }
+  .SidersBall{
+    justify-content: end;
+    align-items: center;
+  }
+  .Charitha{
+    width: 100% !important;
+  }
+  .Charitha:nth-child(2)>p{
+    margin-left: -100px;
+  }
+ }
+ .fontball>p{
+  font-size: clamp(14px,1.5vw,20px);
+ }
+ @media (max-width:420px) {
+  .Sizer{
+    width: 120%;
+  }
+  .Smoother{
+    padding: 0 1rem !important;
+  }
  }
