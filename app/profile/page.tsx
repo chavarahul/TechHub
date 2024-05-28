@@ -145,7 +145,7 @@ const Page = () => {
           ))}
         </div>
       </div>
-      <div className='w-1/2 relative h-full px-5 overflow-y-scroll ScrollerColor'>
+      <div className='w-[45%] relative h-full px-5 ml-16 overflow-y-scroll ScrollerColor'>
         {section === "Prompts" && <Prompt />}
         {section === "AI Assistant" && <Chat />}
         {section === "Images" && <Imagers />}
