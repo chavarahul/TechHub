@@ -48,6 +48,8 @@ const Hero = () => {
         opacity: 0,
         display: 'none'
       }).to('.highlight span', { width: '100%', backgroundColor: '#fff', color: '#090909', duration: 1, delay: 1.7, ease: 'back.inOut' },)
+      .to('.err span', { width: '100%', backgroundColor: '#fff', color: '#090909', duration: 1, delay: 0.4, ease: 'back.inOut' },)
+      
 
   }, []);
   const letters = words.split("");

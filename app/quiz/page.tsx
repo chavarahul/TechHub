@@ -37,7 +37,7 @@ const Page = () => {
   return (
     <>
       <Hero />
-      <div className=' w-full min-h-[85vh] relative bg-[black]'>
+      <div className=' w-full min-h-[86vh] relative bg-[black]'>
         <VortexDemoSecond />
         <div className='w-full relative min-h-screen'>
           <div className="w-full  min-h-[9rem] flex-colm leading-10 ">
@@ -45,7 +45,7 @@ const Page = () => {
             <p className={`${poppin.className} text-lg mt-2`}>
               Options for customizing the quiz will be provided. Please make your selections below.</p>
           </div>
-          <form className=" h-[85vh] w-full relative" autoComplete='on'>
+          <form className=" min-h-[85vh] w-full relative" autoComplete='on'>
             <div className="h-[7%]  w-full relative flex-all mt-9">
               {
                 Test.map((t: any, ind: number) => (

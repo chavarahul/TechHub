@@ -17,7 +17,7 @@ export function VortexDemoSecond() {
           Quiz Zynergy
         </h2>
         <p className={`text-white text-lg  max-w-[67rem] mt-6 text-center leading-8 space letter ${poppin.className}`}>
-          An intelligent, <span className="highlight  pl-2"><span className="h-full w-0">multilingual quiz bot</span> </span> that generates unique quizzes based on user content or topics. It offers high-security systems, real-time doubt resolution, and <span className="highlight "><span className="h-full">customizable difficulty levels.</span></span> Detailed solutions for previous quizzes are stored, providing a comprehensive and secure learning experience.
+          An intelligent, <span className="highlight  pl-2"><span className="h-full w-0">multilingual quiz bot</span> </span> that generates unique quizzes based on user content or topics. It offers high-security systems, real-time doubt resolution, and <span className="err"><span className="h-full">customizable difficulty levels.</span></span> Detailed solutions for previous quizzes are stored, providing a comprehensive and secure learning experience.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-32">
           {/* <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">

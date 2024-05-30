@@ -1192,7 +1192,7 @@ img {
     padding: 0 1rem !important;
   }
  }
- .highlight span{
+ .highlight span,.err span{
   /* transition: 2s ease-in-out; */
   padding: 0px 5px;
   border-radius: 5px;
