@@ -88,7 +88,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="relative h-[12vh] flex flex-center">
+            <div className={`relative h-[12vh] flex flex-center ${path === '/quiz' && 'bg-black'} `}>
                 <div className="w-full  h-full flex-bet px-10">
                     <div className=" w-[7%]  h-full flex-center">
                         <Image src={tech2} alt="Logo" />

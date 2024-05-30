@@ -46,6 +46,7 @@ const Hero = () => {
       "<"
     ).to('.EmptyUP',{
       opacity:0,
+      // duration:0.000001,
       display:'none'
     })
 
@@ -53,9 +54,9 @@ const Hero = () => {
   const letters = words.split("");
   const letters2 = words2.split("");
   return (
-    <section className='absolute top-0 left-0 w-full h-screen ml-10 flex flex-col Sizer  bg-[#090909] z-[999999] EmptyUP'>
+    <section className='absolute top-0 left-0 w-full h-screen flex flex-col Sizer  bg-[#090909] z-[999999] EmptyUP'>
       <div className="absolute top-56 w-full h-[40%] text-center overflow-hidden Intro">
-        <p className={`${poppin.className} -ml-16 font-extrabold fonter textColorBg capitalize flex Split text-center flex-center  w-full h-full `} style={{transform:'translateY(-200px)',opacity:0}}>
+        <p className={`${poppin.className} font-extrabold fonter textColorBg capitalize flex Split text-center flex-center  w-full h-full `} style={{transform:'translateY(-200px)',opacity:0}}>
           Introducing
         </p>
       </div>

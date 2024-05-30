@@ -23,11 +23,13 @@
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "clear": "^0.1.0",
+    "clsx": "^2.1.1",
     "codemirror": "^5.65.16",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "framer-motion": "^11.2.6",
     "gasp": "^0.0.2",
     "google-translate-api": "^2.3.0",
     "gsap": "^3.12.5",
@@ -44,7 +46,9 @@
     "react-codemirror2": "^8.0.0",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
-    "speech-synthesis": "^0.3.2"
+    "simplex-noise": "^4.0.1",
+    "speech-synthesis": "^0.3.2",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@types/annyang": "^2.6.5",
