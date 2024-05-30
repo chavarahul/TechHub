@@ -22,33 +22,32 @@ const Hero = () => {
       // ease: Power4.easeInOut,
       stagger: 0.4
     })
-    .to('.Intro p', {
-      y: 200,
-      delay: 0.2,
-      duration: 0.8,
-      opacity: 0
-    })
-    .to(".Split span", {
-      y: 0,
-      ease: 'back.out',
-      delay: 0.5,
-      duration: 1,
-      stagger: 0.02,
-      opacity: 1
-    })
-    .fromTo('#side', 
-      { translateX: 0 }, 
-      { translateX: "-900px", ease: Power4.easeInOut, duration:2 }
-    )
-    .fromTo('.Spliter', 
-      { translateX: 0 }, 
-      { translateX: "1200px", ease: Power4.easeInOut, duration: 2 }, 
-      "<"
-    ).to('.EmptyUP',{
-      opacity:0,
-      // duration:0.000001,
-      display:'none'
-    })
+      .to('.Intro p', {
+        y: 200,
+        delay: 0.2,
+        duration: 0.8,
+        opacity: 0
+      })
+      .to(".Split span", {
+        y: 0,
+        ease: 'back.out',
+        delay: 0.5,
+        duration: 1,
+        stagger: 0.02,
+        opacity: 1
+      })
+      .fromTo('#side',
+        { translateX: 0 },
+        { translateX: "-900px", ease: Power4.easeInOut, duration: 2 }
+      )
+      .fromTo('.Spliter',
+        { translateX: 0 },
+        { translateX: "1200px", ease: Power4.easeInOut, duration: 2 },
+        "<"
+      ).to('.EmptyUP', {
+        opacity: 0,
+        display: 'none'
+      }).to('.highlight span', { width: '100%', backgroundColor: '#fff', color: '#090909', duration: 1, delay: 1.7, ease: 'back.inOut' },)
 
   }, []);
   const letters = words.split("");
@@ -56,7 +55,7 @@ const Hero = () => {
   return (
     <section className='absolute top-0 left-0 w-full h-screen flex flex-col Sizer  bg-[#090909] z-[999999] EmptyUP'>
       <div className="absolute top-56 w-full h-[40%] text-center overflow-hidden Intro">
-        <p className={`${poppin.className} font-extrabold fonter textColorBg capitalize flex Split text-center flex-center  w-full h-full `} style={{transform:'translateY(-200px)',opacity:0}}>
+        <p className={`${poppin.className} font-extrabold fonter textColorBg capitalize flex Split text-center flex-center  w-full h-full `} style={{ transform: 'translateY(-200px)', opacity: 0 }}>
           Introducing
         </p>
       </div>

@@ -88,7 +88,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className={`relative h-[12vh] flex flex-center ${path === '/quiz' && 'bg-black'} `}>
+            <header className={`relative h-[12vh] flex flex-center ${path === '/quiz' && 'bg-black'} `}>
                 <div className="w-full  h-full flex-bet px-10">
                     <div className=" w-[7%]  h-full flex-center">
                         <Image src={tech2} alt="Logo" />
@@ -142,7 +142,7 @@ const Navbar = () => {
                     </div>
 
                 </div>
-            </div>
+            </header>
             {box &&
                 <section className='bg-[#090909] w-screen h-screen z-[999999] fixed top-0 left-0 Toppr' style={{ transform: "translateY(-140vh)" }}>
                     <div className=" w-full h-[10%] flex-bet relative">
