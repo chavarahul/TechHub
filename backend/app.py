@@ -1,26 +1,32 @@
 from flask import Flask, request, jsonify
-from google.cloud import translate_v2 as translate
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/translate', methods=['POST'])
-def translate_text():
-    print("ddd")
-    data = request.json
-    text = data.get('text')
-    target_language = data.get('target_language')
-
-    if not text or not target_language:
-        return jsonify({'error': 'Text and target_language are required.'}), 400
-    client = translate.Client()
-
-    # Translate the text
+@app.route('/mock',methods=['POST'])
+def test():
     try:
-        translation = client.translate(text, target_language=target_language)
-        translated_text = translation['translatedText']
-        return jsonify({'translated_text': translated_text}), 200
+        data = request.get_json()
+        test_type = data.get('type')
+        questions = data.get('questions')
+        level = data.get('level')
+        prompt = data.get('prompt')
+
+        if not test_type and not questions and not level:
+            return jsonify({'error':'data missing'}),400
+        
+        response = {
+            'type':test_type,
+            'questions':questions,
+            'level':level,
+            'prompt':prompt,
+            'recieved':True
+        }
+
+        return jsonify(response)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'Internal Error'}),500
 
 if __name__ == '__main__':
     app.run(debug=True)

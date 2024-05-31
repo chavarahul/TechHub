@@ -6,3 +6,10 @@ export interface userType{
     createdAt: string
     updatedAt: string
 }
+
+export interface FormData {
+    type: string;
+    questions: string;
+    level: string;
+    prompt:string
+  }

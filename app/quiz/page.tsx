@@ -13,6 +13,7 @@ const Page = () => {
   const [option, setOption] = useState<string>(()=>{return localStorage.getItem('option')|| '';})
   const [input, setInput] = useState<string>(()=>{return localStorage.getItem('input')|| '';})
   const [checker, setChecker] = useState<boolean>(false)
+  const [prompt,setPrompt] =useState<string>('')
   const Test: any = [
     { name: "Mock test" },
     { name: "Competitive test" },
@@ -34,6 +35,8 @@ const Page = () => {
   useEffect(() => {
     localStorage.setItem('input', input);
   }, [input]);
+
+  
   return (
     <>
       <Hero />
@@ -96,13 +99,13 @@ const Page = () => {
                         placeholder={`Enter your ${input}`}
                         className={`relative pr-20 bg-transparent ring-0 outline-none border border-neutral-500 text-white placeholder-white text-sm rounded-lg focus:ring-violet-500 placeholder-opacity-60 focus:border-violet-500 block w-full p-2.5 checked:bg-emerald-500 ${poppin.className}`}
                         type="text"
-                        // value={prompt}
+                        value={prompt}
                         onChange={(e) => {
                           console.log('Input value:', e.target.value);
-                          // setPrompt(e.target.value);
+                          setPrompt(e.target.value);
                         }}
                       />
-                      <button type="submit" className=" absolute top-1 right-3 text-2xl text-white cursor-pointer">
+                      <button type="button" className=" absolute top-1 right-3 text-2xl text-white cursor-pointer">
                        <ArrowForward/>
                       </button>
                     </>):( input !== '' &&
@@ -118,9 +121,9 @@ const Page = () => {
               </div>
             }
 
-           {(input!== '' && option=== 'Mock test')&& <Mock test={input||''}/>}
-           {(input!== '' && option=== 'Competitive test')&& <Real test={input||''}/>}
-           {(input!== '' && option=== 'Professional test')&& <Profressional test={input||''}/>}
+           {(input!== '' && option=== 'Mock test')&& <Mock test={input||''} prompt={prompt}/>}
+           {(input!== '' && option=== 'Competitive test')&& <Real test={input||''} prompt={prompt}/>}
+           {(input!== '' && option=== 'Professional test')&& <Profressional test={input||''} prompt={prompt}/>}
 
           </form>
         </div>
