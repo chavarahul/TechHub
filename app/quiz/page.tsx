@@ -48,7 +48,7 @@ const Page = () => {
             <p className={`${poppin.className} text-lg mt-2`}>
               Options for customizing the quiz will be provided. Please make your selections below.</p>
           </div>
-          <form className=" min-h-[85vh] w-full relative" autoComplete='on'>
+          <div className=" min-h-[85vh] w-full relative" >
             <div className="h-[7%]  w-full relative flex-all mt-9">
               {
                 Test.map((t: any, ind: number) => (
@@ -125,7 +125,7 @@ const Page = () => {
            {(input!== '' && option=== 'Competitive test')&& <Real test={input||''} prompt={prompt}/>}
            {(input!== '' && option=== 'Professional test')&& <Profressional test={input||''} prompt={prompt}/>}
 
-          </form>
+          </div>
         </div>
       </div>
     </>

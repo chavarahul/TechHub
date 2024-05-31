@@ -7,7 +7,7 @@ import CallMadeIcon from '@mui/icons-material/CallMade';
 import ScrollTrigger from 'gsap-trial/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger)
 import { useRouter } from 'next/navigation';
-const Hero = () => {
+const Hero = ({timeline}:any) => {
   const router = useRouter();
   const words: string = "Quiz"; const words2: String = "Zynergy";
   const wordsArray: string[] = ["Empower users with code-free application", "development using AI-driven tools, enhancing", "productivity and efficiency in leveraging", "technology"]

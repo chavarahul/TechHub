@@ -1,5 +1,7 @@
-export interface userType{
-    id:string
+import React from "react"
+
+export interface userType {
+    id: string
     password: string
     email: string
     Image: string
@@ -11,6 +13,15 @@ export interface FormData {
     type: string;
     questions: string;
     level?: string;
-    prompt:string;
-    monitering?:boolean
-  }
+    prompt: string;
+    monitering?: boolean
+}
+
+export interface QuizContestType {
+    quizData: any,
+    setQuizData: React.Dispatch<React.SetStateAction<any>>
+}
+
+export interface childrenType{
+    children : React.ReactNode
+}

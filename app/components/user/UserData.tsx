@@ -22,10 +22,6 @@ export const UserData = ({ children }: { children: React.ReactNode }) => {
                 console.error('Error fetching user data:', error);
             }
         };
-        // if (initialLoad || userData) {
-            // fetchData();
-            // setInitialLoad(false);
-        // }
         if (id && !userData) {
             fetchData();
         }

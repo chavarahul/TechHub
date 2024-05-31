@@ -7,7 +7,8 @@ import SmoothScroll from "./components/effects/SmoothScroll";
 import Toast from './components/effects/Toast'
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {UserData} from './components/user/UserData';
+import { UserData } from './components/user/UserData';
+import QuizContext from './components/context/QuizContext';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,10 +32,12 @@ export default function RootLayout({
           <Verify>
             <SmoothScroll>
               <LayoutProvider>
-               <UserData >
-               <Toast />
-                  {children}
-               </UserData>
+                <UserData >
+                  <QuizContext>
+                    <Toast />
+                    {children}
+                  </QuizContext>
+                </UserData>
               </LayoutProvider>
             </SmoothScroll>
           </Verify>
