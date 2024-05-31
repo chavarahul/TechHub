@@ -3,10 +3,10 @@
 import { poppin } from '@/app/constants';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { FormData } from '@/app/constants/type';
+import { FormData, TestType } from '@/app/constants/type';
 import { quizContest } from '../context/QuizContext';
 import { useRouter } from 'next/navigation';
-const Mock = ({ test, prompt }: { test: string; prompt: string }) => {
+const Mock = ({ test, prompt,option }:TestType) => {
   const [questions, setQuestions] = useState('');
   const [totalMarks, setTotalMarks] = useState('');
   const [level, setLevel] = useState('');
@@ -47,7 +47,7 @@ const Mock = ({ test, prompt }: { test: string; prompt: string }) => {
         setLevel('')
       })
       setQuizData({ questions, totalMarks, level, data: res?.data });
-      router.push(`/Test/${1}`)
+      router.push(`/Test/${option}`)
       console.log(res.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {

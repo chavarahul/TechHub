@@ -2,9 +2,9 @@
 import { poppin } from '@/app/constants'
 import axios from 'axios';
 import React, { useState } from 'react'
-import { FormData } from '@/app/constants/type';
+import { FormData, TestType } from '@/app/constants/type';
 
-const Professional = ({ test,prompt }: { test: string, prompt: string }) => {
+const Professional = ({ test,prompt,option }: TestType) => {
   const [questions, setQuestions] = useState('');
   const [totalMarks, setTotalMarks] = useState('');
   const [negativeMarks, setNegativeMarks] = useState('')

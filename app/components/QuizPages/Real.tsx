@@ -1,13 +1,15 @@
 'use client'
 import { poppin } from '@/app/constants'
-import React, { useState } from 'react'
-import { FormData } from '@/app/constants/type'
+import React, { useContext, useState } from 'react'
+import { FormData, TestType } from '@/app/constants/type'
 import axios from 'axios';
-const Real = ({ test, prompt }: { test: string, prompt: string }) => {
+import { quizContest } from '../context/QuizContext';
+const Real = ({ test, prompt ,option}:TestType) => {
   const [questions, setQuestions] = useState('');
   const [totalMarks, setTotalMarks] = useState('');
   const [negativeMarks, setNegativeMarks] = useState('')
   const [level, setLevel] = useState('')
+  const {setQuizData}:any = useContext(quizContest);
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<string>>) => {
     const value = e.target.value;
@@ -30,6 +32,7 @@ const Real = ({ test, prompt }: { test: string, prompt: string }) => {
    try{
     e.preventDefault();
     const res = await axios.post('http://127.0.0.1:5000/competitive',{type:fromData.type,questions:fromData.questions,level:fromData.level,prompt:fromData.prompt});
+    setQuizData({data:res?.data,questions,level,negativeMarks,totalMarks})
     console.log(res?.data)
    }catch(error){
     if (axios.isAxiosError(error)) {
@@ -106,3 +109,6 @@ const Real = ({ test, prompt }: { test: string, prompt: string }) => {
 }
 
 export default Real
+
+
+

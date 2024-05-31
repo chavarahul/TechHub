@@ -121,9 +121,9 @@ const Page = () => {
               </div>
             }
 
-           {(input!== '' && option=== 'Mock test')&& <Mock test={input||''} prompt={prompt}/>}
-           {(input!== '' && option=== 'Competitive test')&& <Real test={input||''} prompt={prompt}/>}
-           {(input!== '' && option=== 'Professional test')&& <Profressional test={input||''} prompt={prompt}/>}
+           {(input!== '' && option=== 'Mock test')&& <Mock test={input||''} prompt={prompt} option={option}/>}
+           {(input!== '' && option=== 'Competitive test')&& <Real test={input||''} prompt={prompt} option={option}/>}
+           {(input!== '' && option=== 'Professional test')&& <Profressional test={input||''} prompt={prompt} option={option}/>}
 
           </div>
         </div>

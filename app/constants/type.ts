@@ -22,6 +22,12 @@ export interface QuizContestType {
     setQuizData: React.Dispatch<React.SetStateAction<any>>
 }
 
-export interface childrenType{
-    children : React.ReactNode
+export interface childrenType {
+    children: React.ReactNode
+}
+
+export interface TestType {
+    test: string;
+    prompt: string;
+    option: string
 }
