@@ -9,6 +9,7 @@ const Professional = ({ test,prompt }: { test: string, prompt: string }) => {
   const [totalMarks, setTotalMarks] = useState('');
   const [negativeMarks, setNegativeMarks] = useState('')
   const [level, setLevel] = useState('')
+  const[monitering,setMonitering] = useState<boolean>(false)
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<string>>) => {
     const value = e.target.value;
@@ -24,13 +25,13 @@ const Professional = ({ test,prompt }: { test: string, prompt: string }) => {
   }
   const formSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
-    const fromData :FormData = {type:test,questions,level,prompt};
+    const fromData :FormData = {type:test,questions,level,prompt,monitering};
     handleSubmit(e,fromData);
   }
   const handleSubmit = async(e:React.FormEvent<HTMLFormElement>,fromData:FormData) =>{
    try{
     e.preventDefault();
-    const res = await axios.post('http://127.0.0.1:5000/competitive',{type:fromData.type,questions:fromData.questions,level:fromData.level,prompt:fromData.prompt});
+    const res = await axios.post('http://127.0.0.1:5000/professional',{type:fromData.type,questions:fromData.questions,prompt:fromData.prompt,moniter:fromData.monitering});
     console.log(res?.data)
    }catch(error){
     if (axios.isAxiosError(error)) {
@@ -108,8 +109,8 @@ const Professional = ({ test,prompt }: { test: string, prompt: string }) => {
         </div>
       </div>
       <div className="flex-center h-[15%] w-full mt-16 relative">
-        <input type="radio" name="" id="" className='w-4 h-4' />
-        <p className={`${poppin.className} text-md ml-4`}>Monitering</p>
+        <input type="radio" name="" id="" className='w-4 h-4 cursor-pointer' checked={monitering} onClick={()=>setMonitering(!monitering)} />
+        <p className={`${poppin.className} text-md ml-4`} onClick={()=>setMonitering(!monitering)}>Monitering</p>
       </div>
       <div className="flex-center h-[15%] w-full mt-16 relative pb-10">
         <button className={`confirm ${poppin.className}`}>Generate {`${test === 'Content' ? 'Quiz' : 'Content'}`}</button>

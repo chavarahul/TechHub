@@ -10,6 +10,7 @@ export interface userType{
 export interface FormData {
     type: string;
     questions: string;
-    level: string;
-    prompt:string
+    level?: string;
+    prompt:string;
+    monitering?:boolean
   }
