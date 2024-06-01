@@ -6,6 +6,7 @@ import React, { useContext, useState } from 'react';
 import { FormData, TestType } from '@/app/constants/type';
 import { quizContest } from '../context/QuizContext';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 const Mock = ({ test, prompt,option }:TestType) => {
   const [questions, setQuestions] = useState('');
   const [totalMarks, setTotalMarks] = useState('');
@@ -31,6 +32,10 @@ const Mock = ({ test, prompt,option }:TestType) => {
   };
 
   const handleSubmit = async (formData: FormData) => {
+    if(!formData.level || !formData.prompt || !formData.questions || !formData.type){
+      toast.error('Invalid details');
+      return;
+    }
     try {
       const res = await axios.post(
         'http://127.0.0.1:5000/mock',
@@ -45,10 +50,13 @@ const Mock = ({ test, prompt,option }:TestType) => {
         setQuestions('');
         setTotalMarks('')
         setLevel('')
+      }).catch((err)=>{
+        console.log(err)
       })
       setQuizData({ questions, totalMarks, level, data: res?.data });
+      toast.success("Test Started");
       router.push(`/Test/${option}`)
-      console.log(res.data);
+      console.log(res?.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {

@@ -14,7 +14,8 @@ export interface FormData {
     questions: string;
     level?: string;
     prompt: string;
-    monitering?: boolean
+    monitering?: boolean;
+    negativeMarks? : string
 }
 
 export interface QuizContestType {

@@ -1213,3 +1213,8 @@ img {
   text-overflow: ellipsis; 
   color: #090909 !important;
 }
+
+.SideEffect:hover .Movable{
+ transform: translateX(10px);
+ transition: 0.6s ease;
+}

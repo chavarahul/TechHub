@@ -4,6 +4,8 @@ import React, { useContext, useState } from 'react'
 import { FormData, TestType } from '@/app/constants/type'
 import axios from 'axios';
 import { quizContest } from '../context/QuizContext';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 const Real = ({ test, prompt ,option}:TestType) => {
   const [questions, setQuestions] = useState('');
   const [totalMarks, setTotalMarks] = useState('');
@@ -11,6 +13,7 @@ const Real = ({ test, prompt ,option}:TestType) => {
   const [level, setLevel] = useState('')
   const {setQuizData}:any = useContext(quizContest);
 
+  const router = useRouter();
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<string>>) => {
     const value = e.target.value;
     if (value === '' || (/^\d{1,3}$/.test(value) && Number(value) >= 1 && Number(value) <= 999)) {
@@ -25,14 +28,20 @@ const Real = ({ test, prompt ,option}:TestType) => {
   }
   const formSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
-    const fromData :FormData = {type:test,questions,level,prompt};
+    const fromData :FormData = {type:test,questions,level,prompt,negativeMarks};
     handleSubmit(e,fromData);
   }
   const handleSubmit = async(e:React.FormEvent<HTMLFormElement>,fromData:FormData) =>{
+    if(!fromData.level || !fromData.prompt || !fromData.questions || !fromData.type || !fromData.negativeMarks){
+      toast.error('Invalid details');
+      return;
+    }
    try{
     e.preventDefault();
     const res = await axios.post('http://127.0.0.1:5000/competitive',{type:fromData.type,questions:fromData.questions,level:fromData.level,prompt:fromData.prompt});
     setQuizData({data:res?.data,questions,level,negativeMarks,totalMarks})
+    toast.success("Test Started")
+    router.push(`/Test/${option}`)
     console.log(res?.data)
    }catch(error){
     if (axios.isAxiosError(error)) {
