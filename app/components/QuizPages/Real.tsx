@@ -40,6 +40,12 @@ const Real = ({ test, prompt ,option}:TestType) => {
     e.preventDefault();
     const res = await axios.post('http://127.0.0.1:5000/competitive',{type:fromData.type,questions:fromData.questions,level:fromData.level,prompt:fromData.prompt});
     setQuizData({data:res?.data,questions,level,negativeMarks,totalMarks})
+   if(option !== 'Mock test'){
+    const hours = (document.getElementById('hours') as HTMLInputElement).value;
+    const minutes = (document.getElementById('minutes') as HTMLInputElement).value;
+    const seconds = (document.getElementById('seconds') as HTMLInputElement).value;
+    localStorage.setItem('quizTime', JSON.stringify({ hours, minutes, seconds }));
+   }
     toast.success("Test Started")
     router.push(`/Test/${option}`)
     console.log(res?.data)
@@ -102,16 +108,16 @@ const Real = ({ test, prompt ,option}:TestType) => {
       </div>
       <div className="flex-center h-[15%] w-full mt-16  relative">
         <p className={`${poppin.className} text-md mr-2`}>Set time for Quiz{"         "} : {"  "}</p>
-        <input type="text" name="text" className="inputs" required /><span className={`${poppin.className} text-md ml-2 mr-5`}>hr</span>
-        <input type="text" name="text" className="inputs" required /><span className={`${poppin.className} text-md ml-2 mr-5`}>min</span>
-        <input type="text" name="text" className="inputs" required /><span className={`${poppin.className} text-md ml-2 mr-5`}>sec</span>
+        <input type="text" name="text" className="inputs" required inputMode='numeric' id="hours" /><span className={`${poppin.className} text-md ml-2 mr-5`}>hr</span>
+        <input type="text" name="text" className="inputs" required inputMode='numeric' id="minutes"/><span className={`${poppin.className} text-md ml-2 mr-5`}>min</span>
+        <input type="text" name="text" className="inputs" required inputMode='numeric' id = "seconds"/><span className={`${poppin.className} text-md ml-2 mr-5`}>sec</span>
       </div>
       <div className="flex-center h-[15%] w-full  py-10 mt-5">
         <p className={`${poppin.className} text-md mr-2`}>Levels of Medium ({" "}Easy - 0 | Medium - 1 | Hard - 2 {" "}) {" "}:{" "}</p>
         <input type="text" inputMode='numeric' required max={1} value={level} pattern='[0-2]' onChange={(e) => { handleLevel(e) }} className='ml-5 w-20 bg-transparent border-b-2 outline-none flex-center px-1 pl-8' />
       </div>
       <div className="flex-center h-[15%] w-full mt-5  relative">
-        <button className={`confirm ${poppin.className}`}>Generate {`${test === 'Content' ? 'Quiz' : 'Content'}`}</button>
+        <button className={`confirm ${poppin.className}`} type='submit'>Generate {`${test === 'Content' ? 'Quiz' : 'Content'}`}</button>
       </div>
     </form>
   )
