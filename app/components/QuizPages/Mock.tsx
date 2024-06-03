@@ -15,8 +15,10 @@ const Mock = ({ test, prompt, option }: TestType) => {
   const [level, setLevel] = useState('');
   const { setQuizData }: any = useContext(quizContest);
   const mainContent = useRef<HTMLDivElement | null>(null)
-  const [scroller,setScroller] = useState<boolean>(false)
+  const [scroller, setScroller] = useState<boolean>(false)
   const router = useRouter();
+  const visibleRef = useRef<HTMLDivElement | null>(null);
+  const [seenContainer, setSeenContainer] = useState<boolean>(true);
 
   const handleNumberChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -35,9 +37,13 @@ const Mock = ({ test, prompt, option }: TestType) => {
     }
   };
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, formData: FormData) => {
     if (!formData.level || !formData.prompt || !formData.questions || !formData.type) {
       toast.error('Invalid details');
+      return;
+    }
+    if (test === 'Topic' || test === 'Upload') {
+      handleGenerateContent(e);
       return;
     }
     try {
@@ -79,28 +85,49 @@ const Mock = ({ test, prompt, option }: TestType) => {
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData: FormData = { type: test, questions, level, prompt };
-    handleSubmit(formData);
+    handleSubmit(e, formData);
   };
 
-  const handleScrollUp = () =>{
-    if(mainContent.current){
-      mainContent.current.scrollBy({top:-250,behavior:"smooth"})
+  const handleScrollUp = () => {
+    if (mainContent.current) {
+      mainContent.current.scrollBy({ top: -250, behavior: "smooth" })
     }
   }
 
   const handleScrollDown = () => {
-    if(mainContent.current){
-      mainContent.current.scrollBy({top:250,behavior:"smooth"})
+    if (mainContent.current) {
+      mainContent.current.scrollBy({ top: 250, behavior: "smooth" })
     }
   }
 
-  useEffect(()=>{
-    if(mainContent.current){
-      if(mainContent.current.scrollHeight > mainContent.current.clientHeight){
-          setScroller(true)
+  useEffect(() => {
+    if (mainContent.current) {
+      if (mainContent.current.scrollHeight > mainContent.current.clientHeight) {
+        setScroller(true)
       }
     }
-  },[])
+  }, [])
+
+  useEffect(() => {
+    if (seenContainer && visibleRef.current) {
+      visibleRef.current.scrollBy({ top: visibleRef.current.clientHeight * 0.4, behavior: "smooth" });
+    }
+  }, [seenContainer]);
+
+  const handleGenerateContent = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // const res = await axios.post('/',prompt);
+    // console.log(res?.data);
+
+    // if(res?.status === 200){
+    toast.success("Content Generated");
+    setSeenContainer(true);
+    // if(visibleRef.current){
+    //    visibleRef.current.scrollBy({top:600,behavior:"smooth"})
+    // }
+    // }
+
+  }
   return (
     <>
       <form className='w-full h-full relative' autoComplete='on' onSubmit={formSubmitHandler} method='post'>
@@ -153,28 +180,35 @@ const Mock = ({ test, prompt, option }: TestType) => {
           <button onClick={() => { localStorage.removeItem('option'); localStorage.removeItem('input') }}>ddd</button>
         </div>
       </form>
-      <section className="borders w-full min-h-[85vh] h-[85vh] flex-center pb-10">
-        <div className="w-[80%] borders h-full relative">
-          <div className="w-full h-[20%] borders relative"></div>
-          <div className="w-full relative h-[10%] borders flex-center">
-            <p className={`${poppin.className} text-3xl capitalize textColorBg font-bold`}>{prompt}</p>
-          </div>
-          <div className="borders Contentbox h-[70%] w-full relative flex-all">
-           {scroller &&  <div className="h-full w-[5%] relative flex-center">
+      <section className={` w-full min-h-screen h-screen  flex-center pb-20 ${!seenContainer && 'ScrollVisibleCon'}`} ref={visibleRef}>
+        <div className="w-[95%]  h-full relative">
+          <div className="w-full h-[10%]  relative"></div>
+          {
+            seenContainer && <div className="w-full relative h-[10%]  flex-center mb-5">
+              <p className={`${poppin.className} text-3xl capitalize textColorBg font-bold`}>{prompt}</p>
+            </div>
+          }
+          <div className=" Contentbox h-[70%] w-full relative flex-all">
+            {(scroller && seenContainer) && <div className="h-full w-[5%] relative flex-center">
               <div className="rounded-full p-2 flex-center bg-white cursor-pointer z-[999]" onClick={handleScrollUp}>
                 <KeyboardArrowUpIcon style={{ color: "black", fontSize: '15px' }} />
               </div>
             </div>}
-            <div className={`MainContent ${scroller ? 'w-[90%]':"w-full"}  borders h-full relative flex-center`} >
-              <p className={`${poppin.className} text-center w-full h-full relative  leading-10 overflow-hidden Scroller`} ref={mainContent}>
+            <div className={`MainContent ${scroller ? 'w-[80%]' : "w-full"}   h-full relative flex-center`} >
+              <p className={`${poppin.className} text-left w-full h-full relative  leading-10 overflow-hidden Scroller`} ref={mainContent}>
                 svsfvdg Lorem ipsum dolor sit,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque doloribus dignissimos earum vero adipisci assumenda, quae quod dolorem iure quo saepe deleniti dolores at repellendus dolorum tempore? Unde eum commodi debitis, quidem fugit reprehenderit quisquam? Reprehenderit quae minima rerum veritatis rem tempora. Autem, vel eos quia aliquid sapiente libero magni, sint vitae nobis quae tempora soluta eius velit architecto non veritatis id cupiditate maiores minus alias placeat possimus. Quod magnam qui, aliquid, unde doloremque quasi officiis quae earum ex exercitationem tenetur molestias reprehenderit? Natus ipsam aliquid veniam libero dolores cumque ratione ab fugiat modi atque, praesentium officiis beatae distinctio animi corrupti ducimus accusantium quidem rem iste ex quo pariatur voluptates! Quam debitis deleniti enim. Ab quibusdam ipsa unde ullam perspiciatis? Quisquam sint architecto, amet ipsum magnam natus velit quod tenetur rerum nemo adipisci corrupti cupiditate dolores numquam perferendis! Maxime, voluptas necessitatibus! Voluptates, ratione accusamus! Libero commodi architecto, reprehenderit deleniti molestias, aliquid quod amet iste quam est iusto officiis dolores reiciendis minima magni non illum quia, fugiat nobis sit blanditiis corrupti? Dignissimos repellat nostrum vitae commodi quae molestias ab ullam minus laudantium. Officiis esse odio ad dicta vero quos reiciendis exercitationem labore, quia similique, minima veniam obcaecati nulla dolorem error atque possimus qui! Eius cupiditate laudantium nisi alias consequatur qui dolore deleniti odit saepe! Quas deserunt consequatur suscipit eligendi dolorum, illum similique corporis fugit sapiente inventore dignissimos perspiciatis, minima vel dicta est distinctio quae alias, vero aperiam debitis? Dolorum mollitia praesentium hic animi quisquam magni maiores esse ipsum, autem totam ab recusandae doloribus, sequi architecto harum. Vel, cupiditate quibusdam perspiciatis eligendi, dicta iure unde beatae nemo sed recusandae delectus odio, aperiam rem deleniti est nam illo harum. Deleniti suscipit ipsa facilis aperiam harum labore ratione, mollitia non vitae provident beatae nemo blanditiis dicta inventore officiis autem earum laborum. Harum consequuntur modi quisquam sed vel. Commodi, ratione natus! Totam omnis recusandae ad aspernatur quas nemo repellat sed, rerum cupiditate debitis aut libero eveniet veniam ipsum modi dicta, commodi voluptatibus, dolores minima! Molestias cupiditate, voluptatibus doloremque cumque explicabo ipsa voluptate ad velit adipisci ea, soluta repellendus nisi vel eum dicta unde doloribus praesentium tenetur perferendis quia aperiam maxime laudantium? Ut est reiciendis quae laudantium fuga? Illo fugit praesentium recusandae est alias quo ipsa, blanditiis dolores quae odio eveniet, animi commodi deleniti soluta inventore ex maxime dolorem? Tenetur, quaerat harum. Quisquam deserunt consequatur sint aut, voluptas a ut molestiae officiis vero quaerat fugit quidem.
               </p>
             </div>
-            {scroller && <div className="h-full w-[5%] relative flex-center">
+            {(scroller && seenContainer) && <div className="h-full w-[5%] relative flex-center">
               <div className="rounded-full p-2 flex-center bg-white cursor-pointer z-[999]" onClick={handleScrollDown} >
                 <KeyboardArrowDownIcon style={{ color: "black", fontSize: '15px' }} />
               </div>
             </div>}
+          </div>
+          <div className="h-[10%] w-full  flex-center mt-7 pb-10">
+            <button className="glitchbutton">
+              Generate More
+            </button>
           </div>
         </div>
       </section>

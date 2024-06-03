@@ -1,6 +1,6 @@
 'use client'
-import React, { useContext, useEffect, useState } from 'react'
-import { quizContest } from '@/app/components/context/QuizContext'
+import React, { useContext, useEffect, useState } from 'react';
+import { quizContest } from '@/app/components/context/QuizContext';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import DeviceHubIcon from '@mui/icons-material/DeviceHub';
 import { poppin } from '@/app/constants';
@@ -16,7 +16,7 @@ const Page = ({ id }: any) => {
     const [option, setOption] = useState<string | null>('');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number } | null>(null);
-    const [selectedOption,setSelectedOption] = useState<{[key:number]:string}>({})
+    const [selectedOption, setSelectedOption] = useState<{ [key: number]: string }>({});
     const router = useRouter();
 
     useEffect(() => {
@@ -28,8 +28,8 @@ const Page = ({ id }: any) => {
     }, []);
 
     useEffect(() => {
-        if(option === 'Mock test'){
-            return
+        if (option === 'Mock test') {
+            return;
         }
         if (timeLeft) {
             const timer = setInterval(() => {
@@ -48,9 +48,7 @@ const Page = ({ id }: any) => {
                         seconds = 59;
                     } else {
                         clearInterval(timer);
-                        // router.push('/times-up');
                         localStorage.setItem('quizTime', JSON.stringify({ hours: 0, minutes: 0, seconds: 0 }));
-                        // return null;
                     }
 
                     return { hours, minutes, seconds };
@@ -101,10 +99,11 @@ const Page = ({ id }: any) => {
         setCurrentQuestionIndex(ind);
     }
 
-    const handleOptionSelect = (ind:number,op:string) =>{
-        setSelectedOption((prev)=>({...prev,ind:op}))
-        console.log(selectedOption)
+    const handleOptionSelect = (ind: number, op: string) => {
+        setSelectedOption((prev) => ({ ...prev, [ind]: op }));
+        console.log(selectedOption);
     }
+
     return (
         <>
             <section className="w-full mt-10 min-h-[90vh] h-[85vh] relative flex-center">
@@ -128,15 +127,15 @@ const Page = ({ id }: any) => {
                                             </div>
                                             <div className="h-1/2 w-full relative flex-center">
                                                 <div className="h-full w-[80%] min-w-[80%] max-w-full grid grid-rows-2 grid-cols-2 place-items-center items-center gap-2">
-                                                {['A', 'B', 'C', 'D'].map((opt, i) => (
-                                                        <div className="h-[40%] w-[80%] min-w-[80%] max-w-full flex-center" key={i}>
-                                                            <input 
-                                                                type="radio" 
-                                                                className='w-3 h-3 cursor-pointer' 
-                                                                id={`option${opt}_${index}`} 
-                                                                name={`question_${index}`} 
+                                                    {['A', 'B', 'C', 'D'].map((opt, i) => (
+                                                        <div className={`h-[40%] w-[80%] min-w-[80%] max-w-full flex-center ${selectedOption[index] === `Option ${opt}` ? 'selected' : ''}`} key={i}>
+                                                            <input
+                                                                type="radio"
+                                                                className='w-3 h-3 cursor-pointer checked:bg-blue'
+                                                                id={`option${opt}_${index}`}
+                                                                name={`question_${index}`}
                                                                 value={`Option ${opt}`}
-                                                                disabled={timeLeft && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0} 
+                                                                disabled={option != 'Mock test' && timeLeft && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0}
                                                                 checked={selectedOption[index] === `Option ${opt}`}
                                                                 onChange={() => handleOptionSelect(index, `Option ${opt}`)}
                                                             />
@@ -145,16 +144,16 @@ const Page = ({ id }: any) => {
                                                     ))}
                                                 </div>
                                             </div>
-                                          {
-                                            option === 'Mock test' &&
-                                            <div className="h-[20%] w-full relative flex-center mt-2">
-                                            <button className="btn-17 ">
-                                                <span className="text-container">
-                                                    <span className={`${poppin.className} text`} >Ok</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                          }
+                                            {
+                                                option === 'Mock test' &&
+                                                <div className="h-[20%] w-full relative flex-center mt-2">
+                                                    <button className="btn-17 ">
+                                                        <span className="text-container">
+                                                            <span className={`${poppin.className} text`}>Ok</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
                                     ))}
                                 </div>
@@ -177,8 +176,8 @@ const Page = ({ id }: any) => {
                                         </p>
                                     ) : (
                                         <div className="borders h-full w-full flex-colm px-7">
-                                             <p className={`${poppin.className} text-md  flex-center text-center leading-8`}>Take your time, but keep an eye on the clock! This quiz has a time limit displayed in the box below</p>
-                                             <p>Time left: {`${timeLeft.hours.toString().padStart(2, '0')}:${timeLeft.minutes.toString().padStart(2, '0')}:${timeLeft.seconds.toString().padStart(2, '0')}`}</p>
+                                            <p className={`${poppin.className} text-md  flex-center text-center leading-8`}>Take your time, but keep an eye on the clock! This quiz has a time limit displayed in the box below</p>
+                                            <p>Time left: {`${timeLeft.hours.toString().padStart(2, '0')}:${timeLeft.minutes.toString().padStart(2, '0')}:${timeLeft.seconds.toString().padStart(2, '0')}`}</p>
                                         </div>
                                     )
                                 }
