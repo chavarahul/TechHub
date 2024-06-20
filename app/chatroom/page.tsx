@@ -1,20 +1,52 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+"use client"
+import React, { useEffect, useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
-import axios from 'axios';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import io from 'socket.io-client';
+import axios from 'axios';
+
+const socket = io(); // Connect to socket.io server
+
 const Page = () => {
-    const[names,setNames] = useState<string[]>()
-    const [msg,setMsg]=useState<string>('')
-    useEffect(()=>{
-       const UserNames = async() =>{
-        const res = await axios.get('/api/users');
-        setNames(res?.data.res)
-        console.log(res?.data.res)
-       }
-       UserNames();
-    },[])
+    const [names, setNames] = useState<string[]>([]);
+    const [msg, setMsg] = useState<string>('');
+    const [messages, setMessages] = useState<{ user: string, message: string }[]>([]);
+    const [username, setUsername] = useState<string>(''); // Add a state for the main user's username
+
+    useEffect(() => {
+        // Fetch initial users
+        const fetchUsers = async () => {
+            const res = await axios.get('/api/users');
+            setNames(res.data.res);
+        };
+        fetchUsers();
+
+        // Listen for new messages from server
+        socket.on('message', (message: { user: string, message: string }) => {
+            setMessages(prevMessages => [...prevMessages, message]);
+        });
+
+        // Mock function to set the main user's username (replace with actual authentication logic)
+        const storedUsername = prompt('Enter your username'); // For demo purposes
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+
+        return () => {
+            socket.disconnect(); // Cleanup on unmount
+        };
+    }, []);
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Emit message to server
+        const messageData = { user: username, message: msg };
+        socket.emit('sendMessage', messageData);
+        setMessages(prevMessages => [...prevMessages, messageData]);
+        setMsg(''); // Clear message input
+    };
+
     return (
         <div className="desktop-5 borders pl-5 p-5">
             <div className="background" />
@@ -26,17 +58,15 @@ const Page = () => {
                     </div>
                     <div className="chat-background" />
                     <div className="room-list">
-                        <div className="relative h-[60vh]  w-full borders">
+                        <div className="relative h-[60vh] w-full borders">
                             <div className="available-now1 h-[10%]">All users</div>
                             <div className="relative w-full borders h-[90%] Scroller overflow-y-scroll">
-                               {
-                                names?.map((t:any,ind:number)=>(
+                                {names.map((t: any, ind: number) => (
                                     <div className="borders h-[45px] rounded-[10px] flex-all" key={ind}>
-                                    <PersonIcon/>
-                                    <p>{t.username}</p>
-                                </div>
-                                ))
-                               }
+                                        <PersonIcon />
+                                        <p>{t.username}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -47,40 +77,46 @@ const Page = () => {
                         <div className="user-info">
                             <div className="user-name-area">
                                 <div className="user-name-area-child" />
-                                {/* <img
-                                    className="user-avatar-icon"
-                                    loading="lazy"
-                                    alt=""
-                                    src="./public/rectangle-22@2x.png"
-                                /> */}
                                 <div className="user-name">
-                                    <a className="username1">username</a>
+                                    <a className="username1">{username}</a>
                                 </div>
                             </div>
                             <div className="user-header">
                                 <div className="available-now1">Available now</div>
                             </div>
                         </div>
-
                     </div>
-                    <div className="border-[1px] absolute top-20 left-[20.5%] MsgBox border-red-500 w-[58%] h-[70%] "></div>
+                    <div className="border-[1px] absolute top-20 left-[20.5%] MsgBox border-red-500 w-[58%] h-[70%]">
+                        <div className="messages-list h-full overflow-y-scroll">
+                            {messages.map((message, index) => (
+                                <div
+                                    key={index}
+                                    className={`message-item ${message.user === username ? 'text-right' : 'text-left'}`}
+                                >
+                                    <span className="message-username">{message.user}:</span> {message.message}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                     <div className="contact-list borders">
                         <div className="contact">
                             <div className="flex-center borders w-full px-10">
-                                <form className="h-full borders w-full px-5 py-3 rounded-[10px] flex ">
-                                    <input type='text' value={msg} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setMsg(e.target.value)}} className="start-messaging1 outline-none bg-transparent border-none w-full h-full"/>
-                                    <ArrowForwardIcon/>
+                                <form className="h-full borders w-full px-5 py-3 rounded-[10px] flex " onSubmit={handleSubmit}>
+                                    <input
+                                        type='text'
+                                        value={msg}
+                                        onChange={(e) => setMsg(e.target.value)}
+                                        className="start-messaging1 outline-none bg-transparent border-none w-full h-full"
+                                    />
+                                    <button type='submit'><ArrowForwardIcon /></button>
                                 </form>
-                                <div className="contact-add">
-                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </main>
         </div>
+    );
+};
 
-    )
-}
-
-export default Page
+export default Page;
