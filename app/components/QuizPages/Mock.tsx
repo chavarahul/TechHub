@@ -20,6 +20,7 @@ const Mock = ({ test, prompt, option }: TestType) => {
   const router = useRouter();
   const visibleRef = useRef<HTMLDivElement | null>(null);
   const [seenContainer, setSeenContainer] = useState<boolean>(true);
+  const [selectedText, setSelectedText] = useState('');
 
   const handleNumberChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -129,6 +130,18 @@ const Mock = ({ test, prompt, option }: TestType) => {
     // }
 
   }
+
+  useEffect(() => {
+    const selection = window.getSelection();
+    console.log(selection)
+    if (selection) {
+      const text = selection.toString();
+      console.log(text);
+      setSelectedText(text);
+    } else {
+      console.log('No text selected');
+    }
+  }, [selectedText]);
   return (
     <>
       <form className='w-full h-full relative' autoComplete='on' onSubmit={formSubmitHandler} method='post'>
@@ -214,7 +227,7 @@ const Mock = ({ test, prompt, option }: TestType) => {
               </div>
               <div className="h-[10%] w-full w flex-center mt-10 pb-10">
                 <button className="glitchbutton">
-                  Generate More
+                  Generate More  {selectedText}
                 </button>
               </div>
             </div>

@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  password  String   @unique
-  email     String   @unique
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  username  String    @unique
+  password  String    @unique
+  email     String    @unique
   Image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   Prompts   Prompts[]
   Chat      Chat[]
 }
@@ -21,7 +22,7 @@ model User {
 model Prompts {
   id     String   @id @default(auto()) @map("_id") @db.ObjectId
   user   User?    @relation(fields: [userId], references: [id])
-  userId String  
+  userId String
   prompt String
   output String[]
 }
@@ -29,7 +30,7 @@ model Prompts {
 model Chat {
   id     String   @id @default(auto()) @map("_id") @db.ObjectId
   user   User?    @relation(fields: [userId], references: [id])
-  userId String   
+  userId String
   prompt String
   data   String[]
 }

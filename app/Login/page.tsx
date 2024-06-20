@@ -12,7 +12,7 @@ const Login = () => {
     const [showPassword, setshowPassword] = useState<Boolean>(false)
     const [loginData, setLoginData] = useState({
         email: '',
-        password: ''
+        password: '',
     })
     const shPassword = (): void => {
         setshowPassword(!showPassword)

@@ -11,7 +11,8 @@ const Login = () => {
     const [showPassword, setshowPassword] = useState<Boolean>(false)
     const [loginData, setLoginData] = useState({
         email: '',
-        password: ''
+        password: '',
+        username:''
     })
     const shPassword = (): void => {
         setshowPassword(!showPassword)
@@ -77,6 +78,18 @@ const Login = () => {
                                     onChange={handleLoginChange}
                                     value={loginData.password.toString()}
                                     autoComplete='current-password'
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="username" className={`${poppin.className}`}>Username</label>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder='Enter your username'
+                                    onChange={handleLoginChange}
+                                    value={loginData.username.toString()}
+                                    maxLength={10}
                                 />
                             </div>
                             <div className=" flex items-center">

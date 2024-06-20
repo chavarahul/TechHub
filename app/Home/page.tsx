@@ -59,7 +59,7 @@ const Page = () => {
   const dbPrompt = async() =>{
     console.log(data)
     const res = await axios.post('/api/dbprompt',{prompt,data,id})
-    console.log(res.data)
+    console.log(res.data);
   }
   const copyContent = (prompt: string) => {
     navigator.clipboard.writeText(prompt).then(() =>

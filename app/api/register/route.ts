@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 export const POST = async (request: NextRequest) => {
     const registerData = await request.json();
     console.log(registerData)
-    const { email, password } = registerData;
+    const { email, password,username } = registerData;
     console.log(password)
     const user = await prisma.user.findUnique({
         where: {
@@ -24,6 +24,8 @@ export const POST = async (request: NextRequest) => {
             data: {
                 email,
                 password: hashedPassword,
+                username
+                
             }
         })
         return NextResponse.json({ newUser}, { status: 201 })
