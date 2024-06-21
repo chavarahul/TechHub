@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -12,7 +12,8 @@ const Page = () => {
     const [names, setNames] = useState<string[]>([]);
     const [msg, setMsg] = useState<string>('');
     const [messages, setMessages] = useState<{ user: string, message: string }[]>([]);
-    const [username, setUsername] = useState<string>(''); // Add a state for the main user's username
+    const [username, setUsername] = useState<string>(''); 
+    const[chatInp, setchatInp]= useState<string>('')
 
     useEffect(() => {
         // Fetch initial users
@@ -38,8 +39,10 @@ const Page = () => {
         };
     }, []);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const res= await axios.post("http://127.0.0.1:5000/api/chatroom",{msg})
+        console.log(res?.data)
         // Emit message to server
         const messageData = { user: username, message: msg };
         socket.emit('sendMessage', messageData);
@@ -91,9 +94,11 @@ const Page = () => {
                             {messages.map((message, index) => (
                                 <div
                                     key={index}
-                                    className={`message-item ${message.user === username ? 'text-right' : 'text-left'}`}
+                                    className={`message-item flex ${message.user === username ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <span className="message-username">{message.user}:</span> {message.message}
+                                    <div className={`message-bubble ${message.user === username ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>
+                                        <span className="message-username font-bold">{message.user}:</span> {message.message}
+                                    </div>
                                 </div>
                             ))}
                         </div>

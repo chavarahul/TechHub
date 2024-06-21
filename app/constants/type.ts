@@ -7,6 +7,7 @@ export interface userType {
     Image: string
     createdAt: string
     updatedAt: string
+    username?:string
 }
 
 export interface FormData {
