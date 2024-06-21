@@ -1,19 +1,23 @@
-"use client"
-import React, { useState,useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import io from 'socket.io-client';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { poppin } from '../constants';
+import { userType } from '../constants/type';
+import { useUser } from '../components/user/UserData';
 
-const socket = io(); // Connect to socket.io server
+const LOCAL_STORAGE_KEY = 'chat_messages';
 
 const Page = () => {
+    const userData: userType | null = useUser();
+    const username = userData?.username || '';
     const [names, setNames] = useState<string[]>([]);
     const [msg, setMsg] = useState<string>('');
     const [messages, setMessages] = useState<{ user: string, message: string }[]>([]);
-    const [username, setUsername] = useState<string>(''); 
-    const[chatInp, setchatInp]= useState<string>('')
+    const [chatInp, setChatInp] = useState<string>('');
 
     useEffect(() => {
         // Fetch initial users
@@ -23,95 +27,91 @@ const Page = () => {
         };
         fetchUsers();
 
-        // Listen for new messages from server
-        socket.on('message', (message: { user: string, message: string }) => {
-            setMessages(prevMessages => [...prevMessages, message]);
-        });
+        // Load messages from local storage
+        const storedMessages = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+        setMessages(storedMessages);
 
+        // Poll for changes in local storage
+        const intervalId = setInterval(() => {
+            const updatedMessages = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+            setMessages(updatedMessages);
+        }, 1000); // Poll every second
 
-        return () => {
-            socket.disconnect(); // Cleanup on unmount
-        };
+        return () => clearInterval(intervalId); // Cleanup on unmount
     }, []);
 
-    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const res= await axios.post("http://127.0.0.1:5000/api/chatroom",{msg})
-        console.log(res?.data)
-        if(res?.data.predicted_emotion === 'negative'){
-            const msged = {user:username,message:''}
-            setMessages(prevMessages => [...prevMessages,msged]);
+        const res = await axios.post("http://localhost:5000/api/chatroom", { msg });
+        console.log(res?.data);
+        if (res?.data.predicted_emotion === 'negative') {
             setMsg('');
+            toast.error("Unparliamentary language");
+            return;
         }
-        // Emit message to server
+        // Add message to local storage
         const messageData = { user: username, message: msg };
-        socket.emit('sendMessage', messageData);
-        setMessages(prevMessages => [...prevMessages, messageData]);
+        const updatedMessages = [...messages, messageData];
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedMessages));
+        setMessages(updatedMessages);
         setMsg(''); // Clear message input
     };
 
     return (
-        <div className="desktop-5 borders pl-5 p-5">
+        <div className="desktop-5 pl-5 p-5">
             <div className="background" />
             <main className="content">
-                <div className="chat borders p-4">
-                    <div className="flex">
+                <div className="chat borders p-4 rounded-[10px]">
+                    <div className="flex-center">
                         <ChatIcon />
-                        <div className="ml-3">Chat room</div>
+                        <div className={`${poppin.className} ml-3 text-center`}>Chat room</div>
                     </div>
                     <div className="chat-background" />
                     <div className="room-list">
-                        <div className="relative h-[60vh] w-full borders">
-                            <div className="available-now1 h-[10%]">All users</div>
-                            <div className="relative w-full borders h-[90%] Scroller overflow-y-scroll">
+                        <div className="relative h-[60vh] w-full ">
+                            <div className={`${poppin.className} available-now1 h-[10%]`}>All users</div>
+                            <div className="relative w-full h-[90%] Scroller overflow-y-scroll">
                                 {names.map((t: any, ind: number) => (
-                                    <div className="borders h-[45px] rounded-[10px] flex-all" key={ind}>
+                                    <div className="borders mb-3 h-[45px] rounded-[10px] flex-all" key={ind}>
                                         <PersonIcon />
-                                        <p>{t.username}</p>
+                                        <p className={`${poppin.className}`}>{t.username}</p>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     </div>
                 </div>
-                <section className="user-panel borders">
-                    <div className="user borders">
-                        <div className="user-child" />
-                        <div className="user-info">
-                            <div className="user-name-area">
-                                <div className="user-name-area-child" />
-                                <div className="user-name">
-                                    <a className="username1">{username}</a>
-                                </div>
-                            </div>
-                            <div className="user-header">
-                                <div className="available-now1">Available now</div>
-                            </div>
+                <section className="user-panel">
+                    <div className="user borders h-[70vh] flex-colm rounded-[10px]">
+                        <p className={`${poppin.className}`}>Available Users</p>
+                        <button onClick={()=>{localStorage.clear()}}>wefw</button>
+                        <div className="">
                         </div>
                     </div>
-                    <div className=" absolute top-20 left-[20.5%] MsgBox w-[58%] h-[70%]">
+                    <div className="absolute top-20 left-[20.5%] MsgBox w-[58%] pr-20 h-[70%]">
                         <div className="messages-list h-full overflow-y-scroll Scroller">
                             {messages.map((message, index) => (
                                 <div
                                     key={index}
                                     className={`message-item flex ${message.user === username ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <div className={`message-bubble mb-1 ${message.user === username ? 'bg-blue-500 text-white p-3' : 'bg-gray-200 text-black'}`}>
-                                        <span className="message-username font-bold">{message.user}</span> {message.message}
+                                    <div className={`message-bubble mb-1 min-w-[20%] ${message.user === username ? 'bg-white text-black p-3 px-5 rounded-[15px] mb-3' : 'bg-gray-200 text-black'}`}>
+                                        <span className={`${poppin.className} message-username`}>{message.user} :{"   "}</span>{message.message}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className="contact-list borders">
-                        <div className="contact">
-                            <div className="flex-center borders w-full px-10">
-                                <form className="h-full borders w-full px-5 py-3 rounded-[10px] flex " onSubmit={handleSubmit}>
+                    <div className="contact-list">
+                        <div className="contact mt-10">
+                            <div className="flex-center w-full px-10">
+                                <form className="h-full borders w-full px-5 py-3 rounded-[10px] flex" onSubmit={handleSubmit}>
                                     <input
                                         type='text'
                                         value={msg}
                                         onChange={(e) => setMsg(e.target.value)}
                                         className="start-messaging1 outline-none bg-transparent border-none w-full h-full"
+                                        placeholder='Enter your message'
                                     />
                                     <button type='submit'><ArrowForwardIcon /></button>
                                 </form>

@@ -1,0 +1,288 @@
+type,difficulty,question,pairs__concept,pairs__theory,pairs__proponent,pairs__genre,pairs__description,pairs__author,pairs__work,pairs__instrument,pairs__category,pairs__philosopher,pairs__idea,pairs__sport,pairs__surface,pairs__equipment,pairs__invention,pairs__inventor,pairs__event,pairs__date,pairs__president,pairs__color,pairs__code,pairs__language,pairs__founder,pairs__country,pairs__capital,options__001,options__002,options__003,options__004,answer
+Multiple Choice,Easy,What is the capital of France?,,,,,,,,,,,,,,,,,,,,,,,,,,Paris,London,Berlin,Rome,Paris
+True/False,Medium,Is the Earth round?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Hard,The largest planet in our solar system is ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Jupiter
+Short Answer,Easy,Who wrote 'Romeo and Juliet'?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,William Shakespeare
+Matching,Medium,Match the following countries with their capitals:,,,,,,,,,,,,,,,,,,,,,,,,USA,"Washington, D.C.",,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Germany,Berlin,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Japan,Tokyo,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Brazil,BrasC-lia,,,,,
+Multiple Choice,,What is the capital of France?,,,,,,,,,,,,,,,,,,,,,,,,,,Paris,London,Berlin,Rome,Paris
+True/False,,Is the Earth round?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,,The largest planet in our solar system is ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Jupiter
+Short Answer,,Who wrote 'Romeo and Juliet'?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,William Shakespeare
+Matching,,Match the following countries with their capitals:,,,,,,,,,,,,,,,,,,,,,,,,USA,"Washington, D.C.",,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Germany,Berlin,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Japan,Tokyo,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Brazil,BrasC-lia,,,,,
+Multiple Choice,Easy,What is the capital of Australia?,,,,,,,,,,,,,,,,,,,,,,,,,,Sydney,Melbourne,Canberra,Perth,Canberra
+True/False,Medium,The Nile River is the longest river in the world.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Fill in the Blank,Hard,The speed of light in a vacuum is approximately ____________ meters per second.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"299,792,458"
+Short Answer,Easy,Who is the author of 'To Kill a Mockingbird'?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Harper Lee
+Matching,Medium,Match the following programming languages with their founders:,,,,,,,,,,,,,,,,,,,,,,Python,Guido van Rossum,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,JavaScript,Brendan Eich,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,Java,James Gosling,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,C++,Bjarne Stroustrup,,,,,,,
+Multiple Choice,Hard,Who painted the Mona Lisa?,,,,,,,,,,,,,,,,,,,,,,,,,,Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Michelangelo,Leonardo da Vinci
+True/False,Easy,Water boils at 100 degrees Fahrenheit.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Fill in the Blank,Medium,The chemical symbol for gold is ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Au
+Short Answer,Hard,What is the capital of Uzbekistan?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Tashkent
+Matching,Easy,Match the following colors with their hexadecimal codes:,,,,,,,,,,,,,,,,,,,,Red,#FF0000,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,Green,#00FF00,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,Blue,#0000FF,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,Yellow,#FFFF00,,,,,,,,,
+Multiple Choice,Easy,What is the main function of the kidneys in the human body?,,,,,,,,,,,,,,,,,,,,,,,,,,Digestion,Respiration,Filtration of blood,Muscle movement,Filtration of blood
+True/False,Medium,The human heart has four chambers.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Hard,The first successful human heart transplant was performed by Dr. ____________ in 1967.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Christiaan Barnard
+Short Answer,Easy,What is the chemical symbol for water?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,H2O
+Matching,Medium,Match the following presidents with their countries:,,,,,,,,,,,,,,,,,,,Barack Obama,,,,,United States,,,,,,
+,,,,,,,,,,,,,,,,,,,,,Angela Merkel,,,,,Germany,,,,,,
+,,,,,,,,,,,,,,,,,,,,,Emmanuel Macron,,,,,France,,,,,,
+,,,,,,,,,,,,,,,,,,,,,Justin Trudeau,,,,,Canada,,,,,,
+Multiple Choice,Hard,Who was the first woman to win a Nobel Prize?,,,,,,,,,,,,,,,,,,,,,,,,,,Marie Curie,Rosalind Franklin,Dorothy Hodgkin,Ada Lovelace,Marie Curie
+True/False,Easy,The Great Wall of China is visible from space.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Fill in the Blank,Medium,The Berlin Wall fell in ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1989
+Short Answer,Hard,Who was the first female Prime Minister of India?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Indira Gandhi
+Matching,Easy,Match the following historical events with their dates:,,,,,,,,,,,,,,,,,Declaration of Independence (USA),1776,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,French Revolution,1789,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,Fall of the Berlin Wall,1989,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,World War II,1939-1945,,,,,,,,,,,,
+Multiple Choice,Easy,Who is the current President of the United States?,,,,,,,,,,,,,,,,,,,,,,,,,,Barack Obama,Donald Trump,Joe Biden,George W. Bush,Joe Biden
+True/False,Medium,The Statue of Liberty was a gift from France to the United States.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Hard,The theory of relativity was developed by ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Albert Einstein
+Short Answer,Easy,Who is the author of 'Pride and Prejudice'?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Jane Austen
+Matching,Medium,Match the following inventions with their inventors:,,,,,,,,,,,,,,,Telephone,Alexander Graham Bell,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Lightbulb,Thomas Edison,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Airplane,Wright Brothers,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Computer,Charles Babbage,,,,,,,,,,,,,,
+Multiple Choice,Hard,Which planet is known as the 'Red Planet'?,,,,,,,,,,,,,,,,,,,,,,,,,,Mars,Jupiter,Saturn,Neptune,Mars
+True/False,Easy,The moon orbits the Earth.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Medium,The Magna Carta was signed in ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1215
+Short Answer,Hard,Who wrote the play 'Hamlet'?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,William Shakespeare
+Matching,Easy,Match the following sports with their equipment:,,,,,,,,,,,,Football,,Football,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Tennis,,Tennis racket,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Golf,,Golf club,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Swimming,,Swimsuit,,,,,,,,,,,,,,,,
+Multiple Choice,Easy,What is the largest organ in the human body?,,,,,,,,,,,,,,,,,,,,,,,,,,Heart,Brain,Liver,Skin,Skin
+True/False,Medium,The human brain weighs approximately 5 pounds.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Fill in the Blank,Hard,The process of cell division is called ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Mitosis
+Short Answer,Easy,What is the chemical symbol for oxygen?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,O
+Matching,Medium,Match the following philosophers with their ideas:,,,,,,,,,,Socrates,Socratic method,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Plato,Theory of Forms,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Aristotle,Golden mean,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Descartes,Cogito ergo sum,,,,,,,,,,,,,,,,,,,
+Multiple Choice,Hard,Who discovered penicillin?,,,,,,,,,,,,,,,,,,,,,,,,,,Louis Pasteur,Alexander Fleming,Gregor Mendel,Marie Curie,Alexander Fleming
+True/False,Easy,The human skeleton has 206 bones.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Medium,The pH scale measures the acidity or ____________ of a substance.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Alkalinity
+Short Answer,Hard,What is the largest continent by land area?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Asia
+Matching,Easy,Match the following musical instruments with their categories:,,,,,,,,Piano,Keyboard,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,Guitar,String,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,Trumpet,Brass,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,Drums,Percussion,,,,,,,,,,,,,,,,,,,,,
+Multiple Choice,Easy,What is the smallest bone in the human body?,,,,,,,,,,,,,,,,,,,,,,,,,,Femur,Stapes,Tibia,Humerus,Stapes
+True/False,Medium,The human body has four types of blood cells.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Hard,The study of earthquakes is called ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Seismology
+Short Answer,Easy,Who invented the light bulb?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Thomas Edison
+Matching,Medium,Match the following authors with their famous works:,,,,,,William Shakespeare,Romeo and Juliet,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,Jane Austen,Pride and Prejudice,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,George Orwell,1984,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,Mark Twain,The Adventures of Huckleberry Finn,,,,,,,,,,,,,,,,,,,,,,,
+Multiple Choice,Hard,Who developed the first successful polio vaccine?,,,,,,,,,,,,,,,,,,,,,,,,,,Albert Sabin,Louis Pasteur,Jonas Salk,Edward Jenner,Jonas Salk
+True/False,Easy,The Earth is the third planet from the Sun.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Medium,The process of converting light energy into chemical energy is known as ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Photosynthesis
+Short Answer,Hard,Who was the first woman to win a Nobel Prize?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Marie Curie
+Matching,Easy,Match the following countries with their capitals:,,,,,,,,,,,,,,,,,,,,,,,,Spain,Madrid,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Italy,Rome,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,Brazil,BrasC-lia,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,India,New Delhi,,,,,
+Multiple Choice,Easy,Who painted the Mona Lisa?,,,,,,,,,,,,,,,,,,,,,,,,,,Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Claude Monet,Leonardo da Vinci
+True/False,Medium,The Great Wall of China is visible from the Moon.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Fill in the Blank,Hard,The chemical element with the symbol 'Na' is ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Sodium
+Short Answer,Easy,Who wrote 'To Kill a Mockingbird'?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Harper Lee
+Matching,Medium,Match the following musical genres with their descriptions:,,,,Jazz,Improvisational music with syncopated rhythms,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Classical,Complex compositions with orchestral arrangements,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Rock,Guitar-driven music with strong beats and vocals,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Hip hop,Rap music with sampled beats and rhymes,,,,,,,,,,,,,,,,,,,,,,,,,
+Multiple Choice,Hard,Who discovered the theory of evolution by natural selection?,,,,,,,,,,,,,,,,,,,,,,,,,,Charles Darwin,Gregor Mendel,Alfred Russel Wallace,Thomas Huxley,Charles Darwin
+True/False,Easy,The Amazon River is the longest river in the world.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Fill in the Blank,Medium,The atomic number of carbon is ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,6
+Short Answer,Hard,Who was the first President of the United States?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,George Washington
+Matching,Easy,Match the following sports with their playing surfaces:,,,,,,,,,,,,Football,Field,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Tennis,Court,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Golf,Course,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Swimming,Pool,,,,,,,,,,,,,,,,,
+Multiple Choice,Hard,Which of the following is NOT a fundamental force in physics?,,,,,,,,,,,,,,,,,,,,,,,,,,Gravity,Electromagnetism,Nuclear force,Centrifugal force,Centrifugal force
+True/False,Tricky,The Heisenberg Uncertainty Principle states that you can never know both the position and velocity of a particle with absolute certainty.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Hard,"According to Einstein's theory of relativity, mass and energy are interchangeable through the famous equation E=__________.",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,mc^2
+Short Answer,Tricky,What is the significance of SchrC6dinger's cat in quantum mechanics?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,It illustrates the concept of superposition and the interpretation of quantum states.
+Matching,Hard,Match the following psychological theories with their proponents:,,Psychoanalysis,Sigmund Freud,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Behaviorism,B.F. Skinner,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Cognitive psychology,Jean Piaget,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Humanistic psychology,Abraham Maslow,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Multiple Choice,Tricky,Which of the following is a paradox in philosophy?,,,,,,,,,,,,,,,,,,,,,,,,,,Zeno's paradox,Occam's razor,SchrC6dinger's cat,The placebo effect,Zeno's paradox
+True/False,Hard,The P vs NP problem is considered one of the Millennium Prize Problems in mathematics.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Fill in the Blank,Tricky,The Riemann Hypothesis is related to the distribution of ____________.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,prime numbers
+Short Answer,Hard,What is GC6del's incompleteness theorem?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"It states that in any consistent formal system, there are true statements that cannot be proven within the system."
+Matching,Tricky,Match the following philosophical concepts with their descriptions:,Solipsism,,,,The belief that only one's mind is sure to exist,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,Dialectics,,,,The process of arriving at truth through the clash of opposing ideas,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,Ontology,,,,The study of the nature of being and existence,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,Epistemology,,,,The study of knowledge and its acquisition,,,,,,,,,,,,,,,,,,,,,,,,,
+Guess the Output (C),Hard,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int x = 10;\n    int *ptr = &x;\n    *ptr += 5;\n    printf(""%d\n"", *ptr);\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,15
+Guess the Output (Python),Tricky,"What will be printed by the following Python code?\n\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"[1, 2, 3, 4]"
+Guess the Output (Java),Hard,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        String s1 = ""Hello"";\n        String s2 = new String(s1);\n        System.out.println(s1 == s2);\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Guess the Output (JavaScript),Tricky,"What will be printed by the following JavaScript code?\n\nfunction test(x, y = x) {\n    return y;\n}\nconsole.log(test(5));",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,5
+Guess the Output (C),Hard,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    char str[] = ""Hello"";\n    char *ptr = str;\n    *ptr = 'X';\n    printf(""%s\n"", str);\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Xello
+Guess the Output (Python),Tricky,"What will be printed by the following Python code?\n\nx = 5\ny = 10\nx, y = y, x\nprint(x, y)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10 5
+Guess the Output (Java),Hard,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        String s1 = ""Hello"";\n        String s2 = s1;\n        System.out.println(s1.equals(s2));\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Guess the Output (JavaScript),Tricky,What will be printed by the following JavaScript code?\n\nconst x = { value: 10 };\nconst y = x;\nx.value = 20;\nconsole.log(y.value);,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,20
+Guess the Output (C),Challenging,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int a = 5;\n    int b = 10;\n    int c = (a++) + (++b);\n    printf(""%d\n"", c);\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16
+Guess the Output (Python),Complex,What will be printed by the following Python code?\n\nx = 5\ny = lambda x: x + 5\nprint(y(x)),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10
+Guess the Output (Java),Challenging,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        String s1 = new String(""Hello"");\n        String s2 = new String(""Hello"");\n        System.out.println(s1 == s2);\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Guess the Output (JavaScript),Complex,What will be printed by the following JavaScript code?\n\nfunction test(x) {\n    if (x === 1) {\n        return 1;\n    } else {\n        return x * test(x - 1);\n    }\n}\nconsole.log(test(5));,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,120
+Guess the Output (C),Challenging,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    int *ptr = arr;\n    printf(""%d\n"", *(ptr + 3));\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,4
+Guess the Output (Python),Complex,"What will be printed by the following Python code?\n\nx = [1, 2, 3]\ny = x\ny += [4]\nprint(x)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"[1, 2, 3, 4]"
+Guess the Output (Java),Challenging,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        String s1 = ""Hello"";\n        String s2 = s1.intern();\n        System.out.println(s1 == s2);\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Guess the Output (JavaScript),Complex,"What will be printed by the following JavaScript code?\n\nconst arr = [1, 2, 3, 4, 5];\nconst sum = arr.reduce((acc, val) => acc + val, 0);\nconsole.log(sum);",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,15
+Guess the Output (C),Easy,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    printf(""Hello, World!\n"");\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Hello, World!"
+Guess the Output (Python),Easy,What will be printed by the following Python code?\n\nx = 10\ny = 5\nprint(x + y),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,15
+Guess the Output (Java),Easy,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        System.out.println(""Java Programming"");\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Java Programming
+Guess the Output (JavaScript),Easy,"What will be printed by the following JavaScript code?\n\nconsole.log(""Hello, JavaScript!"");",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Hello, JavaScript!"
+Guess the Output (C),Easy,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int x = 5;\n    printf(""%d\n"", x);\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,5
+Guess the Output (Python),Easy,"What will be printed by the following Python code?\n\nname = ""Alice""\nprint(""Hello, "" + name)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Hello, Alice"
+Guess the Output (Java),Easy,What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        int x = 10;\n        System.out.println(x);\n    }\n},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10
+Guess the Output (JavaScript),Easy,What will be printed by the following JavaScript code?\n\nlet num = 20;\nconsole.log(num);,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,20
+Guess the Output (C),Easy,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int x = 5;\n    printf(""%d\n"", x);\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,5
+Guess the Output (Python),Easy,"What will be printed by the following Python code?\n\nname = ""Alice""\nprint(""Hello, "" + name)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"Hello, Alice"
+Guess the Output (Java),Easy,What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        int x = 10;\n        System.out.println(x);\n    }\n},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10
+Guess the Output (JavaScript),Easy,What will be printed by the following JavaScript code?\n\nlet num = 20;\nconsole.log(num);,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,20
+Guess the Output (C),Medium,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int a = 5;\n    int b = 10;\n    int c = (a++) + (++b);\n    printf(""%d\n"", c);\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,16
+Guess the Output (Python),Medium,What will be printed by the following Python code?\n\nx = 5\ny = lambda x: x + 5\nprint(y(x)),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,10
+Guess the Output (Java),Medium,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        String s1 = new String(""Hello"");\n        String s2 = new String(""Hello"");\n        System.out.println(s1 == s2);\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,False
+Guess the Output (JavaScript),Medium,What will be printed by the following JavaScript code?\n\nfunction test(x) {\n    if (x === 1) {\n        return 1;\n    } else {\n        return x * test(x - 1);\n    }\n}\nconsole.log(test(5));,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,120
+Guess the Output (C),Hard,"What is the output of the following C code?\n\n#include <stdio.h>\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    int *ptr = arr;\n    printf(""%d\n"", *(ptr + 3));\n    return 0;\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,4
+Guess the Output (Python),Hard,"What will be printed by the following Python code?\n\nx = [1, 2, 3]\ny = x\ny += [4]\nprint(x)",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"[1, 2, 3, 4]"
+Guess the Output (Java),Hard,"What is the output of the following Java code?\n\nclass Main {\n    public static void main(String[] args) {\n        String s1 = ""Hello"";\n        String s2 = s1.intern();\n        System.out.println(s1 == s2);\n    }\n}",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Guess the Output (JavaScript),Hard,"What will be printed by the following JavaScript code?\n\nconst arr = [1, 2, 3, 4, 5];\nconst sum = arr.reduce((acc, val) => acc + val, 0);\nconsole.log(sum);",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,15
+MCQ,Easy,What is the time complexity of accessing an element in an array by its index?,,,,,,,,,,,,,,,,,,,,,,,,,,O(1),O(n),O(log n),O(n^2),O(1)
+MCQ,Medium,Which of the following sorting algorithms has the best average case time complexity?,,,,,,,,,,,,,,,,,,,,,,,,,,Bubble Sort,Merge Sort,Quick Sort,Insertion Sort,Merge Sort
+Short Answer,Hard,Explain the difference between INNER JOIN and LEFT JOIN in SQL.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Easy,"In a multitasking operating system, multiple processes share CPU time.",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,True
+Short Answer,Medium,What is the main advantage of using WebSockets over HTTP for real-time communication?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a Java program to reverse a linked list.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,public ListNode reverseList(ListNode head) { ListNode prev = null; ListNode curr = head; while (curr != null) { ListNode nextTemp = curr.next; curr.next = prev; prev = curr; curr = nextTemp; } return prev; }
+MCQ,Easy,What is the time complexity of finding the maximum element in an unsorted array?,,,,,,,,,,,,,,,,,,,,,,,,,,O(1),O(n),O(log n),O(n^2),O(n)
+Short Answer,Medium,Explain the difference between a singly linked list and a doubly linked list.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a function to rotate an array of integers by k positions to the right.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"def rotate_array(arr, k):\n    n = len(arr)\n    k = k % n\n    arr[:] = arr[-k:] + arr[:-k]"
+MCQ,Medium,Which sorting algorithm is known for its stability?,,,,,,,,,,,,,,,,,,,,,,,,,,Bubble Sort,Merge Sort,Quick Sort,Insertion Sort,Merge Sort
+MCQ,Easy,What is the time complexity of binary search on a sorted array?,,,,,,,,,,,,,,,,,,,,,,,,,,O(1),O(log n),O(n),O(n^2),O(log n)
+Coding,Hard,Implement the quicksort algorithm in Python.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quicksort(left) + middle + quicksort(right)
+Short Answer,Medium,Explain the difference between a binary tree and a binary search tree (BST).,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Hard,Which graph traversal algorithm guarantees to visit all vertices in a connected graph?,,,,,,,,,,,,,,,,,,,,,,,,,,Depth-First Search (DFS),Breadth-First Search (BFS),Dijkstra's Algorithm,Prim's Algorithm,Depth-First Search (DFS)
+Coding,Easy,Write a function to check if a binary tree is balanced.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"def is_balanced(root):\n    if not root:\n        return True\n    left_height = height(root.left)\n    right_height = height(root.right)\n    return abs(left_height - right_height) <= 1 and is_balanced(root.left) and is_balanced(root.right)\ndef height(node):\n    if not node:\n        return 0\n    return 1 + max(height(node.left), height(node.right))"
+MCQ,Easy,What is the time complexity of finding the maximum element in an unsorted array?,,,,,,,,,,,,,,,,,,,,,,,,,,O(1),O(n),O(log n),O(n^2),O(n)
+Short Answer,Medium,Explain the difference between a singly linked list and a doubly linked list.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a function to rotate an array of integers by k positions to the right.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"def rotate_array(arr, k):\n    n = len(arr)\n    k = k % n\n    arr[:] = arr[-k:] + arr[:-k]"
+Coding,Hard,Implement an algorithm to find the kth largest element in an array.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"import heapq\n\ndef kth_largest_element(arr, k):\n    return heapq.nlargest(k, arr)[-1]"
+MCQ,Medium,Which sorting algorithm is known for its stability?,,,,,,,,,,,,,,,,,,,,,,,,,,Bubble Sort,Merge Sort,Quick Sort,Insertion Sort,Merge Sort
+MCQ,Easy,What is the time complexity of binary search on a sorted array?,,,,,,,,,,,,,,,,,,,,,,,,,,O(1),O(log n),O(n),O(n^2),O(log n)
+Coding,Hard,Implement the quicksort algorithm in Python.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quicksort(left) + middle + quicksort(right)
+Coding,Hard,Write an algorithm to find the first and last occurrence of a target element in a sorted array.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"def find_first_last_occurrence(nums, target):\n    left = bisect.bisect_left(nums, target)\n    right = bisect.bisect_right(nums, target)\n    return [left, right - 1] if left < len(nums) and nums[left] == target else [-1, -1]"
+Short Answer,Medium,Explain the difference between a binary tree and a binary search tree (BST).,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Hard,Which graph traversal algorithm guarantees to visit all vertices in a connected graph?,,,,,,,,,,,,,,,,,,,,,,,,,,Depth-First Search (DFS),Breadth-First Search (BFS),Dijkstra's Algorithm,Prim's Algorithm,Depth-First Search (DFS)
+Coding,Easy,Write a function to check if a binary tree is balanced.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"def is_balanced(root):\n    if not root:\n        return True\n    left_height = height(root.left)\n    right_height = height(root.right)\n    return abs(left_height - right_height) <= 1 and is_balanced(root.left) and is_balanced(root.right)\ndef height(node):\n    if not node:\n        return 0\n    return 1 + max(height(node.left), height(node.right))"
+Coding,Medium,Write an algorithm to find the shortest path between two nodes in a weighted graph using Dijkstra's algorithm.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"import heapq\n\ndef dijkstra(graph, start):\n    distances = {node: float('infinity') for node in graph}\n    distances[start] = 0\n    queue = [(0, start)]\n    while queue:\n        current_distance, current_node = heapq.heappop(queue)\n        if current_distance > distances[current_node]:\n            continue\n        for neighbor, weight in graph[current_node].items():\n            distance = current_distance + weight\n            if distance < distances[neighbor]:\n                distances[neighbor] = distance\n                heapq.heappush(queue, (distance, neighbor))\n    return distances"
+MCQ,Medium,Which organ is responsible for filtering waste products from the blood?,,,,,,,,,,,,,,,,,,,,,,,,,,Liver,Kidney,Heart,Lung,Kidney
+Short Answer,Hard,Explain the symptoms and treatment options for Parkinson's disease.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Easy,Which type of medication is commonly used to lower high blood pressure?,,,,,,,,,,,,,,,,,,,,,,,,,,Antibiotics,Antidepressants,Diuretics,Painkillers,Diuretics
+MCQ,Medium,Who was the first President of the United States?,,,,,,,,,,,,,,,,,,,,,,,,,,George Washington,Thomas Jefferson,Abraham Lincoln,John Adams,George Washington
+MCQ,Easy,What is the capital city of France?,,,,,,,,,,,,,,,,,,,,,,,,,,Berlin,London,Paris,Madrid,Paris
+Short Answer,Hard,Explain the concept of blockchain technology.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which type of government system gives power to elected representatives?,,,,,,,,,,,,,,,,,,,,,,,,,,Monarchy,Democracy,Dictatorship,Oligarchy,Democracy
+MCQ,Easy,Who is the current Chancellor of Germany?,,,,,,,,,,,,,,,,,,,,,,,,,,Angela Merkel,Emmanuel Macron,Boris Johnson,Justin Trudeau,Angela Merkel
+Short Answer,Hard,Discuss the impact of the Civil Rights Movement in the United States.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which component of the CPU is responsible for executing instructions?,,,,,,,,,,,,,,,,,,,,,,,,,,ALU,Control Unit,Cache Memory,Registers,Control Unit
+MCQ,Easy,Which type of memory is the fastest but also the smallest in size?,,,,,,,,,,,,,,,,,,,,,,,,,,RAM,Cache Memory,Hard Disk,Optical Disk,Cache Memory
+Short Answer,Hard,Explain the difference between RISC and CISC instruction sets.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which element has the chemical symbol 'Na'?,,,,,,,,,,,,,,,,,,,,,,,,,,Sodium,Nitrogen,Neon,Nickel,Sodium
+MCQ,Easy,What type of chemical reaction is the combustion of gasoline in a car engine?,,,,,,,,,,,,,,,,,,,,,,,,,,Synthesis,Decomposition,Combustion,Oxidation-Reduction,Combustion
+Short Answer,Hard,Explain the concept of chirality in organic molecules.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,"Which law of motion states that for every action, there is an equal and opposite reaction?",,,,,,,,,,,,,,,,,,,,,,,,,,Newton's First Law,Newton's Second Law,Newton's Third Law,Law of Gravitation,Newton's Third Law
+MCQ,Easy,What type of lens converges light rays to a focal point?,,,,,,,,,,,,,,,,,,,,,,,,,,Convex Lens,Concave Lens,Plano-Concave Lens,Plano-Convex Lens,Convex Lens
+Short Answer,Hard,Discuss the principles of quantum entanglement.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which organ is responsible for filtering waste products from the blood?,,,,,,,,,,,,,,,,,,,,,,,,,,Liver,Kidney,Heart,Lung,Kidney
+Short Answer,Hard,Explain the symptoms and treatment options for Parkinson's disease.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Easy,Which type of medication is commonly used to lower high blood pressure?,,,,,,,,,,,,,,,,,,,,,,,,,,Antibiotics,Antidepressants,Diuretics,Painkillers,Diuretics
+True/False,Medium,Euthanasia is legal in all countries.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Who was the first President of the United States?,,,,,,,,,,,,,,,,,,,,,,,,,,George Washington,Thomas Jefferson,Abraham Lincoln,John Adams,George Washington
+MCQ,Easy,What is the capital city of France?,,,,,,,,,,,,,,,,,,,,,,,,,,Berlin,London,Paris,Madrid,Paris
+Short Answer,Hard,Explain the concept of blockchain technology.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Easy,The Great Wall of China is visible from space.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which type of government system gives power to elected representatives?,,,,,,,,,,,,,,,,,,,,,,,,,,Monarchy,Democracy,Dictatorship,Oligarchy,Democracy
+MCQ,Easy,Who is the current Chancellor of Germany?,,,,,,,,,,,,,,,,,,,,,,,,,,Angela Merkel,Emmanuel Macron,Boris Johnson,Justin Trudeau,Angela Merkel
+Short Answer,Hard,Discuss the impact of the Civil Rights Movement in the United States.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Easy,The United Nations has 193 member states.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which component of the CPU is responsible for executing instructions?,,,,,,,,,,,,,,,,,,,,,,,,,,ALU,Control Unit,Cache Memory,Registers,Control Unit
+MCQ,Easy,Which type of memory is the fastest but also the smallest in size?,,,,,,,,,,,,,,,,,,,,,,,,,,RAM,Cache Memory,Hard Disk,Optical Disk,Cache Memory
+Short Answer,Hard,Explain the difference between RISC and CISC instruction sets.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,ROM is volatile memory.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which element has the chemical symbol 'Na'?,,,,,,,,,,,,,,,,,,,,,,,,,,Sodium,Nitrogen,Neon,Nickel,Sodium
+MCQ,Easy,What type of chemical reaction is the combustion of gasoline in a car engine?,,,,,,,,,,,,,,,,,,,,,,,,,,Synthesis,Decomposition,Combustion,Oxidation-Reduction,Combustion
+Short Answer,Hard,Explain the concept of chirality in organic molecules.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Easy,Water is a polar molecule.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,"Which law of motion states that for every action, there is an equal and opposite reaction?",,,,,,,,,,,,,,,,,,,,,,,,,,Newton's First Law,Newton's Second Law,Newton's Third Law,Law of Gravitation,Newton's Third Law
+MCQ,Easy,What type of lens converges light rays to a focal point?,,,,,,,,,,,,,,,,,,,,,,,,,,Convex Lens,Concave Lens,Plano-Concave Lens,Plano-Convex Lens,Convex Lens
+Short Answer,Hard,Discuss the principles of quantum entanglement.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,Light waves are transverse waves.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,What is the largest planet in the solar system?,,,,,,,,,,,,,,,,,,,,,,,,,,Mercury,Venus,Jupiter,Saturn,Jupiter
+MCQ,Easy,Which continent is known as the 'Land of the Rising Sun'?,,,,,,,,,,,,,,,,,,,,,,,,,,Africa,Asia,Europe,Australia,Asia
+Short Answer,Hard,Explain the concept of machine learning algorithms.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,The Amazon River is the longest river in the world.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Who painted the Mona Lisa?,,,,,,,,,,,,,,,,,,,,,,,,,,Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Michelangelo,Leonardo da Vinci
+MCQ,Easy,Who wrote the play 'Romeo and Juliet'?,,,,,,,,,,,,,,,,,,,,,,,,,,William Shakespeare,Jane Austen,Charles Dickens,Mark Twain,William Shakespeare
+Short Answer,Hard,Discuss the symbolism in 'The Great Gatsby' by F. Scott Fitzgerald.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,Mozart composed the opera 'The Marriage of Figaro.',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a function in JavaScript to find the longest word in a sentence.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which scientist developed the theory of relativity?,,,,,,,,,,,,,,,,,,,,,,,,,,Isaac Newton,Albert Einstein,Stephen Hawking,Nikola Tesla,Albert Einstein
+MCQ,Easy,What is the chemical symbol for gold?,,,,,,,,,,,,,,,,,,,,,,,,,,Au,Ag,Fe,Cu,Au
+Short Answer,Hard,Explain the concept of artificial intelligence.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,DNA is composed of three strands.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a recursive function in Python to calculate Fibonacci numbers.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Assertion-Reasoning,Medium,Assertion: The theory of evolution by natural selection is supported by fossil evidence. Reasoning: Fossils show gradual changes in species over time.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Who was the first female Prime Minister of India?,,,,,,,,,,,,,,,,,,,,,,,,,,Indira Gandhi,Sonia Gandhi,Margaret Thatcher,Golda Meir,Indira Gandhi
+MCQ,Easy,Which war was fought between the North and South in the United States?,,,,,,,,,,,,,,,,,,,,,,,,,,World War I,Civil War,World War II,Revolutionary War,Civil War
+Short Answer,Hard,Discuss the impact of the French Revolution on European history.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,Nelson Mandela was the first black President of South Africa.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Implement a stack data structure in C++.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Assertion-Reasoning,Medium,Assertion: The Industrial Revolution led to significant social and economic changes. Reasoning: It marked the transition to new manufacturing processes.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Who painted the Mona Lisa?,,,,,,,,,,,,,,,,,,,,,,,,,,Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Michelangelo,Leonardo da Vinci
+MCQ,Easy,Who wrote the play 'Romeo and Juliet'?,,,,,,,,,,,,,,,,,,,,,,,,,,William Shakespeare,Jane Austen,Charles Dickens,Mark Twain,William Shakespeare
+Short Answer,Hard,Discuss the symbolism in 'The Great Gatsby' by F. Scott Fitzgerald.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,Mozart composed the opera 'The Marriage of Figaro.',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a function in JavaScript to find the longest word in a sentence.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Which scientist developed the theory of relativity?,,,,,,,,,,,,,,,,,,,,,,,,,,Isaac Newton,Albert Einstein,Stephen Hawking,Nikola Tesla,Albert Einstein
+MCQ,Easy,What is the chemical symbol for gold?,,,,,,,,,,,,,,,,,,,,,,,,,,Au,Ag,Fe,Cu,Au
+Short Answer,Hard,Explain the concept of artificial intelligence.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,DNA is composed of three strands.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a recursive function in Python to calculate Fibonacci numbers.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Assertion-Reasoning,Medium,Assertion: The theory of evolution by natural selection is supported by fossil evidence. Reasoning: Fossils show gradual changes in species over time.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Who was the first female Prime Minister of India?,,,,,,,,,,,,,,,,,,,,,,,,,,Indira Gandhi,Sonia Gandhi,Margaret Thatcher,Golda Meir,Indira Gandhi
+MCQ,Easy,Which war was fought between the North and South in the United States?,,,,,,,,,,,,,,,,,,,,,,,,,,World War I,Civil War,World War II,Revolutionary War,Civil War
+Short Answer,Hard,Discuss the impact of the French Revolution on European history.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,Nelson Mandela was the first black President of South Africa.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Implement a stack data structure in C++.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Assertion-Reasoning,Medium,Assertion: The Industrial Revolution led to significant social and economic changes. Reasoning: It marked the transition to new manufacturing processes.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,Who painted the Mona Lisa?,,,,,,,,,,,,,,,,,,,,,,,,,,Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Michelangelo,Leonardo da Vinci
+MCQ,Easy,Who wrote the play 'Romeo and Juliet'?,,,,,,,,,,,,,,,,,,,,,,,,,,William Shakespeare,Jane Austen,Charles Dickens,Mark Twain,William Shakespeare
+Short Answer,Hard,Discuss the symbolism in 'The Great Gatsby' by F. Scott Fitzgerald.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,Mozart composed the opera 'The Marriage of Figaro.',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a function in JavaScript to find the longest word in a sentence.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCQ,Medium,What is the value of pi (Ï€) to two decimal places?,,,,,,,,,,,,,,,,,,,,,,,,,,3.14,3.15,3.16,3.17,3.14
+MCQ,Easy,What is the sum of angles in a triangle?,,,,,,,,,,,,,,,,,,,,,,,,,,90 degrees,180 degrees,270 degrees,360 degrees,180 degrees
+Short Answer,Hard,Explain the concept of differential equations.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+True/False,Medium,A prime number is divisible by only itself and 1.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Coding,Hard,Write a recursive function in Python to calculate Fibonacci numbers.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Assertion-Reasoning,Medium,Assertion: The Pythagorean theorem applies only to right-angled triangles. Reasoning: It relates the squares of the sides to the square of the hypotenuse.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Guess the Output,Medium,What will be the output of the following Python code snippet?\n\n```python\ntry:\n    num = 10 / 0\nexcept ZeroDivisionError:\n    print('Division by zero error!')\n```\n\nA) Division by zero error!\nB) 10\nC) ZeroDivisionError: division by zero\nD) None of the above,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,A) Division by zero error!
+Guess the Output,Hard,Predict the output of the following Java code:\n\n```java\npublic class ArrayIndexError {\n    public static void main(String[] args) {\n        int[] arr = new int[5];\n        System.out.println(arr[10]);\n    }\n}\n```\n\nA) 0\nB) IndexOutOfBoundsException\nC) Compiler Error\nD) None of the above,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B) IndexOutOfBoundsException
+Guess the Output,Easy,What will be the output of the following C++ program?\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int num = 10;\n    cout << num << endl;\n    cout << Num << endl;\n    return 0;\n}\n```\n\nA) 10\nB) Compilation Error\nC) Runtime Error\nD) None of the above,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,B) Compilation Error
+Guess the Output,Medium,Try to guess the output of this JavaScript code snippet:\n\n```javascript\nfunction throwError() {\n    throw new Error('Something went wrong!');\n}\n\ntry {\n    throwError();\n} catch (error) {\n    console.log(error.message);\n}\n```\n\nA) Something went wrong!\nB) Error: Something went wrong!\nC) undefined\nD) None of the above,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,A) Something went wrong!
+Guess the Output,Hard,Guess the output of the following Python code snippet:\n\n```python\nimport math\nprint(math.sqrt(-1))\n```\n\nA) -1\nB) 1\nC) ValueError: math domain error\nD) None of the above,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,C) ValueError: math domain error
