@@ -8,6 +8,9 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import ProgressCircle from '../components/effects/ProgressCircle';
+import Chat from '../components/profilePages/Chat';
+import Prompt from '../components/profilePages/Prompt';
+import LineGraph from '../components/effects/LineGraph';
 
 const Page = () => {
   const[updateProfile,setUpdateProfile]=useState<boolean>(false)
@@ -137,15 +140,18 @@ const Page = () => {
           </div>
           <div className="bg-gray-700 rounded-lg p-4 lg:col-span-1 w-[75%] h-96 mt-3">
             <ul className='flex-colm w-full h-full'>
-              <li className={`${poppin.className} py-2 cursor-pointer`}>Prompt</li>
-              <li className={`${poppin.className} py-2 cursor-pointer`}>Image</li>
-              <li className={`${poppin.className} py-2 cursor-pointer`}>Chat</li>
-              <li className={`${poppin.className} py-2 cursor-pointer`}>Mock</li>
-              <li className={`${poppin.className} py-2 cursor-pointer`}>Competitive</li>
+              <li className={`${poppin.className} py-2 cursor-pointer`} onClick={()=>{setSection('prompt')}}>Prompt</li>
+              <li className={`${poppin.className} py-2 cursor-pointer`} onClick={()=>{setSection('Images')}}>Image</li>
+              <li className={`${poppin.className} py-2 cursor-pointer`} onClick={()=>{setSection('chat')}}>Chat</li>
+              <li className={`${poppin.className} py-2 cursor-pointer`} onClick={()=>{setSection('mock')}}>Mock</li>
+              <li className={`${poppin.className} py-2 cursor-pointer`} onClick={()=>{setSection('comp')}}>Competitive</li>
             </ul>
           </div>
-          <div className="bg-gray-700 rounded-lg p-4 w-[98%] lg:col-span-2 h-96 mt-3 -ml-24">
-            {/* Placeholder for component */}
+          <div className="bg-gray-700 rounded-lg p-4 w-[98%] lg:col-span-2 h-96 mt-3 -ml-24 overflow-y-scroll Scroller">
+            {section === 'chat' && <Chat/>}
+            {section === 'prompt' && <Prompt/>}
+            {section === 'mock' && <LineGraph />}
+            {section === 'comp' && <LineGraph />}
           </div>
         </div>
       </div>

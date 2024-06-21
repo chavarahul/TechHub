@@ -97,7 +97,7 @@ def predict_emotion(text):
     text = re.sub('[^a-z\s]', '', text.lower())
     text_vector = vectorizer.transform([text]).toarray()
     prediction = model.predict(text_vector)
-    return prediction[0]
+    return prediction[1]
 
 # Flask route for prediction
 @app.route('/api/chatroom', methods=['POST'])

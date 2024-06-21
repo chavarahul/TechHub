@@ -28,11 +28,6 @@ const Page = () => {
             setMessages(prevMessages => [...prevMessages, message]);
         });
 
-        // Mock function to set the main user's username (replace with actual authentication logic)
-        const storedUsername = prompt('Enter your username'); // For demo purposes
-        if (storedUsername) {
-            setUsername(storedUsername);
-        }
 
         return () => {
             socket.disconnect(); // Cleanup on unmount
@@ -43,6 +38,11 @@ const Page = () => {
         e.preventDefault();
         const res= await axios.post("http://127.0.0.1:5000/api/chatroom",{msg})
         console.log(res?.data)
+        if(res?.data.predicted_emotion === 'negative'){
+            const msged = {user:username,message:''}
+            setMessages(prevMessages => [...prevMessages,msged]);
+            setMsg('');
+        }
         // Emit message to server
         const messageData = { user: username, message: msg };
         socket.emit('sendMessage', messageData);
@@ -89,15 +89,15 @@ const Page = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="border-[1px] absolute top-20 left-[20.5%] MsgBox border-red-500 w-[58%] h-[70%]">
-                        <div className="messages-list h-full overflow-y-scroll">
+                    <div className=" absolute top-20 left-[20.5%] MsgBox w-[58%] h-[70%]">
+                        <div className="messages-list h-full overflow-y-scroll Scroller">
                             {messages.map((message, index) => (
                                 <div
                                     key={index}
                                     className={`message-item flex ${message.user === username ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <div className={`message-bubble ${message.user === username ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>
-                                        <span className="message-username font-bold">{message.user}:</span> {message.message}
+                                    <div className={`message-bubble mb-1 ${message.user === username ? 'bg-blue-500 text-white p-3' : 'bg-gray-200 text-black'}`}>
+                                        <span className="message-username font-bold">{message.user}</span> {message.message}
                                     </div>
                                 </div>
                             ))}
