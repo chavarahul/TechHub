@@ -1,68 +1,97 @@
-from flask import Flask, request, jsonify
+import google.generativeai as genai
+from flask import Flask, request, jsonify,send_file
 from flask_cors import CORS
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, accuracy_score
-import pandas as pd
-import pickle
-import re,os
-
+import torch
+from diffusers import StableDiffusionPipeline
+from PIL import Image
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CSV_PATH = os.path.join(BASE_DIR, 'chatroomtd.csv')
-MODEL_PATH = os.path.join(BASE_DIR, 'random_forest_model.pkl')
-VECTORIZER_PATH = os.path.join(BASE_DIR, 'tfidf_vectorizer.pkl')
+genai.configure(api_key="AIzaSyBjsFVUlaaffEHcH7UG_fY-b2RQkYFl_GI") 
+model = genai.GenerativeModel("gemini-1.5-flash")  
 
-# Load the dataset
-data = pd.read_csv(CSV_PATH)
-data['text'] = data['text'].str.lower().str.replace('[^a-z\s]', '', regex=True)
+def generate_quiz(prompt, num_questions, difficulty):
+    difficulty_prompt = (
+        f"Generate {num_questions} multiple-choice questions on '{prompt}' at {difficulty} difficulty. "
+        "Each question should have 4 options labeled A, B, C, D, and the correct answer should be clearly stated. "
+        "The format should be: Question: [Question text], A: [Option 1], B: [Option 2], C: [Option 3], D: [Option 4], Correct Answer: [A/B/C/D]."
+    )
 
-# Vectorize the text data
-vectorizer = TfidfVectorizer(max_features=1000)
-X = vectorizer.fit_transform(data['text']).toarray()
-y = data['label']
+    response = model.generate_content(difficulty_prompt)
 
-# Train-test split
-X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+    generated_text = response.text
+    questions_data = []
 
-# Train the model
-model = RandomForestClassifier(n_estimators=150, random_state=42)
-model.fit(X_train, y_train)
+    lines = generated_text.split("\n")
+    
+    current_question = {}
+    for line in lines:
+        if line.startswith("Question:"):
+            if current_question:
+                questions_data.append(current_question)
+            current_question = {"question": line[len("Question:"):].strip(), "options": {}, "correct_answer": ""}
+        elif line.startswith("A:"):
+            current_question["options"]["A"] = line[len("A:"):].strip()
+        elif line.startswith("B:"):
+            current_question["options"]["B"] = line[len("B:"):].strip()
+        elif line.startswith("C:"):
+            current_question["options"]["C"] = line[len("C:"):].strip()
+        elif line.startswith("D:"):
+            current_question["options"]["D"] = line[len("D:"):].strip()
+        elif line.startswith("Correct Answer:"):
+            current_question["correct_answer"] = line[len("Correct Answer:"):].strip()
 
-# Save the model and vectorizer
-with open(MODEL_PATH, 'wb') as model_file:
-    pickle.dump(model, model_file)
-with open(VECTORIZER_PATH, 'wb') as vectorizer_file:
-    pickle.dump(vectorizer, vectorizer_file)
+    if current_question:
+        questions_data.append(current_question)
 
-# Load the model and vectorizer
-with open(MODEL_PATH, 'rb') as model_file:
-    model = pickle.load(model_file)
-with open(VECTORIZER_PATH, 'rb') as vectorizer_file:
-    vectorizer = pickle.load(vectorizer_file)
+    return questions_data
 
-# Define a function for prediction
-def predict_emotion(text):
-    text = re.sub('[^a-z\s]', '', text.lower())
-    text_vector = vectorizer.transform([text]).toarray()
-    prediction = model.predict(text_vector)
-    return prediction[0]
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"Using device: {device}")
+pipeline = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
+pipeline = pipeline.to(device)
 
-# Flask route for prediction
-@app.route('/api/chatroom', methods=['POST'])
-def fun1():
-    data = request.get_json()
-    test1 = data.get('msg')
+# Directory to save generated images
+output_dir = "generated_images"
+os.makedirs(output_dir, exist_ok=True)
 
-    if not test1:
-        return jsonify({"error": "No text provided"}), 400
+@app.route("/generate-quiz", methods=["POST"])
+def generate_quiz_api():
+    data = request.json
+    prompt = data.get("prompt", "python programming basics")
+    num_questions = data.get("questions", 3)
+    difficulty = data.get("difficulty", "medium")
 
-    # Predict emotion using test1
-    predicted_emotion = predict_emotion(test1)
-    response = {"text": test1, "predicted_emotion": predicted_emotion}
-    return jsonify(response)
+    quiz = generate_quiz(prompt, num_questions, difficulty)
 
+    return jsonify({"status": "success", "questions": quiz})
+
+@app.route('/generate', methods=['POST'])
+def generate_image():
+    try:
+        # Parse JSON input
+        data = request.json
+        if "prompt" not in data:
+            return jsonify({"error": "Missing 'prompt' in request body"}), 400
+        
+        prompt = data["prompt"]
+        print(f"Generating image for prompt: {prompt}")
+
+        # Generate the image
+        with torch.no_grad():
+            image = pipeline(prompt).images[0]
+
+        # Save image to a file
+        image_path = os.path.join(output_dir, "generated_image.png")
+        image.save(image_path)
+
+        # Return the image file as a response
+        return send_file(image_path, mimetype="image/png")
+    
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": str(e)}), 500
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -10,14 +10,14 @@ import Real from '../components/QuizPages/Real'
 import Profressional from '../components/QuizPages/Profressional'
 
 const Page = () => {
-  const [option, setOption] = useState<string>(()=>{return localStorage.getItem('option')|| '';})
-  const [input, setInput] = useState<string>(()=>{return localStorage.getItem('input')|| '';})
+  const [option, setOption] = useState<string>(() => { return localStorage.getItem('option') || ''; })
+  const [input, setInput] = useState<string>(() => { return localStorage.getItem('input') || ''; })
   const [checker, setChecker] = useState<boolean>(false)
-  const [prompt,setPrompt] =useState<string>('')
+  const [prompt, setPrompt] = useState<string>('')
   const Test: any = [
     { name: "Mock test" },
     { name: "Competitive test" },
-    { name: "Professional test" }
+    // { name: "Professional test" }
   ]
   const handleOptionChange = (name: string) => {
     setOption(name);
@@ -25,9 +25,8 @@ const Page = () => {
   const select: any = [
     { name: "Topic" },
     { name: "Content" },
-    { name: "Upload" }
   ]
-  
+
   useEffect(() => {
     localStorage.setItem('option', option);
   }, [option]);
@@ -36,7 +35,7 @@ const Page = () => {
     localStorage.setItem('input', input);
   }, [input]);
 
-  
+
   return (
     <>
       <Hero />
@@ -75,7 +74,7 @@ const Page = () => {
                                 value={t.name}
                                 onChange={() => { setInput(t.name) }}
                                 checked={input === t.name}
-                                // onClick={()=>setChecker(false)}
+                              // onClick={()=>setChecker(false)}
                               />
                               <svg viewBox="0 0 64 64" height="1.3em" width="1.3em">
                                 <path
@@ -94,7 +93,7 @@ const Page = () => {
                 </div>
                 <div className="relative w-[20%] h-full">
                   {
-                    (input === 'Topic' || input === 'Content') ?(<>
+                    (input === 'Topic' || input === 'Content') ? (<>
                       <input
                         placeholder={`Enter your ${input}`}
                         className={`relative pr-20 bg-transparent ring-0 outline-none border border-neutral-500 text-white placeholder-white text-sm rounded-lg focus:ring-violet-500 placeholder-opacity-60 focus:border-violet-500 block w-full p-2.5 checked:bg-emerald-500 ${poppin.className}`}
@@ -106,28 +105,27 @@ const Page = () => {
                         }}
                       />
                       <button type="button" className=" absolute top-1 right-3 text-2xl text-white cursor-pointer">
-                       <ArrowForward/>
+                        <ArrowForward />
                       </button>
-                    </>):( input !== '' &&
+                    </>) : (input !== '' &&
                       <>
-                      <input type="file" name="" id="" className='mt-2' />
-                      <button type="submit" className=" absolute top-1 right-3 text-2xl text-white cursor-pointer">
-                       <ArrowForward/>
-                      </button>
+                        <input type="file" name="" id="" className='mt-2' />
+                        <button type="submit" className=" absolute top-1 right-3 text-2xl text-white cursor-pointer">
+                          <ArrowForward />
+                        </button>
                       </>
                     )
                   }
                 </div>
               </div>
             }
-
-           {(input!== '' && option=== 'Mock test')&& <Mock test={input||''} prompt={prompt} option={option}/>}
-           {(input!== '' && option=== 'Competitive test')&& <Real test={input||''} prompt={prompt} option={option}/>}
-           {(input!== '' && option=== 'Professional test')&& <Profressional test={input||''} prompt={prompt} option={option}/>}
+            {(input !== '' && option === 'Mock test') && <Mock test={input || ''} prompt={prompt} option={option} />}
+            {(input !== '' && option === 'Competitive test') && <Real test={input || ''} prompt={prompt} option={option} />}
+            {/* {(input !== '' && option === 'Professional test') && <Profressional test={input || ''} prompt={prompt} option={option} />} */}
 
           </div>
         </div>
-        
+
       </div>
     </>
   )

@@ -3,10 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 
-// Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const genAI = new GoogleGenerativeAI('AIzaSyBjsFVUlaaffEHcH7UG_fY-b2RQkYFl_GI');
 
-// Converts local file information to a GoogleGenerativeAI.Part object.
 function fileToGenerativePart(path:any, mimeType:any) {
   return {
     inlineData: {
@@ -17,7 +15,6 @@ function fileToGenerativePart(path:any, mimeType:any) {
 }
 
 export const POST =async(req:NextRequest) =>{
-     // Parse the incoming form data
   const formData = await req.formData();
 
   // Get the file from the form data

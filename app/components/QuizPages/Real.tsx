@@ -38,8 +38,8 @@ const Real = ({ test, prompt ,option}:TestType) => {
     }
    try{
     e.preventDefault();
-    const res = await axios.post('http://127.0.0.1:5000/competitive',{type:fromData.type,questions:fromData.questions,level:fromData.level,prompt:fromData.prompt});
-    setQuizData({data:res?.data,questions,level,negativeMarks,totalMarks})
+    // const res = await axios.post('http://127.0.0.1:5000/competitive',{type:fromData.type,questions:fromData.questions,level:fromData.level,prompt:fromData.prompt});
+    // setQuizData({data:res?.data,questions,level,negativeMarks,totalMarks})
    if(option !== 'Mock test'){
     const hours = (document.getElementById('hours') as HTMLInputElement).value;
     const minutes = (document.getElementById('minutes') as HTMLInputElement).value;
@@ -48,7 +48,7 @@ const Real = ({ test, prompt ,option}:TestType) => {
    }
     toast.success("Test Started")
     router.push(`/Test/${option}`)
-    console.log(res?.data)
+    // console.log(res?.data)
    }catch(error){
     if (axios.isAxiosError(error)) {
       if (error.response) {

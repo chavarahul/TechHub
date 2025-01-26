@@ -7,20 +7,14 @@ import { FormData, TestType } from '@/app/constants/type';
 import { quizContest } from '../context/QuizContext';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import CloseIcon from '@mui/icons-material/Close';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 const Mock = ({ test, prompt, option }: TestType) => {
   const [questions, setQuestions] = useState('');
   const [totalMarks, setTotalMarks] = useState('');
   const [level, setLevel] = useState('');
   const { setQuizData }: any = useContext(quizContest);
   const mainContent = useRef<HTMLDivElement | null>(null)
-  const [scroller, setScroller] = useState<boolean>(false)
-  const router = useRouter();
-  const visibleRef = useRef<HTMLDivElement | null>(null);
-  const [seenContainer, setSeenContainer] = useState<boolean>(true);
-  const [selectedText, setSelectedText] = useState('');
+  const router = useRouter(); const [selectedText, setSelectedText] = useState('');
 
   const handleNumberChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -36,53 +30,55 @@ const Mock = ({ test, prompt, option }: TestType) => {
     const val = e.target.value;
     if (val === '' || (/^\d{0,1}$/.test(val) && Number(val) >= 0 && Number(val) <= 2)) {
       setLevel(val);
-    }
+    };
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, formData: FormData) => {
     if (!formData.level || !formData.prompt || !formData.questions || !formData.type) {
-      toast.error('Invalid details');
-      return;
+        toast.error('Invalid details');
+        return;
     }
-    if (test === 'Topic' || test === 'Upload') {
-      handleGenerateContent(e);
-      return;
-    }
+
     try {
-      const res = await axios.post(
-        'http://127.0.0.1:5000/mock',
-        {
-          type: formData.type,
-          questions: formData.questions,
-          level: formData.level,
-          prompt: formData.prompt,
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      ).finally(() => {
-        setQuestions('');
-        setTotalMarks('')
-        setLevel('')
-      }).catch((err) => {
-        console.log(err)
-      })
-      setQuizData({ questions, totalMarks, level, data: res?.data });
-      toast.success("Test Started");
-      router.push(`/Test/${option}`)
-      console.log(res?.data);
+        const difficultyMap = {
+            '0': 'easy',
+            '1': 'medium',
+            '2': 'hard',
+        };
+        const difficulty = difficultyMap[formData.level as keyof typeof difficultyMap];
+
+        const res = await axios.post(
+            'http://127.0.0.1:5000/generate-quiz',
+            {
+                questions: formData.questions,
+                difficulty,
+                prompt: formData.prompt,
+            },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
+        const quizDataToSet = {
+            questions: res.data.questions || [], 
+            level: formData.level,
+            data: res.data,
+            totalMarks: res.data.questions?.length || 0,
+            negativeMarks: 0 
+        };
+
+        setQuizData(quizDataToSet);
+
+        console.log(quizDataToSet)
+        localStorage.setItem('quizData', JSON.stringify(quizDataToSet));
+
+        toast.success('Test Started');
+        router.push(`/Test/${option}`);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          console.error('Response error:', error.response.data);
-        } else if (error.request) {
-          console.error('Request error:', error.request);
-        } else {
-          console.error('Error:', error.message);
-        }
-      } else {
-        console.error('Unexpected error:', error);
-      }
+        console.error('Error generating quiz:', error);
+        toast.error('Failed to generate quiz');
     }
-  };
+};
+  
+  
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,46 +86,6 @@ const Mock = ({ test, prompt, option }: TestType) => {
     handleSubmit(e, formData);
   };
 
-  const handleScrollUp = () => {
-    if (mainContent.current) {
-      mainContent.current.scrollBy({ top: -250, behavior: "smooth" })
-    }
-  }
-
-  const handleScrollDown = () => {
-    if (mainContent.current) {
-      mainContent.current.scrollBy({ top: 250, behavior: "smooth" })
-    }
-  }
-
-  useEffect(() => {
-    if (mainContent.current) {
-      if (mainContent.current.scrollHeight > mainContent.current.clientHeight) {
-        setScroller(true)
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (seenContainer && visibleRef.current) {
-      visibleRef.current.scrollBy({ top: visibleRef.current.clientHeight * 0.4, behavior: "smooth" });
-    }
-  }, [seenContainer]);
-
-  const handleGenerateContent = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // const res = await axios.post('/',prompt);
-    // console.log(res?.data);
-
-    // if(res?.status === 200){
-    toast.success("Content Generated");
-    setSeenContainer(true);
-    // if(visibleRef.current){
-    //    visibleRef.current.scrollBy({top:600,behavior:"smooth"})
-    // }
-    // }
-
-  }
 
   useEffect(() => {
     const selection = window.getSelection();
@@ -189,51 +145,11 @@ const Mock = ({ test, prompt, option }: TestType) => {
         </div>
         <div className='flex-center h-[15%] w-full mt-5 relative'>
           <button className={`confirm ${poppin.className}`} type='submit'>
-            Generate {`${test === 'Content' ? 'Quiz' : 'Content'}`}
+            Generate Quiz
           </button>
           <button onClick={() => { localStorage.removeItem('option'); localStorage.removeItem('input') }}>ddd</button>
         </div>
       </form>
-      {/* ${!seenContainer && 'ScrollVisibleCon'} */}
-      {seenContainer &&
-        <section className={` w-[80%] min-h-[90%] h-[90%] transition-all ease-in-out border border-[textBgColor] overflow-hidden rounded-[10px] absolute  flex-center pb-20  z-[9999] -top-1 bg-[#090909] left-36 `} ref={visibleRef}>
-          <div className={`w-full h-full relative`}>
-            <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-white flex items-end justify-start cursor-pointer" onClick={() => { setSeenContainer(false) }}>
-              <CloseIcon className='text-black mb-1 ml-[0.4rem] text-sm' />
-            </div>
-            <div className="w-[95%]  h-full relative">
-              <div className="w-full h-[10%]  relative"></div>
-              {
-                <div className="w-full relative h-[10%]  flex-center mb-5">
-                  <p className={`${poppin.className} text-3xl capitalize textColorBg font-bold`}>{prompt}</p>
-                </div>
-              }
-              <div className=" Contentbox h-[70%] w-full relative flex-all">
-                {(scroller) && <div className="h-full w-[5%] relative flex-center">
-                  <div className="rounded-full p-2 flex-center bg-white cursor-pointer z-[999]" onClick={handleScrollUp}>
-                    <KeyboardArrowUpIcon style={{ color: "black", fontSize: '15px' }} />
-                  </div>
-                </div>}
-                <div className={`MainContent w-[80%]   h-full relative flex-center`} >
-                  <p className={`${poppin.className} text-center w-full h-full relative  leading-10 overflow-hidden Scroller`} ref={mainContent}>
-                    svsfvdg Lorem ipsum dolor sit,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque doloribus dignissimos earum vero adipisci assumenda, quae quod dolorem iure quo saepe deleniti dolores at repellendus dolorum tempore? Unde eum commodi debitis, quidem fugit reprehenderit quisquam? Reprehenderit quae minima rerum veritatis rem tempora. Autem, vel eos quia aliquid sapiente libero magni, sint vitae nobis quae tempora soluta eius velit architecto non veritatis id cupiditate maiores minus alias placeat possimus. Quod magnam qui, aliquid, unde doloremque quasi officiis quae earum ex exercitationem tenetur molestias reprehenderit? Natus ipsam aliquid veniam libero dolores cumque ratione ab fugiat modi atque, praesentium officiis beatae distinctio animi corrupti ducimus accusantium quidem rem iste ex quo pariatur voluptates! Quam debitis deleniti enim. Ab quibusdam ipsa unde ullam perspiciatis? Quisquam sint architecto, amet ipsum magnam natus velit quod tenetur rerum nemo adipisci corrupti cupiditate dolores numquam perferendis! Maxime, voluptas necessitatibus! Voluptates, ratione accusamus! Libero commodi architecto, reprehenderit deleniti molestias, aliquid quod amet iste quam est iusto officiis dolores reiciendis minima magni non illum quia, fugiat nobis sit blanditiis corrupti? Dignissimos repellat nostrum vitae commodi quae molestias ab ullam minus laudantium. Officiis esse odio ad dicta vero quos reiciendis exercitationem labore, quia similique, minima veniam obcaecati nulla dolorem error atque possimus qui! Eius cupiditate laudantium nisi alias consequatur qui dolore deleniti odit saepe! Quas deserunt consequatur suscipit eligendi dolorum, illum similique corporis fugit sapiente inventore dignissimos perspiciatis, minima vel dicta est distinctio quae alias, vero aperiam debitis? Dolorum mollitia praesentium hic animi quisquam magni maiores esse ipsum, autem totam ab recusandae doloribus, sequi architecto harum. Vel, cupiditate quibusdam perspiciatis eligendi, dicta iure unde beatae nemo sed recusandae delectus odio, aperiam rem deleniti est nam illo harum. Deleniti suscipit ipsa facilis aperiam harum labore ratione, mollitia non vitae provident beatae nemo blanditiis dicta inventore officiis autem earum laborum. Harum consequuntur modi quisquam sed vel. Commodi, ratione natus! Totam omnis recusandae ad aspernatur quas nemo repellat sed, rerum cupiditate debitis aut libero eveniet veniam ipsum modi dicta, commodi voluptatibus, dolores minima! Molestias cupiditate, voluptatibus doloremque cumque explicabo ipsa voluptate ad velit adipisci ea, soluta repellendus nisi vel eum dicta unde doloribus praesentium tenetur perferendis quia aperiam maxime laudantium? Ut est reiciendis quae laudantium fuga? Illo fugit praesentium recusandae est alias quo ipsa, blanditiis dolores quae odio eveniet, animi commodi deleniti soluta inventore ex maxime dolorem? Tenetur, quaerat harum. Quisquam deserunt consequatur sint aut, voluptas a ut molestiae officiis vero quaerat fugit quidem.
-                  </p>
-                </div>
-                {(scroller) && <div className="h-full w-[5%] relative flex-center">
-                  <div className="rounded-full p-2 flex-center bg-white cursor-pointer z-[999]" onClick={handleScrollDown} >
-                    <KeyboardArrowDownIcon style={{ color: "black", fontSize: '15px' }} />
-                  </div>
-                </div>}
-              </div>
-              <div className="h-[10%] w-full w flex-center mt-10 pb-10">
-                <button className="glitchbutton">
-                  Generate More  {selectedText}
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      }
     </>
   );
 };

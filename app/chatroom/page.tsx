@@ -3,21 +3,23 @@ import React, { useState, useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import io from 'socket.io-client';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { poppin } from '../constants';
 import { userType } from '../constants/type';
 import { useUser } from '../components/user/UserData';
+import ContentCopy from '@mui/icons-material/ContentCopy';
 
-const LOCAL_STORAGE_KEY = 'chat_messages';
+const socket = io('http://localhost:8000');  // Connect to socket.io server with URL
 
 const Page = () => {
     const userData: userType | null = useUser();
     const username = userData?.username || '';
+    const userId = userData?.id || '';
     const [names, setNames] = useState<string[]>([]);
     const [msg, setMsg] = useState<string>('');
     const [messages, setMessages] = useState<{ user: string, message: string }[]>([]);
-    const [chatInp, setChatInp] = useState<string>('');
 
     useEffect(() => {
         // Fetch initial users
@@ -26,35 +28,46 @@ const Page = () => {
             setNames(res.data.res);
         };
         fetchUsers();
-
-        // Load messages from local storage
-        const storedMessages = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
-        setMessages(storedMessages);
-
-        // Poll for changes in local storage
-        const intervalId = setInterval(() => {
-            const updatedMessages = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
-            setMessages(updatedMessages);
-        }, 1000); // Poll every second
-
-        return () => clearInterval(intervalId); // Cleanup on unmount
     }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const res = await axios.post("http://localhost:5000/api/chatroom", { msg });
-        console.log(res?.data);
+        const res = await axios.post("http://127.0.0.1:5000/api/chatroom", { msg });
         if (res?.data.predicted_emotion === 'negative') {
             setMsg('');
             toast.error("Unparliamentary language");
             return;
         }
-        // Add message to local storage
+
         const messageData = { user: username, message: msg };
-        const updatedMessages = [...messages, messageData];
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedMessages));
-        setMessages(updatedMessages);
-        setMsg(''); // Clear message input
+        socket.emit('send_message', messageData);  // Emit message to server
+        setMsg('');  // Clear message input
+    };
+
+    useEffect(() => {
+        socket.on('receive_message', (data) => {
+            setMessages(prevMessages => [...prevMessages, data]);  // Update state with received message
+        });
+
+        return () => {
+            socket.off('receive_message');  // Clean up the listener
+        };
+    }, []);
+
+    const handleCopy = async (message: string,e:any) => {
+     e.preventDefault();
+        try {
+            // Copy the message to clipboard
+            await navigator.clipboard.writeText(message);
+            toast.success("Message copied to clipboard");
+
+            // Send the message to the API
+            await axios.post('/api/social', { message ,userId});
+            // toast.success("Message sent to /api/social");
+        } catch (error) {
+            console.error("Error copying message or sending to API:", error);
+            toast.error("Failed to copy message or send to API");
+        }
     };
 
     return (
@@ -81,10 +94,9 @@ const Page = () => {
                         </div>
                     </div>
                 </div>
-                <section className="user-panel">
+                <section className="user-panel ">
                     <div className="user borders h-[70vh] flex-colm rounded-[10px]">
                         <p className={`${poppin.className}`}>Available Users</p>
-                        <button onClick={()=>{localStorage.clear()}}>wefw</button>
                         <div className="">
                         </div>
                     </div>
@@ -95,14 +107,19 @@ const Page = () => {
                                     key={index}
                                     className={`message-item flex ${message.user === username ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <div className={`message-bubble mb-1 min-w-[20%] ${message.user === username ? 'bg-white text-black p-3 px-5 rounded-[15px] mb-3' : 'bg-gray-200 text-black'}`}>
+                                    <div className={`message-bubble mb-1 min-w-[20%] ${message.user === username ? 'bg-white text-black p-3 px-5 rounded-[15px] mb-3' : 'bg-white text-black p-3 px-5 rounded-[15px] mb-3'}`}>
                                         <span className={`${poppin.className} message-username`}>{message.user} :{"   "}</span>{message.message}
+                                        <ContentCopy
+                                            className="text-black text-sm ml-4"
+                                            style={{ fontSize: '15.5px', cursor: 'pointer' }}
+                                            onClick={(e) => handleCopy(message.message,e)}
+                                        />
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className="contact-list">
+                    <div className="contact-list ">
                         <div className="contact mt-10">
                             <div className="flex-center w-full px-10">
                                 <form className="h-full borders w-full px-5 py-3 rounded-[10px] flex" onSubmit={handleSubmit}>

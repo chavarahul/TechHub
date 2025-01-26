@@ -20,7 +20,7 @@ const AICompiler = () => {
         if (item) {
             setLangs(item)
         }
-    },[])
+    }, [])
     const handleChange = (editor: any, data: any, value: any) => {
         console.log(code)
         setCode(value);
@@ -28,7 +28,7 @@ const AICompiler = () => {
     };
 
     const handleDeBug = async () => {
-        const res = await axios.post('/api/debug', { check: code, langser: lang,name:langs });
+        const res = await axios.post('/api/debug', { check: code, langser: lang, name: langs });
 
         console.log(res.data);
         let resp = res.data.text.replace(/\*/g, '');
@@ -36,36 +36,36 @@ const AICompiler = () => {
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-    setDebug(formattedData)
+        setDebug(formattedData);
     };
 
     const handleTest = async (e: any) => {
         e.preventDefault();
         console.log('yutgbyvbgyh' + lang);
-        const res = await axios.post('/api/test', { check: code, langser: lang , name : langs });
+        const res = await axios.post('/api/test', { check: code, langser: lang, name: langs });
         console.log(res.data);
         let resp = res.data.text.replace(/\*/g, '');
         const formattedData: any = resp
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-            setRun(formattedData)
+        setRun(formattedData)
     };
 
-    const handleExplain = async (e:any) => {
+    const handleExplain = async (e: any) => {
         e.preventDefault()
-        const res = await axios.post('/api/explain', { check: code, langser: lang ,name:langs});
+        const res = await axios.post('/api/explain', { check: code, langser: lang, name: langs });
         console.log(res.data);
         let resp = res.data.text.replace(/\*/g, '');
         const formattedData: any = resp
             .split(/\d+\.\s+/)
             .filter(Boolean)
             .map((item: string) => item.trim().replace(/\./g, '.\n'));
-            // setRun(formattedData)
+        // setRun(formattedData)
         setExplain(formattedData)
     };
 
-    const handleFinal = async (e:any) => {
+    const handleFinal = async (e: any) => {
         e.preventDefault()
         const res = await axios.post('/api/final', { check: explain });
         console.log(res.data);
@@ -161,7 +161,7 @@ const AICompiler = () => {
                         {langs === 'tr' && "Konuşma"}
                         {langs === 'fr' && "Discours"}
                     </button>
-                   
+
                 </div>
             </div>
             <div className="h-[25%]  flex-all mt-10">

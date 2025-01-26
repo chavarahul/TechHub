@@ -33,3 +33,11 @@ export interface TestType {
     prompt: string;
     option: string
 }
+
+export interface QuizQuestion {
+    question: string;
+    options: {
+        [key: string]: string;
+    };
+    correct_answer: string;
+}

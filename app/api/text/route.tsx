@@ -21,7 +21,7 @@ export const POST =async(req:NextRequest) =>{
         body: JSON.stringify({
           prompt: `${title}`,
           negative_prompt: 'darkness, fog',
-          samples: 2 ,
+          samples: 1 ,
           quality: 'LOW',
           guidance_scale: 50,
           aspect_ratio: '1:1',

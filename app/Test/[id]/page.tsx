@@ -8,6 +8,7 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useRouter } from 'next/navigation';
+import { QuizQuestion } from '@/app/constants/type';
 
 const Page = ({ id }: any) => {
     const { quizData }: any = useContext(quizContest);
@@ -27,6 +28,10 @@ const Page = ({ id }: any) => {
         }
     }, []);
 
+    useEffect(() => {
+        console.log(quizData);
+    },[quizData])
+    
     useEffect(() => {
         if (option === 'Mock test') {
             return;
@@ -104,6 +109,7 @@ const Page = ({ id }: any) => {
         console.log(selectedOption);
     }
 
+
     return (
         <>
             <section className="w-full mt-10 min-h-[90vh] h-[85vh] relative flex-center">
@@ -118,11 +124,11 @@ const Page = ({ id }: any) => {
                             </div>
                             <div className="h-full w-[90%] relative CauroselContainer overflow-hidden">
                                 <div className="h-full w-full relative CauroselBox" style={{ display: 'flex', transform: `translateX(-${currentQuestionIndex * 100}%)`, transition: 'transform 0.5s ease-in-out' }}>
-                                    {Array.from({ length: questions }).map((_, index) => (
+                                    {quizData?.questions?.map((item: QuizQuestion, index: number) => (
                                         <div className="w-full h-full relative rounded-[10px] flex-shrink-0 flex flex-col items-center justify-center" key={index} style={{ flexBasis: '100%' }}>
                                             <div className="w-full relative h-[25%] px-8 flex-center">
                                                 <h4 className={`${poppin.className} w-full h-full flex-center text-center Scroller overflow-y-scroll leading-8`}>
-                                                    Question {index + 1}
+                                                    {item.question}
                                                 </h4>
                                             </div>
                                             <div className="h-1/2 w-full relative flex-center">
@@ -139,7 +145,7 @@ const Page = ({ id }: any) => {
                                                                 checked={selectedOption[index] === `Option ${opt}`}
                                                                 onChange={() => handleOptionSelect(index, `Option ${opt}`)}
                                                             />
-                                                            <span className={`${poppin.className} ml-2`}>Option {opt}</span>
+                                                            <span className={`${poppin.className} ml-2`}>{item.options[`${opt}`]}</span>
                                                         </div>
                                                     ))}
                                                 </div>
