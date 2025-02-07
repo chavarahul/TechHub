@@ -54,10 +54,8 @@ const Navbar = () => {
 
     const data = [
         { title: langs === 'en' ? 'Home' : langs === 'ja' ? '家' : langs === 'es' ? 'Hogar' : langs === 'tr' ? 'Ev' : langs === 'fr' ? 'Domicile' : '', hrefs: "/Home" },
-        { title: langs === 'en' ? 'Compiler' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '', hrefs: "/compiler" },
+        { title: langs === 'en' ? 'Quiz' : langs === 'ja' ? 'コンパイラ' : langs === 'es' ? 'Compilador' : langs === 'tr' ? 'Derleyici' : langs === 'fr' ? 'Compilatrice' : '', hrefs: "/quiz" },
         { title: langs === 'en' ? 'Dashboard' : langs === 'ja' ? 'コンバータ' : langs === 'es' ? 'Convertidora' : langs === 'tr' ? 'Dönüştürücü' : langs === 'fr' ? 'Convertisseur' : '', hrefs: "/Dashboard" },
-        {title:"Chat room", hrefs:"/chatroom"},
-        {title:"Updates",hrefs:"/articles"}
     ];
 
     const select = [

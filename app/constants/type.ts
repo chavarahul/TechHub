@@ -39,5 +39,5 @@ export interface QuizQuestion {
     options: {
         [key: string]: string;
     };
-    correct_answer: string;
+    correct_answer?: string;
 }

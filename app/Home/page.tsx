@@ -99,7 +99,7 @@ const Page = () => {
 
   }
   const select = [
-    { name: "AI Chat" }, { name: "Text to Image" }
+    { name: "AI Chat" }
   ]
 
 
@@ -369,7 +369,7 @@ const Page = () => {
         </div>
       </div>
       <Chats texter={submit && selectedAi.includes('AI Chat') ? textAi : ''} />
-      <TextImage texter={submit && selectedAi.includes('Text to Image') ? textAi : ''} />
+      {/* <TextImage texter={submit && selectedAi.includes('Text to Image') ? textAi : ''} /> */}
       {/* <ImageText /> */}
     </>
   )
